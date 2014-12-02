@@ -1,41 +1,26 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/index.css">
-    <title></title>
+<html ng-app = "WijchenGezondApp">
+<head>
+	<title>DaVuk quiz app</title>
+
+	<script src = "/js/angular/angular.min.js"></script>
+	<script src = "/js/angular/angular-route.min.js"></script>
+	<script src = "/js/angular/angular-resource.min.js"></script>
+	<script src = "/js/testController.js"></script>
+	<script src = "/js/routes.js"></script>
+
+	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+
+	<link rel="stylesheet" href="/css/main.css">
+  	<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container">
 
-<div class="topBar">
-    <div class="logo"> Wijchen Verenigd / ONTMOET</div>
-    <div class="loginBlock"> Ingelogd Als Henk de Vries</div>
-</div>
-
-<div class="secondBar">
-    <div class="date"> December/Januari</div>
-    <div class="sortingOptions"> <b>ALLES</b> /BEWEEG / VOEDING / VRIJETIJD / SUGGESTIES </div>
-</div>
-
-<div class="calendar">
-    <div class="days">
-        <div class="dayOfTheWeek"> MAANDAG</div>
-        <div class="numberOfActivities"> 5 activiteiten</div>
-        <div class="picture"> " PICTURE "</div>
-        <div class="showActivities">toon activiteiten</div>
-        <div class="dateActivity"> 28/12/14</div>
-    </div>
-
-    <div class="days">
-        <div class="dayOfTheWeek"> DINSDAG </div>
-        <div class="numberOfActivities"> 2 activiteiten</div>
-        <div class="picture"> " PICTURE "</div>
-        <div class="showActivities">toon activiteiten</div>
-        <div class="dateActivity"> 29/12/14</div>
-    </div>
-
-</div>
- </div>
+	<div class="container" ng-view="">
+	</div>
 </body>
 </html>
