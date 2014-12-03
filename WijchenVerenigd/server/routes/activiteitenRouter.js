@@ -1,5 +1,5 @@
 // De controllers bevatten de functies voor de docent.
-var docentControllers = require('../controllers/docentControllers.js');
+var activiteitenControllers = require('../controllers/activiteitenControllers.js');
 
 // Deze functie controleerd of de docent wel ingelogd is, anders wordt hij ge-redirect.
 function checkOpSessie (req, res, next) {
