@@ -15,14 +15,14 @@ var response = function (message, data) {
     }
 }
 
-exports.getSubCategorie = function (id, callback) {
+exports.getSubCategorie = function (_id, callback) {
     'use strict';
-    SubCategorie.find({_id : id}, function (err, SubCategorie) {
+    SubCategorie.find({_id : _id}, function (err, SubCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de SubCategorie is mislukt.", {}));
         } else {
-            callback(response("het zoeken naar de SubCategorie is gelukt.", SubCategorie));
+            callback(response("het zoeken naar de SubCategorie is gelukt.", SubCategorie[0]));
         }
     });
 }
@@ -39,9 +39,9 @@ exports.getSubCategorieen = function (hoofdCategorieId, callback) {
     });
 }
 
-exports.deleteSubCategorie = function (id, callback) {
+exports.deleteSubCategorie = function (_id, callback) {
     'use strict';
-    SubCategorie.remove({_id : id}).exec(function (err) {
+    SubCategorie.remove({_id : _id}).exec(function (err) {
         if (err) {
             callback(response("Het verwijderen van de SubCategorie is mislukt.", {}));
         } else {
@@ -79,7 +79,7 @@ exports.postSubCategorie = function (body, callback) {
 exports.putSubCategorie = function (body, callback) {
     'use strict';
     var update;
-    SubCategorie.find({_id : body.id}, function (err, SubCategorie) {
+    SubCategorie.find({_id : body._id}, function (err, SubCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de SubCategorie is mislukt.", {}));

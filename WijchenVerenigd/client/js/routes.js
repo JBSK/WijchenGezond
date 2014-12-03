@@ -11,18 +11,29 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
             "delete": {method: "DELETE"}
         },
         db = {};
-    db.gaVerder = $resource("/docent/gaVerder", {}, actions);
-    db.sessie = $resource("/docent/sessie", {}, actions);
-    db.vraag = $resource("/docent/vraag/:id", {}, actions);
-    db.vragen = $resource("/docent/vragen/:id", {}, actions);
+    db.hoofdCategorieen = $resource("/categorieen/hoofdCategorieen/:_id", {}, actions);
+    db.subCategorieen = $resource("/categorieen/subCategorieen/:_id", {}, actions);
+    db.subHoofdCategorieen = $resource("/categorieen/hoofdCategorieen/subCategorieen/:_id", {}, actions);
     return db;
 });
 
 WijchenGezondApp.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl: '../views/home.html',
-		controller: testController
+		controller: homeController
 	});
+    $routeProvider.when('/hoofdcategorieen/:_id', {
+        templateUrl: '../views/hoofdCategorie.html',
+        controller: hoofdCategorieController
+    });
+    $routeProvider.when('/categorieen', {
+        templateUrl: '../views/categorieen.html',
+        controller: categorieController
+    });
+    $routeProvider.when('/activiteit/:_id', {
+        templateUrl: '../views/activiteit.html',
+        controller: activiteitController
+    });
 	$routeProvider.otherwise({
 		redirectTo: "/"
 	});

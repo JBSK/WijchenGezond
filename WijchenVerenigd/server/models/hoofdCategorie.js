@@ -14,14 +14,14 @@ var response = function (message, data) {
     }
 }
 
-exports.getHoofdCategorie = function (id, callback) {
+exports.getHoofdCategorie = function (_id, callback) {
     'use strict';
-    HoofdCategorie.find({_id : id}, function (err, hoofdCategorie) {
+    HoofdCategorie.find({_id : _id}, function (err, hoofdCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de hoofdcategorie is mislukt.", {}));
         } else {
-            callback(response("het zoeken naar de hoofdcategorie is gelukt.", hoofdCategorie));
+            callback(response("het zoeken naar de hoofdcategorie is gelukt.", hoofdCategorie[0]));
         }
     });
 }
@@ -38,9 +38,10 @@ exports.getHoofdCategorieen = function (callback) {
     });
 }
 
-exports.deleteHoofdCategorie = function (id, callback) {
+exports.deleteHoofdCategorie = function (_id, callback) {
+    console.log(_id);
     'use strict';
-    HoofdCategorie.remove({_id : id}).exec(function (err) {
+    HoofdCategorie.remove({_id : _id}).exec(function (err) {
         if (err) {
             callback(response("Het verwijderen van de hoofdcategorie is mislukt.", {}));
         } else {
@@ -66,7 +67,7 @@ exports.postHoofdCategorie = function (body, callback) {
 exports.putHoofdCategorie = function (body, callback) {
     'use strict';
     var update;
-    HoofdCategorie.find({_id : body.id}, function (err, hoofdCategorie) {
+    HoofdCategorie.find({_id : body._id}, function (err, hoofdCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de hoofdcategorie is mislukt.", {}));
