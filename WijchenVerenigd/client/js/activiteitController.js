@@ -23,13 +23,13 @@ var activiteitController = function ($routeParams, $scope, $window, dbService) {
 			$scope.activiteit.dagen = false;
 			$scope.activiteit.datum = [{dag : "1", maand : "Januari", jaar : "2015"}];
 		} else {
-			$scope.activiteit.dagen = [{naam : "maandag", uren : "--:--", minuten : "--:--"}];
+			$scope.activiteit.dagen = [{naam : "maandag", startTijd : "--:--", eindTijd : "--:--"}];
 			$scope.activiteit.datum = false;
 		}
 	};
 	$scope.voegDagToe = function() {
 		if ($scope.activiteit.dagen.length < 7) {
-			$scope.activiteit.dagen[$scope.activiteit.dagen.length] = {naam : "maandag", uren : "--:--", minuten : "--:--"};
+			$scope.activiteit.dagen[$scope.activiteit.dagen.length] = {naam : "maandag", startTijd : "--:--", eindTijd : "--:--"};
 		}
 	};
 	$scope.verwijderDag = function() {
