@@ -16,13 +16,16 @@
     <div class="leftSideBar">
         <div class="week">WEEK 51</div>
         <div class="calendar" ng-init="week = [
-  {day:'MA', date:'15/12'},
-  {day:'MA', date:'15/12'},
-  {day:'MA', date:'15/12'},
-  {day:'MA', date:'15/12'},
-  {day:'MA', date:'15/12'}
+  {day:'MA', date:'15/12', passed:'inactive'},
+  {day:'DI', date:'16/12', passed:'inactive'},
+  {day:'WO', date:'17/12'},
+  {day:'DO', date:'18/12'},
+  {day:'VR', date:'19/12'},
+  {day:'ZA', date:'20/12'},
+  {day:'ZO', date:'21/12'},
+  {day:'MA', date:'22/12'}
 ]">
-            <div class="day inactive" ng-repeat="day in week">{{day.day}} {{day.date}}</div>
+            <div class="day {{day.passed}}" ng-repeat="day in week">{{day.day}} {{day.date}}</div>
         </div>
         <div class="sportType">
             <img src="./img/bal.png">
