@@ -12,7 +12,7 @@ var ActiviteitSchema = mongoose.Schema({
     gesloten : {type : Boolean, required : true},
     minPers : {type : Number, required : true},
     maxPers : {type : Number, required : true},
-    aantalPers : {type : [], required : true},
+    deelnemers : {type : [], required : true},
 }, {collection : "activiteiten"});
 
 var Activiteit = mongoose.model('Activiteit', ActiviteitSchema);
@@ -23,15 +23,4 @@ var response = function (message, data) {
         message : message,
         data : data
     }
-}
-exports.getActiviteiten = function (id, callback) {
-    'use strict';
-    Activiteit.find({lesNummer : id}, function (err, activiteiten) {
-        if (err) {
-            console.log(err);
-            callback(response("het zoeken naar de vragen is mislukt.", {}));
-        } else {
-            callback(response("het zoeken naar de vragen is gelukt.", activiteiten));
-        }
-    });
 }

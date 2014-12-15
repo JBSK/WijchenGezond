@@ -1,7 +1,7 @@
 // De controllers bevatten de functies voor de hoofdCategorieen.
 var categorieControllers = require('../controllers/categorieControllers.js');
 
-// De routes die worden gebruikt door docent ('/hoofdCategorieen').
+// De routes die worden gebruikt door de hoofdcategorieën ('/hoofdCategorieen').
 module.exports = function (express) {
 	var categorieenRouter = express.Router();
 	categorieenRouter.get('/hoofdCategorieen', categorieControllers.getHoofdCategorieen);
