@@ -49,6 +49,7 @@ body {
     text-align: right;
     padding-top: 10px;
 }
+
 .leftSideBar{
     float:left;
     border:solid 1px black;
@@ -59,28 +60,36 @@ body {
 }
 
 .week{
-    border:solid 1px black;
     width: 100%;
     height:20px;
     margin-top:1px;
     text-align: center;
-;
+
 }
 .calendar{
-    border:solid 1px black;
     width: 100%;
     height: 300px;
     margin-top:1px;
 }
 
-/*.day{*/
-    /*border:solid 1px black;*/
-    /*height: 10px;*/
-    /*margin-top:1px;*/
-/*}*/
+.calendar > .day{
+    background-color:black;
+    padding:10px;
+    color:white;
+    height: 40px;
+    width:49.5%;
+    margin-top:1px;
+    margin-left:1px;
+    float:left;
+    text-align:center;
+}
+
+.calendar > .inactive{
+    background-color:grey;
+}
 
 .sportType{
-    border:solid 1px black;
+    border-top:solid 1px black;
     height: 70px;
     margin-top:1px;
 
@@ -94,25 +103,61 @@ body {
     margin:0px;
 
 }
-.points{
+.meter{
     float:left;
-    border:solid 1px black;
     width:100%;
     height:100px;
     margin:1px;
-
+    background-color:lightgrey;
 }
+
+.meter > .completed{
+     background-color:green;
+     width:100px;
+     height:100%;
+    float:left;
+    color:white;
+    text-align:center;
+    padding-top:35px;
+}
+
+.meter > .completedrecent{
+    background-color:orange;
+    width:30px;
+    height:100%;
+    float:left;
+    text-align:center;
+    padding-top:35px;
+}
+
+.meter > .notcompleted{
+    width:600px;
+    height:100%;
+    float:left;
+    color:darkgrey;
+    text-align:center;
+    padding-top:35px;
+}
+
 .activitiesColumn{
     float:left;
     border:solid 1px black;
     width: 100%;
-    height:80px;
     margin:1px;
+}
 
+.description {
+    float: left;
+    border: solid 1px black;
+    width: 100%;
+    height: 80px;
+    margin: 1px;
+    background-color:lightgrey;
 }
 
 .activity{
     float:left;
+    background-color:lightgrey;
 }
 
 .icon{
@@ -146,8 +191,6 @@ body {
     width: 100px;
     border:solid 1px black;
     margin:1px;
-
-
 }
 
 .activityPoints{
