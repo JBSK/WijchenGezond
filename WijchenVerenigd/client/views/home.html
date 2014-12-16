@@ -4,16 +4,17 @@
     <a href="/#/activiteit/">Maak een activiteit aan</a></br>
     <a href="/#/aanmelden/">aanmelden</a>
 </div>
-<div class="viewContainer">
-    <div class="topBar">
-        <div class="logo">WIJCHENVERENIGD</div>
-        <div class="search">
-            <input type="text">
-        </div>
-        <div class="profile">ACTIVITEIT AANMAKEN<img src="./img/plus_wit.png"><img src="./img/profile_wit.png"></div>
+<div class="topBar">
+    <div class="logo">WIJCHENVERENIGD</div>
+    <div class="search">
+        <input type="text" class="searchbar" placeholder="Waar ben je naar op zoek?">
     </div>
+    <div class="profile">ACTIVITEIT AANMAKEN<img src="./img/plus_wit.png"><img src="./img/profile_wit.png"></div>
+</div>
+<div class="viewContainer">
 
     <div class="leftSideBar">
+        <div class="plannedActivities">MIJN GEPLANDE ACTIVITEITEN</div>
         <div class="week">WEEK 51</div>
         <div class="calendar" ng-init="week = [
   {day:'MA', date:'15/12', passed:'inactive'},
@@ -25,7 +26,7 @@
   {day:'ZO', date:'21/12'},
   {day:'MA', date:'22/12'}
 ]">
-            <div class="day {{day.passed}}" ng-repeat="day in week">{{day.day}} {{day.date}}</div>
+            <div class="day {{day.passed}}" ng-repeat="day in week"><span class="weekday">{{day.day}}</span> {{day.date}}</div>
         </div>
         <div class="sportType">
             <img src="./img/bal.png">
@@ -52,18 +53,20 @@
         <div class="activitiesColumn">
             <div class="activity" ng-click="showDetails1 = ! showDetails1">
                 <div class="icon"><img src="./img/loop_groot.png"></div>
-                <div class="activityTitle">HARDLOPEN/Rondje kasteel</div>
-                <div class="timeAndDate">19:30 etc</div>
-                <div class="attendance"> 5/10</div>
-                <div class="activityPoints"> 10pt</div>
+                <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
+                Door: Henk Grollen / Niveau: Beginner</div>
+                <div class="timeAndDate"><img src="./img/klok.png">19:30 | 17/12 | 2X PER WEEK</div>
+                <div class="attendance"><img src="./img/profile.png"> 5/10</div>
+                <div class="activityPoints"><img src="./img/plus_groen.png"> 10pt</div>
             </div>
             <div class="description" ng-show="showDetails1">DESCRIPTION</div>
             <div class="activity" ng-click="showDetails2 = ! showDetails2">
                 <div class="icon"><img src="./img/loop_groot.png"></div>
-                <div class="activityTitle">HARDLOPEN/Rondje kasteel</div>
-                <div class="timeAndDate">19:30 etc</div>
-                <div class="attendance"> 5/10</div>
-                <div class="activityPoints"> 10pt</div>
+                <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
+                    Door: Henk Grollen / Niveau: Beginner</div>
+                <div class="timeAndDate"><img src="./img/klok.png">19:30 | 17/12 | 2X PER WEEK</div>
+                <div class="attendance"><img src="./img/profile.png"> 5/10</div>
+                <div class="activityPoints"><img src="./img/plus_groen.png"> 10pt</div>
             </div>
             <div class="description" ng-show="showDetails2">DESCRIPTION</div>
         </div>
