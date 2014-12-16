@@ -22,7 +22,7 @@ module.exports = function (express) {
 	
 	gebruikerRouter.post('/login', gebruikerControllers.login);
     gebruikerRouter.post('/logout', gebruikerControllers.logout);
-	//gebruikerRouter.post('/delVriend', gebruikerControllers.delVriend);
+	gebruikerRouter.delete('/delVriend', gebruikerControllers.delVriend);
 	//gebruikerRouter.get('/hoofdCategorieen/:_id', gebruikerControllers.getHoofdCategorie);
 	//gebruikerRouter.post('/hoofdCategorieen', gebruikerControllers.postHoofdCategorie);
 	//gebruikerRouter.delete('/hoofdCategorieen/:_id', gebruikerControllers.deleteHoofdCategorie);

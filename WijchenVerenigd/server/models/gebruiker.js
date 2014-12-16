@@ -262,10 +262,76 @@ exports.getVrienden = function (gebruikerId, callback) {
     zoekGebruiker();
 };
 
-exports.delVriend = function (req, res) {
-    Gebruiker.delVriend(req.body, function(data) {
-        res.send(data);
-    });
+exports.delVriend = function (gegevens, callback) {
+    var gebruiker;
+    var slaGebruikerOp = function () {
+        gebruiker.save(function(error, savedGebruiker) {
+            if (error) {
+                console.log(error);
+                callback(response("Er is iets misgegaan.", gegevens));
+            } else {
+                callback(response("De vriend is succesvol verwijderd.", savedGebruiker));
+            }
+        });
+    };
+    var verwijderVriend = function () {
+        var i;
+        for (i = 0; i < gebruiker.vrienden.length; i += 1) {
+            if (gebruiker.vrienden[i] === gegevens.vriendId) {
+                gebruiker.vrienden.splice(i,1);
+            }
+        }
+        slaGebruikerOp();
+    };
+    var checkOfVrienden = function () {
+        var i;
+        if (gebruiker.vrienden.length > 0) {
+            for (i = 0; i < gebruiker.vrienden.length; i += 1) {
+                if (gebruiker.vrienden[i] === gegevens.vriendId) {
+                    verwijderVriend();
+                    return;
+                }
+            }
+        }
+        callback(response("Je bent geen vrienden met deze persoon.", gegevens));
+    };
+    var checkOfVriendBestaat = function () {
+        Gebruiker.find({_id : gegevens.vriendId}, function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(response("De gegeven vriend bestaat niet.", gegevens));
+            } else {
+                if (data[0]) {
+                    checkOfVrienden();
+                } else {
+                    callback(response("De gegeven vriend bestaat niet.", gegevens));
+                }
+            }
+        });
+    };
+    var zoekGebruiker = function () {
+        Gebruiker.find({_id : gegevens._id}, function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+            } else {
+                if (data[0]) {
+                    gebruiker = data[0];
+                    checkOfVriendBestaat();
+                } else {
+                    callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+                }
+            }
+        });
+    };
+    var valideerVelden = function () {
+        if (gegevens._id && gegevens.vriendId) {
+            zoekGebruiker();
+        } else {
+            callback(response("Niet alle verplichte velden zijn ingevuld", gegevens));
+        }
+    };
+    valideerVelden();
 };
 
 exports.login = function (gebruiker, callback) {

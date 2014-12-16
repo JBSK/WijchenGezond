@@ -1,0 +1,23 @@
+<div id="container">
+	<h1>Login</h1>
+	<div>
+		<form ng-model="gegevens">
+			<input type="text" class="form-control" placeholder="Gebruikersnaam of Email-adres" ng-model="gegevens.emailUsername" />
+			<input type="password" class="form-control" placeholder="Wachtwoord" ng-model="gegevens.wachtwoord" />
+
+			<input class="btn btn-success" type="submit" value="Login" ng-click="login()" />
+		</form>
+	</div>
+
+	<h1>Registreer</h1>
+	<div>
+		<form ng-model="gegevens">
+			<input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="gegevens.username" />
+			<input type="text" class="form-control" placeholder="Email-adres" ng-model="gegevens.email" />
+			<input type="password" class="form-control" placeholder="Wachtwoord" ng-model="gegevens.wachtwoord" />
+			<input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="gegevens.bevestigWachtwoord" />
+
+			<input class="btn btn-success" type="submit" value="Registreer" ng-click="login()" />
+		</form>
+	</div>
+</div>
