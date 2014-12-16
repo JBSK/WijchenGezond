@@ -1,24 +1,14 @@
-<div class="topBar">
-    <div class="logo"><strong>WIJCHEN</strong>VERENIGD</div>
-    <div class="search">
-        <div class="searchbaricon"></div>
-        <input type="text" class="searchbar" placeholder="Waar ben je naar op zoek?">
+<div class="leftSideBar">
+    <a href="#">
+        <div class="plannedActivities">MIJN GEPLANDE ACTIVITEITEN</div>
+    </a>
+
+    <div class="week">
+        <div class="weekarrowleft"></div>
+        <div class="weeknumber">WEEK 51</div>
+        <div class="weekarrowright"></div>
     </div>
-    <div class="profile">
-        <a href="/#/feed/"><img src="./img/feed_wit.png" width="6%" alt="icon"> FEED </a>
-        <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
-        <a href="/#/aanmelden/"><img src="./img/profile_wit.png" alt="icon"> AANMELDEN </a>
-    </div>
-</div>
-<div class="viewContainer">
-    <div class="leftSideBar">
-        <a href="#"><div class="plannedActivities">MIJN GEPLANDE ACTIVITEITEN</div></a>
-        <div class="week">
-            <div class="weekarrowleft"></div>
-            <div class="weeknumber">WEEK 51</div>
-            <div class="weekarrowright"></div>
-        </div>
-        <div class="calendar" ng-init="week = [
+    <div class="calendar" ng-init="week = [
           {day:'MA', date:'15/12', passed:'inactive'},
           {day:'DI', date:'16/12', passed:'inactive'},
           {day:'WO', date:'17/12'},
@@ -28,55 +18,53 @@
           {day:'ZO', date:'21/12'},
           {day:'MA', date:'22/12'}
         ]">
-            <div class="day {{day.passed}}" ng-repeat="day in week"><span class="weekday">{{day.day}}</span>
-                {{day.date}}
-            </div>
-        </div>
-        <div class="sportType">
-            <a href="#"><img src="./img/bal.png" alt="icon"></a>
-            <a href="#"><img src="./img/loop_active.png" alt="icon"></a>
-            <a href="#"><img src="./img/fitness.png" alt="icon"></a>
-            <a href="#"><img src="./img/fiets.png" alt="icon"></a>
-            <a href="#"><img src="./img/wandel.png" alt="icon"></a>
-            <a href="#"><img src="./img/zwem.png" alt="icon"></a>
+        <div class="day {{day.passed}}" ng-repeat="day in week">
+            <span class="weekday">{{day.day}}</span> {{day.date}}
         </div>
     </div>
-    <div class="rightSide">
-        <div class="meter">
-            <div class="completed">
-                200 PUNTEN
+    <div class="sportType">
+        <a href="#"><img src="./img/bal.png" alt="icon"></a>
+        <a href="#"><img src="./img/loop_active.png" alt="icon"></a>
+        <a href="#"><img src="./img/fitness.png" alt="icon"></a>
+        <a href="#"><img src="./img/fiets.png" alt="icon"></a>
+        <a href="#"><img src="./img/wandel.png" alt="icon"></a>
+        <a href="#"><img src="./img/zwem.png" alt="icon"></a>
+    </div>
+</div>
+<div class="rightSide">
+    <div class="meter">
+        <div class="completed">
+            200 PUNTEN
+        </div>
+        <div class="completedrecent">
+        </div>
+        <div class="notcompleted">
+            320 PUNTEN TE GAAN
+        </div>
+    </div>
+    <div class="activitiesColumn">
+        <div class="activity" ng-click="showDetails1 = ! showDetails1">
+            <div class="icon"><img src="./img/loop_groot.png" alt="icon"></div>
+            <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
+                Door: Henk Grollen / Niveau: Beginner
             </div>
-            <div class="completedrecent">
-
-            </div>
-            <div class="notcompleted">
-                320 PUNTEN TE GAAN
+            <div class="timeAndDate"><img src="./img/klok.png" alt="icon">19:30 | 17/12 | 2X PER WEEK</div>
+            <div class="attendance"><img src="./img/profile.png" alt="icon"> 5/10</div>
+            <div class="activityPoints"><img src="./img/plus_groen.png" alt="icon"> 10 PT</div>
+            <div class="description" ng-show="showDetails1">Maandag & Donderdag<br>
+                Lorem Ipsum
             </div>
         </div>
-        <div class="activitiesColumn">
-            <div class="activity" ng-click="showDetails1 = ! showDetails1">
-                <div class="icon"><img src="./img/loop_groot.png" alt="icon"></div>
-                <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
-                    Door: Henk Grollen / Niveau: Beginner
-                </div>
-                <div class="timeAndDate"><img src="./img/klok.png" alt="icon">19:30 | 17/12 | 2X PER WEEK</div>
-                <div class="attendance"><img src="./img/profile.png" alt="icon"> 5/10</div>
-                <div class="activityPoints"><img src="./img/plus_groen.png" alt="icon"> 10 PT</div>
-                <div class="description" ng-show="showDetails1">Maandag & Donderdag<br>
-                    Lorem Ipsum
-                </div>
+        <div class="activity" ng-click="showDetails2 = ! showDetails2">
+            <div class="icon"><img src="./img/loop_groot.png" alt="icon"></div>
+            <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
+                Door: Henk Grollen / Niveau: Beginner
             </div>
-            <div class="activity" ng-click="showDetails2 = ! showDetails2">
-                <div class="icon"><img src="./img/loop_groot.png" alt="icon"></div>
-                <div class="activityTitle">HARDLOPEN / <span class="title">RONDJE KASTEEL</span><br>
-                    Door: Henk Grollen / Niveau: Beginner
-                </div>
-                <div class="timeAndDate"><img src="./img/klok.png" alt="icon">19:30 | 17/12 | 2X PER WEEK</div>
-                <div class="attendance"><img src="./img/profile.png" alt="icon"> 5/10</div>
-                <div class="activityPoints"><img src="./img/plus_groen.png" alt="icon"> 10 PT</div>
-                <div class="description" ng-show="showDetails2">Maandag & Donderdag<br>
-                    Lorem Ipsum
-                </div>
+            <div class="timeAndDate"><img src="./img/klok.png" alt="icon">19:30 | 17/12 | 2X PER WEEK</div>
+            <div class="attendance"><img src="./img/profile.png" alt="icon"> 5/10</div>
+            <div class="activityPoints"><img src="./img/plus_groen.png" alt="icon"> 10 PT</div>
+            <div class="description" ng-show="showDetails2">Maandag & Donderdag<br>
+                Lorem Ipsum
             </div>
         </div>
     </div>
