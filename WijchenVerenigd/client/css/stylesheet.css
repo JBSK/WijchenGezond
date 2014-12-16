@@ -4,27 +4,21 @@ body {
 }
 
 .viewContainer {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 0 10% 0 10%;
     height: 600px;
     margin: 1px;
-
 }
 
 .topBar {
-    float: left;
-    border: solid 1px black;
     width: 100%;
     height: 60px;
-    margin: 2px;
-    background-color: Black;
+    background-color: black;
     color: white;
 }
 
 .logo {
     float: left;
-    width: 33%;
-    margin: 1px;
+    width: 28%;
     text-align: center;
     padding-top: 20px;
 }
@@ -33,48 +27,95 @@ body {
     float: left;
     border: solid 1px black;
     width: 33%;
-    margin: 1px;
     text-align: center;
     padding-top: 10px;
     color: black;
+    font-size: 90%;
+}
+
+.searchbaricon {
+    background-image: url('../img/zoek.png');
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    margin: 8px 0 0 45px;
 }
 
 .searchbar {
-    width: 250px;
+    width: 300px;
     padding: 5px 5px 5px 30px;
 }
 
 .profile {
-    float: left;
+    float: right;
     border: solid 1px black;
-    width: 32%;
-    margin: 1px;
+    width: 35%;
     text-align: right;
-    padding-top: 10px;
+    padding-top: 15px;
+    margin-right: 20px;
+}
+
+.profile a:link, a:visited, a:hover {
+    text-decration: none;
+    color: white;
+}
+
+.profile img {
+    margin: -5px 2px 0 2px;
+
 }
 
 .leftSideBar {
     float: left;
     width: 30%;
     height: 425px;
-    margin: 0 5px 1px 1px;
     padding: 10px;
 }
 
 .week {
     width: 100%;
-    height: 50px;
-    margin-top: 10px;
+    display: block;
+    float: left;
+    margin-top: 30px;
+    height: 30px;
+}
+
+.weeknumber {
+    float: left;
     text-align: center;
+    font-weight: bold;
+    display: block;
+    width: 280px;
+
+}
+
+.weekarrowleft {
+    background-image: url('../img/arrow_small.png');
+    height: 16px;
+    width: 16px;
+    display: block;
+    float: left;
+    -ms-transform: rotate(180deg); /* IE 9 */
+    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+    transform: rotate(180deg);
+    margin-top:3px;
+
+}
+
+.weekarrowright {
+    height: 16px;
+    width: 16px;
     display: block;
     float: right;
-    font-weight: bold;
+    background-image: url('../img/arrow_small.png');
+    margin-top:3px;
+
 }
 
 .calendar {
     width: 100%;
     margin-top: 1px;
-    height:280px;
+    height: 290px;
 }
 
 .calendar > .day {
@@ -82,16 +123,16 @@ body {
     padding: 10px;
     color: white;
     height: 40px;
-    width: 49.5%;
-    margin-top: 1px;
-    margin-left: 1px;
+    width: 48%;
+    margin-top: 5px;
+    margin-left: 5px;
     float: left;
     text-align: center;
     display: block;
 }
 
 .day > .weekday {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .calendar > .inactive {
@@ -118,11 +159,10 @@ body {
 }
 
 .rightSide {
-    float: left;
-    /*border:solid 1px yellow;*/
-    width: 67.7%;
+    float: right;
+    width: 69%;
     height: 400px;
-    margin: 10px;
+    margin: 10px 10px 0 0;
 }
 
 .meter {
@@ -138,7 +178,7 @@ body {
     width: 300px;
     height: 100%;
     float: left;
-    font-weight:bold;
+    font-weight: bold;
     color: white;
     text-align: center;
     padding-top: 35px;
@@ -154,12 +194,13 @@ body {
 }
 
 .meter > .notcompleted {
-    width: 600px;
+    width: 400px;
     height: 100%;
-    float: left;
-    color: darkgrey;
+    float: right;
+    color: #C6C6C6;
     text-align: center;
     padding-top: 35px;
+    font-weight: bold;
 }
 
 .activitiesColumn {
@@ -172,8 +213,11 @@ body {
     float: left;
     width: 100%;
     height: 80px;
-    margin: 1px;
+    margin-top: -5px;
     background-color: #F6F6F6;
+    margin-bottom: 5px;
+    padding: 10px 0 0 20px;
+    font-size: 80%;
 }
 
 .activity {
@@ -193,7 +237,7 @@ body {
     float: left;
     height: 75px;
     width: 43%;
-    padding:13px 5px 0px 5px;
+    padding: 13px 5px 0px 5px;
 }
 
 .activityTitle > .title {
@@ -204,26 +248,26 @@ body {
     float: left;
     height: 75px;
     width: 28%;
-    font-size:90%;
-    padding:20px 0 0 0;
+    font-size: 90%;
+    padding: 20px 0 0 0;
 }
 
 .attendance {
     float: left;
     height: 75px;
     width: 9%;
-    padding:20px 2px 0 0;
+    padding: 20px 2px 0 0;
 }
 
 .activityPoints {
     float: right;
     height: 75px;
     width: 11%;
-    padding:23px 0 0 5px;
+    padding: 23px 0 0 5px;
 }
 
 .activityPoints img {
-    margin-right:  0px;
+    margin-right: 0px;
 }
 
 form {
