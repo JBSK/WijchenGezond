@@ -592,3 +592,7 @@ textarea {
     margin: 5px 0 5px 20px;
 
 }
+
+#example1 {
+    float:left;
+}
