@@ -7,6 +7,7 @@ var SubCategorieSchema = mongoose.Schema({
 
 var SubCategorie = mongoose.model('SubCategorie', SubCategorieSchema);
 var exports = module.exports = {};
+exports.SubCategorie = mongoose.model('SubCategorie', SubCategorieSchema);
 
 var response = function (message, data) {
     return {

@@ -19,6 +19,8 @@ var GebruikerSchema = mongoose.Schema({
 var Gebruiker = mongoose.model('Gebruiker', GebruikerSchema);
 var exports = module.exports = {};
 
+exports.Gebruiker = mongoose.model('Gebruiker', GebruikerSchema);
+
 var response = function (message, data) {
     return {
         message : message,

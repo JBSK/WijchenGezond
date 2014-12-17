@@ -2,32 +2,32 @@ var activiteit = require('../models/activiteit.js');
 
 var exports = module.exports = {};
 
-exports.postActiviteit = function (req, res) {
-	vraag.postActiviteit(req.body, function(data) {
-		res.send(data);
-	});
-};
-
-exports.putActiviteit = function (req, res) {
-	vraag.putActiviteit(req.body, function(data) {
-		res.send(data);
-	});
-};
-
-exports.getActiviteiten = function (req, res) {
-	vraag.getActiviteiten(function(data) {
+exports.createActiviteit = function (req, res) {
+	activiteit.createActiviteit(req.body, function(data) {
 		res.send(data);
 	});
 };
 
 exports.getActiviteit = function (req, res) {
-	vraag.getActiviteit(req.params.id, function(data) {
+	activiteit.getActiviteit(req.params._id, function(data) {
 		res.send(data);
 	});
 };
 
-exports.deleteActiviteit = function (req, res) {
-	vraag.deleteActiviteit(req.params.id, function(data) {
+exports.getActiviteiten = function (req, res) {
+	activiteit.getActiviteiten(function(data) {
+		res.send(data);
+	});
+};
+
+exports.voegDeelnemerToe = function (req, res) {
+	activiteit.voegDeelnemerToe(req.body, function(data) {
+		res.send(data);
+	});
+};
+
+exports.verwijderDeelnemer = function (req, res) {
+	activiteit.verwijderDeelnemer(req.body, function(data) {
 		res.send(data);
 	});
 };

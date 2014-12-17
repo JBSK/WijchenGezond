@@ -27,16 +27,14 @@ function sessie (req, res) {
 
 // De routes die worden gebruikt door docent ('/docent').
 module.exports = function (express) {
-	var docentRouter = express.Router();
-	docentRouter.post('/gaVerder', docentControllers.gaVerder);
-	docentRouter.post('/vraag', checkOpSessie, docentControllers.postVraag);
-	docentRouter.get('/vragen', checkOpSessie, docentControllers.getVragen);
-	docentRouter.get('/vragen/:id', checkOpSessie, docentControllers.getVragenLes);
-	docentRouter.get('/vraag/:id', checkOpSessie, docentControllers.getVraag);
-	docentRouter.delete('/vraag/:id', checkOpSessie, docentControllers.deleteVraag);
-	docentRouter.put('/vraag/:id', checkOpSessie, docentControllers.putVraag);
-	docentRouter.get('/sessie', sessie);
-	docentRouter.get('/eindigSessie', docentControllers.eindigSessie);
+	var activiteitenRouter = express.Router();
+	activiteitenRouter.get('/', activiteitenControllers.getActiviteiten);
+	activiteitenRouter.get('/:_id', activiteitenControllers.getActiviteit);
+	activiteitenRouter.post('/', activiteitenControllers.createActiviteit);
+	//activiteitenRouter.delete('/', activiteitenControllers.verwijderActiviteit);
 
-	return docentRouter;
+	activiteitenRouter.post('/addDeelnemer', activiteitenControllers.voegDeelnemerToe);
+	activiteitenRouter.delete('/verwijderDeelnemer', activiteitenControllers.verwijderDeelnemer);
+
+	return activiteitenRouter;
 }
