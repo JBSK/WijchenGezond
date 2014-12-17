@@ -17,7 +17,7 @@ module.exports = function (express) {
 	gebruikerRouter.get('/:_id', gebruikerControllers.getGebruiker);
 	gebruikerRouter.get('/', gebruikerControllers.getGebruikers);
 	gebruikerRouter.get('/getVrienden/:_id', gebruikerControllers.getVrienden);
-	gebruikerRouter.post('/', gebruikerControllers.createGebruiker);
+	gebruikerRouter.post('/createGebruiker', gebruikerControllers.createGebruiker);
 	gebruikerRouter.post('/addVriend', gebruikerControllers.addVriend);
 	
 	gebruikerRouter.post('/login', gebruikerControllers.login);
