@@ -38,6 +38,10 @@ WijchenGezondApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: '../views/login.html',
         controller: gebruikerController
     });
+    $routeProvider.when('/gebruiker/', {
+        templateUrl: '../views/gebruikersProfiel.html',
+        controller: gebruikerController
+    });
 	$routeProvider.otherwise({
 		redirectTo: "/"
 	});
