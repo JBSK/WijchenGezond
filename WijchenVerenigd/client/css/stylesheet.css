@@ -572,6 +572,7 @@ textarea {
 .activityUpdate {
     background: #ECECEC;
     margin: 4px 5px 0 5px;
+    width:775px;
 }
 
 .activityFooter {
