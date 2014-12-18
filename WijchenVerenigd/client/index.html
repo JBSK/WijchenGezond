@@ -22,6 +22,8 @@
 
     <link rel="stylesheet" href="/css/stylesheet.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -34,14 +36,21 @@
             <div class="searchbaricon"></div>
             <input type="text" class="searchbar" placeholder="Waar ben je naar op zoek?">
         </div>
-        <div class="profile">
-            <a href="/#/feed/"><img src="./img/feed_wit.png" width="4%" alt="icon"> FEED </a>
-            <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
-            <a href="/#/gebruiker/"><img src="./img/profile_wit.png" alt="icon"> AANMELDEN </a>
-        </div>
-    </div>
+        <div class="profile" class="animate-switch-container" ng-switch on="selection">
+            <div class="animate-switch" ng-switch-default>
 
-        <div class="container" ng-view="">
+                <a href="/#/feed/"><img src="./img/feed_wit.png" width="4%" alt="icon"> FEED </a>
+                <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
+                <a href="/#/gebruiker/"><img src="./img/profile_wit.png" alt="icon"> AANMELDEN </a>
+
+            </div>
+
+            <div class="animate-switch" ng-switch-when="login">Home Span</div>
+
+        </div>
+   </div>
+
+        <div class="container1" ng-view="">
         </div>
 
 </body>

@@ -1,24 +1,53 @@
-<div id="container">
-	<h1>Login</h1>
-	<div>
-		<form ng-model="login">
-			<input type="text" class="form-control" placeholder="Gebruikersnaam of Email-adres" ng-model="login.emailUsername" />
-			<input type="password" class="form-control" placeholder="Wachtwoord" ng-model="login.wachtwoord" />
-            <span class="message" ng-show="logMsg">{{logMessage}}</span>
-            <input class="btn btn-success" type="submit" value="Login" ng-click="log()" />
-		</form>
+<div id="logincontainer">
+	<div class="loginTop">
+        <div class="loginTopLeft">
+            <div loginTopLeftTitle>
+                <p>
+                Meld je nu GRATIS
+                </p>
+                <p>aan voor</p>
+                <p>Wijchenverenigd</p>
+
+            </div>
+            <div class="imgAndBulletList">
+                <div class="loginImg">
+                        <img src="test.jpg">
+                </div>
+                <div class="loginBulletList">
+                    <ul>
+                        <li>Sport met dorpsgenoten</li>
+                        <li>Maak eigen activiteiten aan</li>
+                        <li>Spaar punten door mee te doen</li>
+                        <li>Stem voor Wijchense prijzen</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="loginTopRight">
+            <!--<form ng-model="login">-->
+            <!--<input type="text" class="form-control" placeholder="Gebruikersnaam of Email-adres" ng-model="login.emailUsername" />-->
+            <!--<input type="password" class="form-control" placeholder="Wachtwoord" ng-model="login.wachtwoord" />-->
+            <!--<span class="message" ng-show="logMsg">{{logMessage}}</span>-->
+            <!--<input class="btn btn-success" type="submit" value="Login" ng-click="log()" />-->
+            <!--</form>-->
+            <form ng-model="createGebruiker">
+                <p>Doe mee!</p>
+                <input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="createGebruiker.username" />
+                <input type="text" class="form-control" placeholder="Email-adres" ng-model="createGebruiker.email" />
+                <input type="password" class="form-control" placeholder="Wachtwoord" ng-model="createGebruiker.wachtwoord" />
+                <input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="createGebruiker.bevestigWachtwoord" />
+                <span class="message" ng-show="IsMatch">Emails have to match!</span>
+                <span class="message" ng-show="regMsg">{{regMessage}}</span>
+                <input class="btn btn-success" type="submit" value="Registreer" ng-click="reg()" />
+            </form>
+
+        </div>
 	</div>
 
-	<h1>Registreer</h1>
-	<div>
-		<form ng-model="createGebruiker">
-			<input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="createGebruiker.username" />
-			<input type="text" class="form-control" placeholder="Email-adres" ng-model="createGebruiker.email" />
-			<input type="password" class="form-control" placeholder="Wachtwoord" ng-model="createGebruiker.wachtwoord" />
-			<input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="createGebruiker.bevestigWachtwoord" />
-            <span class="message" ng-show="IsMatch">Emails have to match!</span>
-            <span class="message" ng-show="regMsg">{{regMessage}}</span>
-			<input class="btn btn-success" type="submit" value="Registreer" ng-click="reg()" />
-		</form>
+
+
+	<div class="loginBottom">
+
 	</div>
 </div>
