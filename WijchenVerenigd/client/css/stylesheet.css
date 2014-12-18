@@ -1,11 +1,15 @@
-.viewContainer {
+.container {
     margin: 0 10% 0 10%;
     height: 600px;
     margin: 1px;
+    min-width:1220px;
+    width:100%;
+    display:block;
 }
 
 .topBar {
     width: 100%;
+    min-width:1210px;
     height: 60px;
     background-color: black;
     color: white;
@@ -44,10 +48,16 @@
 .profile {
     float: right;
     width: 35%;
+    min-width:500px;
     text-align: right;
     padding-top: 18px;
     margin-right: 20px;
     display:block;
+}
+
+a:link, a:hover, a:active, a:visited {
+    color:black;
+    text-decoration:none;
 }
 
 .topBar a:link, .topBar a:visited, .topBar a:hover, .topBar a:active {
@@ -64,6 +74,7 @@
     width: 30%;
     height: 425px;
     padding: 10px;
+    min-width:340px;
 }
 
 .week {
@@ -92,7 +103,6 @@
     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
     transform: rotate(180deg);
     margin-top:3px;
-
 }
 
 .weekarrowright {
@@ -148,7 +158,8 @@
 .rightSide {
     float: right;
     width: 69%;
-    height: 400px;
+    min-width:770px;
+    height: 500px;
     margin: 10px 10px 0 0;
 }
 
@@ -424,4 +435,164 @@ textarea {
     background-color: #6f6f6f;
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+/* Profile */
+
+.userInfo > .profilePicture {
+    display:block;
+    background:black;
+    width:150px;
+    height:150px;
+    float:left;
+}
+
+.userInfo > .info {
+    float:left;
+    display:block;
+    margin:30px 0 0 20px;
+}
+
+
+.userInfo > .info > .name {
+    font-size:150%;
+    font-weight:bold;
+}
+
+.userInfo > .info > .activeDate {
+    color:darkgrey;
+    font-weight:200;
+}
+
+.profileLeftSide {
+    float: left;
+    width: 30%;
+    height: 425px;
+    padding: 10px;
+}
+.profileRightSide {
+    float: right;
+    width: 69%;
+    height: 400px;
+    margin: 10px 10px 0 0;
+}
+
+.profileCompleteLevel {
+    display:block;
+    background:#F6F6F6;
+    margin: 5px 0;
+}
+
+.friendlistHeader {
+    background:#ECECEC;
+    color:#9D9C9C;
+    padding:10px;
+}
+
+.friendIcon{
+    display:block;
+    background:black;
+    width:97px;
+    height:97px;
+    float:left;
+    margin:5px;
+}
+
+.completeFriendlist {
+    background:#F6F6F6;
+    height:250px;
+}
+
+.activityText {
+    padding:30px 0 0 0;
+    font-weight:500;
+    font-size:130%;
+}
+
+.activityDate {
+    margin: 0 0 20px 0;
+}
+
+.profileCompleteLevel img {
+    float:left;
+    margin: 0 30px 0 10px;
+}
+
+.profileCompleteLevel {
+    height:115px;
+}
+
+.profileCompleteLevel {
+    height:115px;
+}
+
+.profileCompleteLevel > .completeText {
+    padding:25px 0 0 0;
+    font-size:110%;
+}
+
+.bold {
+    font-weight:bold;
+}
+
+.block {
+    display:block;
+    background:#BCD676;
+    width:186px;
+    height:130px;
+    float:left;
+    color:#fff;
+    font-weight:bold;
+    padding:10px;
+    margin:5px;
+}
+
+.block > .title {
+    height:40px;
+    display:block;
+}
+
+.block > .status {
+    font-size: 250%;
+    margin-top:10px;
+}
+
+.block2{
+    background:#AFCD5B;
+}
+
+.block3{
+    background:#A1C542;
+}
+
+.block4{
+    background:#95BF31;
+}
+
+.activityUpdate {
+    background: #ECECEC;
+    margin: 4px 5px 0 5px;
+    width:775px;
+}
+
+.activityFooter {
+    background:#DADADA;
+    width:100%;
+    height:35px;
+}
+
+.activityLikes{
+    float:left;
+    margin: 5px 0 5px 20px;
+    font-weight:bold;
+}
+
+.react {
+    float:left;
+    margin: 5px 0 5px 20px;
+
+}
+
+#example1 {
+    float:left;
 }
