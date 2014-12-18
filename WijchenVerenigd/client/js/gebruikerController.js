@@ -4,9 +4,9 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
 	$scope.checkLogin = function () {
 
 	};
-	$scope.log = function (data) {
-		dbService.login(data, function(res) {
-			inlogMessage = res.message;
+	$scope.log = function () {
+		dbService.login.post($scope.login ,function(res) {
+            $scope.inlogMessage = res.message;
 		});
 	};
 	$scope.logout = function () {
@@ -15,15 +15,19 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
 		});
 	};
 
-    $scope.reg = function(data) {
+    $scope.reg = function() {
+        console.log($scope.createGebruiker);
         if($scope.createGebruiker.wachtwoord != $scope.createGebruiker.bevestigWachtwoord)
         {
             $scope.IsMatch=true;
             return false;
         }
         $scope.IsMatch=false;
-        dbService.createGebruiker(data,function (res) {
-            inlogMessage = res.message;
+
+        dbService.createGebruiker.post($scope.createGebruiker ,function (res) {
+            $scope.inlogMessage = res.message;
+
+            console.log(res.message)
         });
 	};
 //

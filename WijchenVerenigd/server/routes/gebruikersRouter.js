@@ -25,4 +25,4 @@ module.exports = function (express) {
 	gebruikerRouter.delete('/delVriend', gebruikerControllers.delVriend);
 
 	return gebruikerRouter;
-}
+};
