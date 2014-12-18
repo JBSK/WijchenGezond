@@ -1,25 +1,5 @@
-var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
-
-var GebruikerSchema = mongoose.Schema({
-    voornaam : {type : String, required : false},
-    achternaam : {type : String, required : false},
-    username : {type : String, required : true},
-    email : {type : String, required : true},
-    wachtwoord : {type : String, required : true},
-    geboorteDatum : {type : Date, required : false},
-    profielfoto : {type : String, required : false},
-    beperking : {type : String, required : false},
-    sportvereniging : {type : String, required : false},
-    sporten : {type : [], required : false},
-    aantalPunten : {type : Number, required : false},
-    vrienden : {type : [], required : false}
-}, {collection : "gebruikers"});
-
-var Gebruiker = mongoose.model('Gebruiker', GebruikerSchema);
-var exports = module.exports = {};
-
-exports.Gebruiker = mongoose.model('Gebruiker', GebruikerSchema);
+var G = require('./../models/mongooseSchemas').G;
 
 var response = function (message, data) {
     return {
@@ -28,26 +8,30 @@ var response = function (message, data) {
     }
 }
 
-exports.getGebruiker = function (_id, callback) {
+exports.getGebruiker = function (id, callback) {
     'use strict';
-    Gebruiker.find({_id : _id}, function (err, gebruiker) {
-        if (err) {
-            console.log(err);
-            callback(response("het zoeken naar de gebruiker is mislukt.", {}));
+    G.findOne({_id : id}, function (error, data) {
+        if (error) {
+            console.log(error);
+            callback(response("Er is iets misgegaan.", id));
         } else {
-            callback(response("het zoeken naar de gebruiker is gelukt.", gebruiker[0]));
+            if (data) {
+                callback(response("De gebruiker is gevonden", data));
+            } else {
+                callback(response("De gezochte gebruiker kan niet worden gevonden."));
+            }
         }
     });
 }
 
 exports.getGebruikers = function (callback) {
     'use strict';
-    Gebruiker.find(function (err, gebruikers) {
-        if (err) {
-            console.log(err);
-            callback(response("het zoeken naar de gebruikers is mislukt.", {}));
+    G.find(function (error, data) {
+        if (error) {
+            console.log(error);
+            callback(response("Er is iets misgegaan.", false));
         } else {
-            callback(response("het zoeken naar de gebruikers is gelukt.", gebruikers));
+            callback(response("De gebruikers zijn gevonden.", data));
         }
     });
 };
@@ -65,7 +49,7 @@ exports.createGebruiker = function (gebruiker, callback) {
     }
 
     var maakNieuweGebruiker = function () {
-        newGebruiker = new Gebruiker;
+        newGebruiker = new G();
         newGebruiker.username = gebruiker.username;
         newGebruiker.email = gebruiker.email;
         newGebruiker.wachtwoord = bcrypt.hashSync(gebruiker.wachtwoord, bcrypt.genSaltSync(8), null);
@@ -90,7 +74,7 @@ exports.createGebruiker = function (gebruiker, callback) {
         };
 
         var checkOfUsernameBestaat = function () {
-            Gebruiker.find({username : gebruiker.username}, function (error, data) {
+            G.find({username : gebruiker.username}, function (error, data) {
                 if (error) {
                     console.log(error);
                     callback(response("Er is iets misgegeaan. Probeer het later nog eens.", gebruiker));
@@ -116,7 +100,7 @@ exports.createGebruiker = function (gebruiker, callback) {
             }
         }
         var checkOfEmailBestaat = function (email) {
-            Gebruiker.find({email : email}, function(error, data) {
+            G.find({email : email}, function(error, data) {
                 if (error) {
                     console.log(error);
                     callback(response("Er is iets misgegeaan, probeer het later nog eens.", gebruiker));
@@ -175,7 +159,7 @@ exports.addVriend = function (gegevens, callback) {
         }
     }
     var zoekVriend = function () {
-        Gebruiker.find({_id : gegevens.vriendId}, function (error, data) {
+        G.find({_id : gegevens.vriendId}, function (error, data) {
             if (error) {
                 console.log(error);
                     callback(response("De gegeven vriend bestaat niet.", gegevens));
@@ -191,7 +175,7 @@ exports.addVriend = function (gegevens, callback) {
     }
 
     var zoekGebruiker = function () {
-        Gebruiker.find({_id : gegevens._id}, function (error, data) {
+        G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
                     callback(response("De gegeven gebruiker bestaat niet.", gegevens));
@@ -224,7 +208,7 @@ exports.getVrienden = function (gebruikerId, callback) {
         var i;
         if (gebruiker.vrienden.length > 0) {
             for (i = 0; i < gebruiker.vrienden.length; i += 1) {
-                Gebruiker.find({_id : gebruiker.vrienden[i]}, function(error, data) {
+                G.find({_id : gebruiker.vrienden[i]}, function(error, data) {
                     if (error) {
                         console.log(error);
                         callback(response("Er is iets misgegaan", {}));
@@ -247,7 +231,7 @@ exports.getVrienden = function (gebruikerId, callback) {
         }
     };
     var zoekGebruiker = function () {
-        Gebruiker.find({_id : gebruikerId}, function (error, data) {
+        G.find({_id : gebruikerId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(response("Er is iets misgegaan", {}));
@@ -298,7 +282,7 @@ exports.delVriend = function (gegevens, callback) {
         callback(response("Je bent geen vrienden met deze persoon.", gegevens));
     };
     var checkOfVriendBestaat = function () {
-        Gebruiker.find({_id : gegevens.vriendId}, function (error, data) {
+        G.find({_id : gegevens.vriendId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(response("De gegeven vriend bestaat niet.", gegevens));
@@ -312,7 +296,7 @@ exports.delVriend = function (gegevens, callback) {
         });
     };
     var zoekGebruiker = function () {
-        Gebruiker.find({_id : gegevens._id}, function (error, data) {
+        G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(response("De gegeven gebruiker bestaat niet.", gegevens));
@@ -347,7 +331,7 @@ exports.login = function (gebruiker, callback) {
         }
     }
     var zoekGebruikerEmail = function () {
-        Gebruiker.find({email : gebruiker.emailUsername}, function (error, data) {
+        G.find({email : gebruiker.emailUsername}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(response("Er is iets misgegaan", {succes : false, _id : false}));
@@ -362,7 +346,7 @@ exports.login = function (gebruiker, callback) {
         });
     }
     var zoekGebruikerUsername = function () {
-        Gebruiker.find({username : gebruiker.emailUsername}, function (error, data) {
+        G.find({username : gebruiker.emailUsername}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(response("Er is iets misgegaan", {succes : false, _id : false}));

@@ -1,10 +1,4 @@
-var mongoose = require('mongoose');
-var HoofdCategorieSchema = mongoose.Schema({
-    naam : {type : String, required : true},
-    icoon : {type : String, required : true},
-}, {collection : "HoofdCategorieen"});
-
-var HoofdCategorie = mongoose.model('HoofdCategorie', HoofdCategorieSchema);
+var HC = require('./../models/mongooseSchemas').HC;
 var exports = module.exports = {};
 
 var response = function (message, data) {
@@ -16,7 +10,7 @@ var response = function (message, data) {
 
 exports.getHoofdCategorie = function (_id, callback) {
     'use strict';
-    HoofdCategorie.find({_id : _id}, function (err, hoofdCategorie) {
+    HC.find({_id : _id}, function (err, hoofdCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de hoofdcategorie is mislukt.", {}));
@@ -28,7 +22,7 @@ exports.getHoofdCategorie = function (_id, callback) {
 
 exports.getHoofdCategorieen = function (callback) {
     'use strict';
-    HoofdCategorie.find(function (err, hoofdCategorieen) {
+    HC.find(function (err, hoofdCategorieen) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de hoofdcategorieen is mislukt.", {}));
@@ -41,7 +35,7 @@ exports.getHoofdCategorieen = function (callback) {
 exports.deleteHoofdCategorie = function (_id, callback) {
     console.log(_id);
     'use strict';
-    HoofdCategorie.remove({_id : _id}).exec(function (err) {
+    HC.remove({_id : _id}).exec(function (err) {
         if (err) {
             callback(response("Het verwijderen van de hoofdcategorie is mislukt.", {}));
         } else {
@@ -52,7 +46,7 @@ exports.deleteHoofdCategorie = function (_id, callback) {
 
 exports.postHoofdCategorie = function (body, callback) {
     'use strict';
-    var newCat = new HoofdCategorie();
+    var newCat = new HC();
     newCat.naam = body.naam;
     newCat.icoon = body.icoon;
     newCat.save(function (err, hoofdCategorie) {
@@ -67,7 +61,7 @@ exports.postHoofdCategorie = function (body, callback) {
 exports.putHoofdCategorie = function (body, callback) {
     'use strict';
     var update;
-    HoofdCategorie.find({_id : body._id}, function (err, hoofdCategorie) {
+    HC.find({_id : body._id}, function (err, hoofdCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de hoofdcategorie is mislukt.", {}));

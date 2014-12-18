@@ -1,13 +1,5 @@
-var mongoose = require('mongoose');
-var SubCategorieSchema = mongoose.Schema({
-    naam : {type : String, required : true},
-    punten : {type : Number, required : true},
-    hoofdCategorieId : {type : String, required : true}
-}, {collection : "SubCategorieen"});
-
-var SubCategorie = mongoose.model('SubCategorie', SubCategorieSchema);
+var SC = require('./../models/mongooseSchemas').SC;
 var exports = module.exports = {};
-exports.SubCategorie = mongoose.model('SubCategorie', SubCategorieSchema);
 
 var response = function (message, data) {
     return {
@@ -18,7 +10,7 @@ var response = function (message, data) {
 
 exports.getSubCategorie = function (_id, callback) {
     'use strict';
-    SubCategorie.find({_id : _id}, function (err, SubCategorie) {
+    SC.find({_id : _id}, function (err, SubCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de SubCategorie is mislukt.", {}));
@@ -30,7 +22,7 @@ exports.getSubCategorie = function (_id, callback) {
 
 exports.getSubCategorieen = function (hoofdCategorieId, callback) {
     'use strict';
-    SubCategorie.find({hoofdCategorieId : hoofdCategorieId}, function (err, SubCategorieen) {
+    SC.find({hoofdCategorieId : hoofdCategorieId}, function (err, SubCategorieen) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de SubCategorieen is mislukt.", {}));
@@ -42,7 +34,7 @@ exports.getSubCategorieen = function (hoofdCategorieId, callback) {
 
 exports.deleteSubCategorie = function (_id, callback) {
     'use strict';
-    SubCategorie.remove({_id : _id}).exec(function (err) {
+    SC.remove({_id : _id}).exec(function (err) {
         if (err) {
             callback(response("Het verwijderen van de SubCategorie is mislukt.", {}));
         } else {
@@ -53,7 +45,7 @@ exports.deleteSubCategorie = function (_id, callback) {
 
 exports.deleteSubCategorieen = function (hoofdCategorieId, callback) {
     'use strict';
-    SubCategorie.remove({hoofdCategorieId : hoofdCategorieId}).exec(function (err) {
+    SC.remove({hoofdCategorieId : hoofdCategorieId}).exec(function (err) {
         if (err) {
             callback(response("Het verwijderen van de SubCategorieen is mislukt.", {}));
         } else {
@@ -64,7 +56,7 @@ exports.deleteSubCategorieen = function (hoofdCategorieId, callback) {
 
 exports.postSubCategorie = function (body, callback) {
     'use strict';
-    var newCat = new SubCategorie();
+    var newCat = new SC();
     newCat.naam = body.naam;
     newCat.punten = body.punten;
     newCat.hoofdCategorieId = body.hoofdCategorieId;
@@ -80,7 +72,7 @@ exports.postSubCategorie = function (body, callback) {
 exports.putSubCategorie = function (body, callback) {
     'use strict';
     var update;
-    SubCategorie.find({_id : body._id}, function (err, SubCategorie) {
+    SC.find({_id : body._id}, function (err, SubCategorie) {
         if (err) {
             console.log(err);
             callback(response("het zoeken naar de SubCategorie is mislukt.", {}));

@@ -1,25 +1,9 @@
-var mongoose = require('mongoose');
-var ActiviteitSchema = mongoose.Schema({
-    naam : {type : String, required : true},
-    creatorId : {type : String, required : true},
-    subCategorieId : {type : String, required : true},
-    datum : {type : Date, required : false},
-    dagen : {type : [], required : false},
-    intensiteit : {type : String, required : true},
-    groep : {type : Boolean, required : false, default : false},
-    doorloopTijd : {type : String, required : true},
-    omschrijving : {type : String, required : false},
-    gesloten : {type : Boolean, required : true},
-    minPers : {type : Number, required : true},
-    maxPers : {type : Number, required : true},
-    deelnemers : {type : [], required : false},
-    puntenPerDeelnemer : {type : Number, required : true}
-}, {collection : "activiteiten"});
-
-var Activiteit = mongoose.model('Activiteit', ActiviteitSchema);
-var gebruiker = require('./../models/gebruiker.js');
-var subCategorie = require('./../models/subCategorie.js');
+var cb;
 var exports = module.exports = {};
+var A = require('./../models/mongooseSchemas').A;
+var G = require('./../models/mongooseSchemas').G;
+var HC = require('./../models/mongooseSchemas').HC;
+var SC = require('./../models/mongooseSchemas').SC;
 
 var resp = function (message, data) {
     return {
@@ -36,11 +20,12 @@ exports.createActiviteit = function (gegevens, callback) {
                 callback(resp("Er is iets misgegeaan.", gegevens));
             } else {
                 callback(resp("De activiteit is succesvol opgeslagen.", data));
+                console.log(data);
             }
         });
     }
     var maakActiviteit = function () {
-        var newActiviteit = new Activiteit();
+        var newActiviteit = new A();
         newActiviteit.naam = gegevens.naam;
         newActiviteit.creatorId = gegevens.creatorId;
         newActiviteit.subCategorieId = gegevens.subCategorieId;
@@ -63,6 +48,7 @@ exports.createActiviteit = function (gegevens, callback) {
             newActiviteit.minPers = 1;
             newActiviteit.maxPers = 1;
         }
+        console.log(newActiviteit);
         slaActiviteitOp(newActiviteit);
     }
     var valideerIntensiteit = function () {
@@ -80,7 +66,7 @@ exports.createActiviteit = function (gegevens, callback) {
         }
     }
     var valideerSubCategorieId = function () {
-        subCategorie.SubCategorie.find({_id : gegevens.subCategorieId}, function (error, data) {
+        SC.find({_id : gegevens.subCategorieId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De gegeven subCategorie bestaat niet.", gegevens));
@@ -94,7 +80,7 @@ exports.createActiviteit = function (gegevens, callback) {
         });
     }
     var valideerCreatorId = function () {
-        gebruiker.Gebruiker.find({_id : gegevens.creatorId}, function (error, data) {
+        G.find({_id : gegevens.creatorId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De gegeven gebruiker bestaat niet.", gegevens));
@@ -125,7 +111,7 @@ exports.createActiviteit = function (gegevens, callback) {
 };
 
 exports.getActiviteit = function (_id, callback) {
-    Activiteit.find({_id : _id}, function (error, data) {
+    A.find({_id : _id}, function (error, data) {
         if (error) {
             console.log(error);
             callback(resp("De gezochte avtiviteit kan niet gevonden worden.", _id));
@@ -140,7 +126,7 @@ exports.getActiviteit = function (_id, callback) {
 };
 
 exports.getActiviteiten = function (callback) {
-    Activiteit.find(function (error, data) {
+    A.find(function (error, data) {
         if (error) {
             console.log(error);
             callback(resp("De gezochte avtiviteiten kunnen niet gevonden worden.", _id));
@@ -186,7 +172,7 @@ exports.voegDeelnemerToe = function (gegevens, callback) {
         }
     }
     var valideerActiviteit = function () {
-        Activiteit.find({_id : gegevens.activiteitId}, function (error, data) {
+        A.find({_id : gegevens.activiteitId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De opgegeven activiteit bestaat niet.", gegevens));
@@ -201,7 +187,7 @@ exports.voegDeelnemerToe = function (gegevens, callback) {
         });
     }
     var valideerGebruiker = function () {
-        gebruiker.Gebruiker.find({_id : gegevens._id}, function (error, data) {
+        G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De opgegeven gebruiker bestaat niet.", gegevens));
@@ -246,7 +232,7 @@ exports.verwijderDeelnemer = function (gegevens, callback) {
         slaActOp();
     }
     var valideerActiviteit = function () {
-        Activiteit.find({_id : gegevens.activiteitId}, function (error, data) {
+        A.find({_id : gegevens.activiteitId}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De opgegeven activiteit bestaat niet.", gegevens));
@@ -261,7 +247,7 @@ exports.verwijderDeelnemer = function (gegevens, callback) {
         });
     }
     var valideerGebruiker = function () {
-        gebruiker.Gebruiker.find({_id : gegevens._id}, function (error, data) {
+        G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
                 callback(resp("De opgegeven gebruiker bestaat niet.", gegevens));
