@@ -6,7 +6,9 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
 	};
 	$scope.log = function () {
 		dbService.login.post($scope.login ,function(res) {
-            $scope.inlogMessage = res.message;
+
+            $scope.logMsg=true;
+            $scope.logMessage = res.message;
 		});
 	};
 	$scope.logout = function () {
@@ -25,9 +27,8 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
         $scope.IsMatch=false;
 
         dbService.createGebruiker.post($scope.createGebruiker ,function (res) {
-            $scope.inlogMessage = res.message;
-
-            console.log(res.message)
+            $scope.regMsg = true;
+            $scope.regMessage = res.message;
         });
 	};
 //
