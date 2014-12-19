@@ -7,7 +7,6 @@ var cookieParser = require('cookie-parser');
 var expressSession = require('express-session');
 var mongoose = require('mongoose');
 var port = process.env.PORT || 3000;
-
 mongoose.connect("localhost/WijchenGezond");
 
 //var activiteitenRouter = require('./routes/activiteitenRouter.js')(express);

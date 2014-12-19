@@ -172,7 +172,7 @@ exports.addVriend = function (gegevens, callback) {
             }
         });
 
-    }
+    };
 
     var zoekGebruiker = function () {
         G.find({_id : gegevens._id}, function (error, data) {

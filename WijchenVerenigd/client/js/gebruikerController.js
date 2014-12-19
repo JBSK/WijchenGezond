@@ -4,13 +4,7 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
 	$scope.checkLogin = function () {
 
 	};
-	$scope.log = function () {
-		dbService.login.post($scope.login ,function(res) {
 
-            $scope.logMsg=true;
-            $scope.logMessage = res.message;
-		});
-	};
 	$scope.logout = function () {
 		dbService.logout(function(res) {
 			inlogMessage = res.message;
