@@ -1,11 +1,16 @@
 .container {
-    margin: 0 10% 0 10%;
+    /*margin: 0 10% 0 10%;*/
     height: 600px;
     margin: 1px;
     min-width:1220px;
     width:100%;
     display:block;
 }
+
+.message{
+    float:left;
+}
+
 
 .topBar {
     width: 100%;
@@ -54,6 +59,9 @@
     margin-right: 20px;
     display:block;
 }
+.profileForm{
+    color:black;
+}
 
 a:link, a:hover, a:active, a:visited {
     color:black;
@@ -63,6 +71,13 @@ a:link, a:hover, a:active, a:visited {
 .topBar a:link, .topBar a:visited, .topBar a:hover, .topBar a:active {
     text-decration: none;
     color: white;
+}
+
+.profileForm{
+margin-top: -10px;
+}
+
+.profileForm form{
 }
 
 .profile img {

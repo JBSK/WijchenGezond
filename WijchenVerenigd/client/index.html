@@ -11,6 +11,7 @@
     <script src="/js/hoofdCategorieController.js"></script>
     <script src="/js/activiteitController.js"></script>
     <script src="/js/gebruikerController.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
     <script src="/js/routes.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
@@ -22,10 +23,11 @@
 
     <link rel="stylesheet" href="/css/stylesheet.css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body>
+<body ng-controller="indexController">
     <div class="topBar">
         <div class="logo">
             <a href="/#/home"><strong>WIJCHEN</strong>VERENIGD</a>
@@ -34,14 +36,27 @@
             <div class="searchbaricon"></div>
             <input type="text" class="searchbar" placeholder="Waar ben je naar op zoek?">
         </div>
-        <div class="profile">
-            <a href="/#/feed/"><img src="./img/feed_wit.png" width="4%" alt="icon"> FEED </a>
-            <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
-            <a href="/#/gebruiker/"><img src="./img/profile_wit.png" alt="icon"> AANMELDEN </a>
-        </div>
-    </div>
+        <div class="profile animate-switch-container" ng-switch on="selection">
+            <div class="animate-switch" ng-switch-default>
 
-        <div class="container" ng-view="">
+                <form class="profileForm" ng-model="login">
+                <input type="text" class="profileForm" placeholder="Gebruikersnaam of Email-adres" ng-model="login.emailUsername" />
+                <input type="password" class="profileForm" placeholder="Wachtwoord" ng-model="login.wachtwoord" />
+                <span class="message" ng-show="logMsg">{{logMessage}}</span>
+                <input class="btn btn-success" type="submit" value="Login" ng-click="log(login)" />
+                </form>
+
+            </div>
+
+            <div class="animate-switch" ng-switch-when="login">
+                <a href="/#/feed/"><img src="./img/feed_wit.png" width="4%" alt="icon"> FEED </a>
+                <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
+                <a href="/#/gebruiker/"><img src="./img/profile_wit.png" alt="icon"> {{gebruikers.naam}} </a>
+            </div>
+
+        </div>
+   </div>
+        <div class="container1" ng-view="">
         </div>
 
 </body>

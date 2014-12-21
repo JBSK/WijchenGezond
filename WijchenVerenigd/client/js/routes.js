@@ -21,7 +21,30 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     return db;
 });
 
-WijchenGezondApp.config(['$routeProvider', function ($routeProvider) {
+//function ($routeParams, $scope, $modal, $window, dbService) {
+//    $scope.log = function () {
+//        console.log("popup");
+//        $modal.open();
+//    }
+//};
+
+WijchenGezondApp.controller('indexController', function ($scope, dbService,$location, $route, $routeParams) {
+
+    $scope.log = function (data) {
+        dbService.login.post(data,function(res) {
+           // console.log(res);
+            if(res.message === "Alles klopt.")
+            {
+                 console.log(data)
+
+                $location.path('/gebruikers/' + res.data._id);
+                $scope.selection = "login";
+            }
+        });
+    };
+});
+
+WijchenGezondApp.config(['$routeProvider', function ($routeProvider ) {
 	$routeProvider.when('/', {
 		templateUrl: '../views/home.html',
 		controller: homeController
@@ -42,7 +65,7 @@ WijchenGezondApp.config(['$routeProvider', function ($routeProvider) {
         templateUrl: '../views/login.html',
         controller: gebruikerController
     });
-    $routeProvider.when('/gebruikers/', {
+    $routeProvider.when('/gebruikers/:_id', {
         templateUrl: '../views/gebruikersProfiel.html',
         controller: gebruikerController
     });
