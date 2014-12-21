@@ -35,11 +35,11 @@ exports.createActiviteit = function (gegevens, callback) {
         newActiviteit.groep = gegevens.groep;
         newActiviteit.omschrijving = gegevens.omschrijving;
         newActiviteit.gesloten = false;
-        newActiviteit.deelnemers[0] = gegevens.creatorId;
+        newActiviteit.deelnemers = gegevens.deelnemers;
         if (gegevens.doorloopTijd === 'eenmalig') {
-            newActiviteit.datum = gegevens.datum;
+            newActiviteit.eenmalig = gegevens.dag;
         } else {
-            newActiviteit.dagen = gegevens.dagen;
+            newActiviteit.wekelijks = gegevens.dagen;
         }
         if (gegevens.groep) {
             newActiviteit.minPers = gegevens.minPers;
@@ -48,6 +48,7 @@ exports.createActiviteit = function (gegevens, callback) {
             newActiviteit.minPers = 1;
             newActiviteit.maxPers = 1;
         }
+        newActiviteit.verzamelPlaats = gegevens.verzamelPlaats;
         console.log(newActiviteit);
         slaActiviteitOp(newActiviteit);
     }

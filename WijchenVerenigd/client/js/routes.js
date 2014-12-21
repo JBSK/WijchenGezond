@@ -16,6 +16,7 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     db.subHoofdCategorieen = $resource("/categorieen/hoofdCategorieen/subCategorieen/:_id", {}, actions);
     db.login = $resource("/gebruikers/login", {}, actions);
     db.createGebruiker = $resource("/gebruikers/createGebruiker",{},actions);
+    db.createActiviteit = $resource("/activiteiten/",{},actions);
 
     return db;
 });

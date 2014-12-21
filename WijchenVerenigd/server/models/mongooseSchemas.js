@@ -7,8 +7,14 @@ var ActiviteitSchema = mongoose.Schema({
     naam : {type : String, required : true},
     creatorId : {type : String, required : true},
     subCategorieId : {type : String, required : true},
-    datum : {type : Date, required : false},
-    dagen : {type : [], required : false},
+    wekelijks : {type : [{
+        beginTijd : {type : Date, required : true},
+        eindTijd : {type : Date, required : true}
+    }], required : false},
+    eenmalig : {type : {
+        beginTijd : {type : Date, required : true},
+        eindTijd : {type : Date, required : true}
+    }, required : false},
     intensiteit : {type : String, required : true},
     groep : {type : Boolean, required : false, default : false},
     doorloopTijd : {type : String, required : true},
@@ -17,7 +23,8 @@ var ActiviteitSchema = mongoose.Schema({
     minPers : {type : Number, required : true},
     maxPers : {type : Number, required : true},
     deelnemers : {type : [], required : false},
-    puntenPerDeelnemer : {type : Number, required : true}
+    puntenPerDeelnemer : {type : Number, required : true},
+    verzamelPlaats : {type : String, required : false}
 }, {collection : "activiteiten"});
 
 exports.A = mongoose.model('Activiteit', ActiviteitSchema);
