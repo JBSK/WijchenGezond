@@ -1,60 +1,89 @@
-<div id="container">
-	<h1>Maak een nieuwe activiteit aan!</h1>
-	<div>
+
+	    <div id="sideBar">
+	        <div id="zoekActiviteit">
+	        	<h2>Zoek een activiteit</h2>
+	        	<p>Selecteer een categorie:</p>
+	        	<a href="#" class="fa fa-futbol-o"></a>
+	        	<a href="#" class="fa fa-bicycle"></a>
+	        	<a href="#" class="fa fa-life-ring"></a>
+	        	<a href="#" class="fa fa-rub"></a>
+	        	<a href="#" class="fa fa-university"></a>
+	        	<a href="#" class="fa fa-users"></a>
+	        	<form>
+	        		<input placeholder="Wanneer?" type="text" />
+	        		<button id="zoekActiviteitButton" class="fa fa-calendar"></button>
+	        		<input id="zoekActiviteitSubmit" type="submit" value="Zoeken" />
+	        	</form>
+	        </div>
+	    </div>
+
+		<div id="activiteitMaken">
+
+			<h1>Maak een nieuwe activiteit aan!</h1>
+			<form ng-model="activiteit">
+				<input class="naam" type="text" placeholder="Naam van de activiteit" ng-model="activiteit.naam" />
+		    	<div class="line"></div>
+
+				<h3>Categorieën</h3>
 
 
-		<form ng-model="activiteit">
-			<input type="text" class="form-control" placeholder="Naam van de activiteit" ng-model="activiteit.naam" />
-	    	<div class="line"></div>
+				<select class="heleLengte" ng-change="updateSubs()" ng-model="activiteit.hoofdCategorie" ng-options="hoofdCategorie.naam for hoofdCategorie in hoofdCategorieen">
+		      		<option value="">Kies hoofdcategorie</option>
+		    	</select>
 
-			<h3>Categorieën</h3>
-			<select class="form-control" ng-change="updateSubs()" ng-model="activiteit.hoofdCategorie" ng-options="hoofdCategorie.naam for hoofdCategorie in hoofdCategorieen">
-	      		<option value="">Kies hoofdcategorie</option>
-	    	</select>
 
-	    	<select class="form-control" ng-change="updatePunten()" ng-model="activiteit.subCategorie" ng-options="subCategorie.naam for subCategorie in subCategorieen">
-	      		<option value="">Kies subcategorie</option>
-	    	</select>
-	    	<div class="line"></div>
+		    	<select class="heleLengte" ng-change="updatePunten()" ng-model="activiteit.subCategorie" ng-options="subCategorie.naam for subCategorie in subCategorieen">
+		      		<option value="">Kies subcategorie</option>
+		    	</select>
 
-			<h3>Intensiteit</h3>
-	    	<select class="form-control" ng-model="activiteit.intensiteit">
-	      		<option value="">Kies intensiteit</option>
-	      		<option value="beginner">Beginner</option>
-	      		<option value="gevorderd">Gevorderd</option>
-	      		<option value="expert">Expert</option>
-	    	</select>
-	    	<div class="line"></div>
+		    	<div class="line"></div>
 
-			<h3>Frequentie</h3>
-	    	<select class="form-control" ng-change="toonTijdDatum()" ng-model="activiteit.doorloopTijd">
-	      		<option value="">Kies frequentie</option>
-	      		<option value="eenmalig">Eenmalig</option>
-	      		<option value="wekelijks">Wekelijks</option>
-	    	</select>
+				<h3>Intensiteit</h3>
 
-	    	<div ng-show="activiteit.dagen" ng-model="activiteit.dagen">
-				<h5>Op welke dagen van de week wordt de activiteit uitgevoerd? <BR /> Geef dag, start- en eindtijd</h5>
-		    	<div ng-repeat="dag in activiteit.dagen">
-					<select ng-model="dag.nummer" class="derdeDeel">
-			      		<option value="1">Maandag</option>
-			      		<option value="2">Dinsdag</option>
-			      		<option value="3">Woensdag</option>
-			      		<option value="4">Donderdag</option>
-			      		<option value="5">Vrijdag</option>
-			      		<option value="6">Zaterdag</option>
-			      		<option value="7">Zondag</option>
-			    	</select>
-		    		<input class="derdeDeelInp" type="time" ng-model="dag.beginTijd" />
-		    		<input class="derdeDeelInp" type="time" ng-model="dag.eindTijd" />
-				</div>
-		    	<input class="btn btn-primary" type="button" value="Voeg een dag toe" ng-click="voegDagToe()" />
-		    	<input class="btn btn-default" type="button" value="Verwijder dag" ng-click="verwijderDag()" />
-	    	</div>
 
-	    	<div ng-show="activiteit.datum" ng-model="activiteit.datum">
-				<h5>Op welke datum wordt de activiteit uitgevoerd? <BR /> Geef een datum, start- en eindtijd</h5>
-					<select class="datum" ng-model="activiteit.datum.dag">
+		    	<select class="heleLengte" ng-model="activiteit.intensiteit">
+		      		<option value="">Kies intensiteit</option>
+		      		<option value="beginner">Beginner</option>
+		      		<option value="gevorderd">Gevorderd</option>
+		      		<option value="expert">Expert</option>
+		    	</select>
+
+		    	<div class="line"></div>
+
+				<h3>Frequentie</h3>
+
+		    	<select class="heleLengte" ng-change="toonTijdDatum()" ng-model="activiteit.doorloopTijd">
+		      		<option value="">Kies frequentie</option>
+		      		<option value="eenmalig">Eenmalig</option>
+		      		<option value="wekelijks">Wekelijks</option>
+		    	</select>
+
+
+		    	<div ng-show="activiteit.dagen" ng-model="activiteit.dagen">
+					<h5>Op welke dagen van de week wordt de activiteit uitgevoerd? <BR /> Geef dag, start- en eindtijd</h5>
+			    	<div class="heleLengteDiv" ng-repeat="dag in activiteit.dagen">
+
+							<select class="derdeDeel" ng-model="dag.nummer">
+					      		<option value="1">Maandag</option>
+					      		<option value="2">Dinsdag</option>
+					      		<option value="3">Woensdag</option>
+					      		<option value="4">Donderdag</option>
+					      		<option value="5">Vrijdag</option>
+					      		<option value="6">Zaterdag</option>
+					      		<option value="7">Zondag</option>
+					    	</select>
+
+			    		<input class="beginTijd" type="time" ng-model="dag.beginTijd" />
+			    		<input class="eindTijd" type="time" ng-model="dag.eindTijd" />
+					</div>
+			    	<button ng-click="voegDagToe()">Voeg dag toe</button>
+			    	<button ng-click="verwijderDag()">Verwijder dag</button>
+		    	</div>
+
+		    	<div class="heleLengteDiv" ng-show="activiteit.datum" ng-model="activiteit.datum">
+					<h5>Op welke datum wordt de activiteit uitgevoerd? <BR /> Geef een datum, start- en eindtijd</h5>
+
+					<select class="vijfdeDeel" ng-model="activiteit.datum.dag">
 	      				<option value="">Kies dag</option>
 			      		<option value="1">1</option>
 			      		<option value="2">2</option>
@@ -89,49 +118,54 @@
 			      		<option value="31">31</option>
 			    	</select>
 
-					<select class="datumMarge" ng-model="activiteit.datum.maand">
-	      				<option value="">Kies maand</option>
-			      		<option value="0">Januari</option>
-			      		<option value="1">Februari</option>
-			      		<option value="2">Maart</option>
-			      		<option value="3">April</option>
-			      		<option value="4">Mei</option>
-			      		<option value="5">Juni</option>
-			      		<option value="6">Juli</option>
-			      		<option value="7">Augustus</option>
-			      		<option value="8">September</option>
-			      		<option value="9">Oktober</option>
-			      		<option value="10">November</option>
-			      		<option value="11">December</option>
-			    	</select>
+						<select class="vijfdeDeel" ng-model="activiteit.datum.maand">
+		      				<option value="">Kies maand</option>
+				      		<option value="0">Januari</option>
+				      		<option value="1">Februari</option>
+				      		<option value="2">Maart</option>
+				      		<option value="3">April</option>
+				      		<option value="4">Mei</option>
+				      		<option value="5">Juni</option>
+				      		<option value="6">Juli</option>
+				      		<option value="7">Augustus</option>
+				      		<option value="8">September</option>
+				      		<option value="9">Oktober</option>
+				      		<option value="10">November</option>
+				      		<option value="11">December</option>
+				    	</select>
 
-					<select class="datumMarge" ng-model="activiteit.datum.jaar">
-	      				<option value="">Kies jaar</option>
-			      		<option value="2014">2014</option>
-			      		<option value="2015">2015</option>
-			    	</select>
-		    		<input class="tweedeDeelA" type="time" ng-model="activiteit.datum.beginTijd" />
-		    		<input class="tweedeDeelB" type="time" ng-model="activiteit.datum.eindTijd" />
-	    	</div>
-	    	<div class="line"></div>
+						<select class="vijfdeDeel" ng-model="activiteit.datum.jaar">
+		      				<option value="">Kies jaar</option>
+				      		<option value="2014">2014</option>
+				      		<option value="2015">2015</option>
+				    	</select>
 
-			<h3>In een groep of alleen?</h3>
-	  		<input type="checkbox" ng-model="activiteit.groep"> Vink aan als dit een groepsactiviteit is. <BR />
+			    		<input class="beginTijd" type="time" ng-model="activiteit.datum.beginTijd" />
+			    		<input class="eindTijd" type="time" ng-model="activiteit.datum.eindTijd" />
+		    	</div>
+		    	<div class="line"></div>
 
-	  		<input class="tweedeDeelA" ng-show="activiteit.groep" type="number" ng-model="activiteit.minPers" placeholder="Minimaal aantal deelnemers" />
+				<h3>In een groep of alleen?</h3>
+				<div class="groepCheckbox">
+		  			<input class="checkbox" type="checkbox" ng-model="activiteit.groep"><h6>Vink aan als dit een groepsactiviteit is.</h6>
+		  		</div>
 
-	  		<input class="tweedeDeelB" ng-show="activiteit.groep" type="number" ng-model="activiteit.maxPers" placeholder="Maximaal aantal deelnemers" />
+		  		<div class="heleLengteDiv">
+			  		<input class="deelnemersMin" ng-show="activiteit.groep" type="number" ng-model="activiteit.minPers" placeholder="Minimaal aantal deelnemers" />
 
-	  		<input class="form-control" ng-show="activiteit.groep" type="text" ng-model="activiteit.verzamelPlaats" placeholder="Verzamelplaats, startpunt of adres" />
+			  		<input class="deelnemersMax" ng-show="activiteit.groep" type="number" ng-model="activiteit.maxPers" placeholder="Maximaal aantal deelnemers" />
 
-	  		<h4>Je krijgt voor deze activiteit per deelnemer {{activiteit.punten}} punten per keer!</h4>
+			  		<input class="verzamelPlaats" ng-show="activiteit.groep" type="text" ng-model="activiteit.verzamelPlaats" placeholder="Verzamelplaats, startpunt of adres" />
 
-	    	<div class="line"></div>
-			<h3>Omschrijving van de activiteit</h3>
-	    	<textarea ng-model="activiteit.omschrijving"></textarea>
-	    	<div class="line"></div>
+			  		<h4>Je krijgt voor deze activiteit per deelnemer {{activiteit.punten}} punten per keer!</h4>
 
-			<input class="btn btn-success" type="submit" value="Maak activiteit aan" ng-click="saveActiviteit()" />
-		</form>
-	</div>
-</div>
+		  		</div>
+
+		    	<div class="line"></div>
+				<h3>Omschrijving van de activiteit</h3>
+		    	<textarea ng-model="activiteit.omschrijving"></textarea>
+		    	<div class="line"></div>
+
+				<input class="submit" type="submit" value="Maak activiteit aan" ng-click="saveActiviteit()" />
+			</form>
+		</div>

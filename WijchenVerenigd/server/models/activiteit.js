@@ -37,7 +37,7 @@ exports.createActiviteit = function (gegevens, callback) {
         newActiviteit.gesloten = false;
         newActiviteit.deelnemers = gegevens.deelnemers;
         if (gegevens.doorloopTijd === 'eenmalig') {
-            newActiviteit.eenmalig = gegevens.dag;
+            newActiviteit.eenmalig = gegevens.eenmalig;
         } else {
             newActiviteit.wekelijks = gegevens.dagen;
         }
@@ -127,14 +127,137 @@ exports.getActiviteit = function (_id, callback) {
 };
 
 exports.getActiviteiten = function (callback) {
-    A.find(function (error, data) {
-        if (error) {
-            console.log(error);
-            callback(resp("De gezochte avtiviteiten kunnen niet gevonden worden.", _id));
-        } else {
-            callback(resp("De gezochte avtiviteiten zijn gevonden.", data));
+    var acts;
+    var stuurActs = function () {
+        var alleActs = [];
+        for (i = 0; i < acts.length; i += 1) {
+            alleActs[i] = {
+                act : acts[i],
+                creator : acts[i].creator,
+                subCategorie : acts[i].subCategorie,
+                deelnemers : acts[i].deelNemersGevuld,
+                aantalDeelnemers : acts[i].setAantalDeelnemers,
+                dagen : acts[i].dagen,
+                datum : acts[i].datum
+            }
+            console.log(acts[i]);
         }
-    });
+
+        callback(resp("Hierbij de activiteiten", alleActs));
+    }
+    var setDagNamen = function () {
+        var i, x, dagen;
+        for (i = 0; i < acts.length; i += 1) {
+            dagen = [];
+            if (acts[i].doorloopTijd === "eenmalig") {
+                acts[i].datum = new Date(acts[i].eenmalig.beginTijd);
+                acts[i].dagen = [{
+                    dagNaam : acts[i].eenmalig.beginTijd[0]+acts[i].eenmalig.beginTijd[1]+acts[i].eenmalig.beginTijd[2],
+                    beginTijd : acts[i].eenmalig.beginTijd[16] + acts[i].eenmalig.beginTijd[17] + acts[i].eenmalig.beginTijd[18] + acts[i].eenmalig.beginTijd[19] + acts[i].eenmalig.beginTijd[20]
+                }];
+            } else if (acts[i].doorloopTijd === "wekelijks") {
+                acts[i].datum = new Date(acts[i].wekelijks[0].beginTijd);
+                for (x = 0; x < acts[i].wekelijks.length; x += 1) {
+                    dagen[x] = {
+                        dagNaam : acts[i].wekelijks[x].beginTijd[0]+acts[i].wekelijks[x].beginTijd[1]+acts[i].wekelijks[x].beginTijd[2],
+                        beginTijd : acts[i].wekelijks[x].beginTijd[16] + acts[i].wekelijks[x].beginTijd[17] + acts[i].wekelijks[x].beginTijd[18] + acts[i].wekelijks[x].beginTijd[19] + acts[i].wekelijks[x].beginTijd[20]
+                    }
+                }
+                acts[i].dagen = dagen;
+            }
+        }
+        stuurActs();
+    }
+    var setAantalDeelnemers = function () {
+        var i;
+        for (i = 0; i < acts.length; i += 1) {
+            acts[i].setAantalDeelnemers = acts[i].deelnemers.length + "/" + acts[i].maxPers;
+        }
+        setDagNamen();
+    }
+    var voegSubCategorieenToe = function () {
+        var i;
+        var validateKlaar = acts.length - 1;
+        var voegSubCategorieToe = function (nummer) {
+            SC.find({_id : acts[nummer].subCategorieId}, function (error, res) {
+                acts[nummer].subCategorie = res[0];
+                if (nummer === validateKlaar) {
+                    setAantalDeelnemers();
+                }
+            });
+        }
+        for (i = 0; i < acts.length; i += 1) {
+            voegSubCategorieToe(i);
+        }
+    }
+    var voegDeelnemersToe = function () {
+        var i, x;
+        var validateKlaar = acts.length - 1;
+
+        var voegDeelnemerToe = function (nummerI) {
+            console.log(nummerI);
+            var dn = acts[nummerI].deelnemers;
+            var validateKlaar = dn.length - 1;
+            var i;
+            var gevuldeDeelnemers = [];
+
+            var voegToe = function (nummerX) {
+                G.find({_id : dn[nummerX]}, function (error, res) {
+                    gevuldeDeelnemers[nummerX] = res;
+                    if (nummerX === validateKlaar) {
+                        acts[nummerI].deelNemersGevuld = gevuldeDeelnemers;
+                    }
+                    if (nummerI === acts.length - 1) {
+                        voegSubCategorieenToe();
+                    }
+                });
+            }
+            if (dn.length === 0) {
+                if (nummerI === acts.length - 1) {
+                        voegSubCategorieenToe();
+                }
+            } else {
+                for (i = 0; i < dn.length; i += 1) {
+                    voegToe(i);
+                }
+            }
+        }
+
+        for (i = 0; i < acts.length; i += 1) {
+            voegDeelnemerToe(i);
+        }
+    }
+    var voegMakersToe = function () {
+        var i;
+        var validateKlaar = acts.length - 1;
+        var voegMakerToe = function (nummer) {
+            G.find({_id : acts[nummer].creatorId}, function (error, res) {
+                acts[nummer].creator = res[0];
+                if (nummer === validateKlaar) {
+                    voegDeelnemersToe();
+                }
+            });
+        }
+        for (i = 0; i < acts.length; i += 1) {
+            voegMakerToe(i);
+        }
+    }
+    var getActs = function () {
+        A.find(function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(resp("De gezochte avtiviteiten kunnen niet gevonden worden.", false));
+            } else {
+                if (data.length > 0) {
+                    acts = data;
+                    voegMakersToe();
+                } else {
+                    callback(resp("Er zijn 0 activiteiten.", false));
+                }
+            }
+        });
+    }
+    getActs();
 };
 
 exports.voegDeelnemerToe = function (gegevens, callback) {
@@ -269,4 +392,34 @@ exports.verwijderDeelnemer = function (gegevens, callback) {
         }
     }
     valideerVelden();
+}
+
+exports.filterActiviteiten = function () {
+    var actsEenmalig;
+    var actsWekelijks;
+    var slaActiviteitenOp = function () {
+
+    }
+    var slaMeterOp = function () {
+
+    }
+    var updateMeter = function () {
+
+    }
+    var berekenNieuweData = function () {
+
+    }
+    var filterActs = function () {
+
+    }
+    var getActiviteiten = function () {
+        A.find(function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(resp("Er is een error opgetreden.", false));
+            } else {
+                filterActs(data);
+            }
+        });
+    }
 }

@@ -8,12 +8,12 @@ var ActiviteitSchema = mongoose.Schema({
     creatorId : {type : String, required : true},
     subCategorieId : {type : String, required : true},
     wekelijks : {type : [{
-        beginTijd : {type : Date, required : true},
-        eindTijd : {type : Date, required : true}
+        beginTijd : {type : String, required : true},
+        eindTijd : {type : String, required : true}
     }], required : false},
     eenmalig : {type : {
-        beginTijd : {type : Date, required : true},
-        eindTijd : {type : Date, required : true}
+        beginTijd : {type : String, required : true},
+        eindTijd : {type : String, required : true}
     }, required : false},
     intensiteit : {type : String, required : true},
     groep : {type : Boolean, required : false, default : false},
@@ -24,7 +24,10 @@ var ActiviteitSchema = mongoose.Schema({
     maxPers : {type : Number, required : true},
     deelnemers : {type : [], required : false},
     puntenPerDeelnemer : {type : Number, required : true},
-    verzamelPlaats : {type : String, required : false}
+    verzamelPlaats : {type : String, required : true},
+    likes : {type : Number, required : false, default : 0},
+    reacties : {type : [], required : false},
+    aanmaakDatum : {type : Date, default : Date.now()}
 }, {collection : "activiteiten"});
 
 exports.A = mongoose.model('Activiteit', ActiviteitSchema);
@@ -43,7 +46,8 @@ exports.HC = mongoose.model('HoofdCategorie', HoofdCategorieSchema);
 var SubCategorieSchema = mongoose.Schema({
     naam : {type : String, required : true},
     punten : {type : Number, required : true},
-    hoofdCategorieId : {type : String, required : true}
+    hoofdCategorieId : {type : String, required : true},
+    iconImg : {type : String, required : true, default : "img/hardlopen.jpg"}
 }, {collection : "SubCategorieen"});
 
 exports.SC = mongoose.model('SubCategorie', SubCategorieSchema);
@@ -66,3 +70,14 @@ var GebruikerSchema = mongoose.Schema({
 }, {collection : "gebruikers"});
 
 exports.G = mongoose.model('Gebruiker', GebruikerSchema);
+
+// Meter
+
+var MeterSchema = mongoose.Schema({
+    doel : {type : String, required : true},
+    puntenDoel : {type : Number, required : true},
+    puntenTussenstand : {type : Number, required : true},
+    doelGehaald : {type : Boolean}
+}, {collection : "Meter"});
+
+exports.M = mongoose.model('Meter', MeterSchema);

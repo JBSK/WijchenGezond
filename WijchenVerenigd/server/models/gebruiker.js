@@ -325,7 +325,7 @@ exports.login = function (gebruiker, callback) {
     var checkWachtwoord = function () {
         console.log(bcrypt.compareSync(gebruiker.wachtwoord, inlogGebruiker.wachtwoord));
         if (bcrypt.compareSync(gebruiker.wachtwoord, inlogGebruiker.wachtwoord)) {
-            callback(response("Alles klopt.", {succes : true, _id : inlogGebruiker._id}));
+            callback(response("Alles klopt.", {succes : true, _id : inlogGebruiker._id, username : inlogGebruiker.username}));
         } else {
             callback(response("Het gegeven wachtwoord klopt niet.", {succes : false, _id : false}));
         }

@@ -13,16 +13,17 @@ mongoose.connect("localhost/WijchenGezond");
 var categorieenRouter = require('./routes/categorieenRouter.js')(express);
 var gebruikersRouter = require('./routes/gebruikersRouter.js')(express);
 var activiteitenRouter = require('./routes/activiteitenRouter.js')(express);
+var meterRouter = require('./routes/meterRouter.js')(express);
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(expressSession({secret: 'madMen', saveUninitialized: true, resave: true}));
 
-// Op deze manier worden de docentrouters geintergreerd.
 app.use('/activiteiten', activiteitenRouter);
 app.use('/categorieen', categorieenRouter);
 app.use('/gebruikers', gebruikersRouter);
+app.use('/meter', meterRouter);
 
 app.use(express.static(path.join(__dirname, '../client')));
 server.listen(port);

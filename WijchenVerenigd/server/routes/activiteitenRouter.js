@@ -1,7 +1,6 @@
 // De controllers bevatten de functies voor de docent.
 var activiteitenControllers = require('../controllers/activiteitenControllers.js');
 
-// Deze functie controleerd of de docent wel ingelogd is, anders wordt hij ge-redirect.
 function checkOpSessie (req, res, next) {
 	if (req.session.userName) {
 		next();
@@ -12,7 +11,6 @@ function checkOpSessie (req, res, next) {
 	}
 }
 
-// Deze functie wordt gebruikt door Angular. Ook het front-end controleerd of de docent ingelogd is.
 function sessie (req, res) {
 	if (req.session.userName) {
 		res.send({
@@ -25,7 +23,6 @@ function sessie (req, res) {
 	}
 }
 
-// De routes die worden gebruikt door docent ('/docent').
 module.exports = function (express) {
 	var activiteitenRouter = express.Router();
 	activiteitenRouter.get('/', activiteitenControllers.getActiviteiten);

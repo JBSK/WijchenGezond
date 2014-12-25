@@ -1,613 +1,536 @@
-.container {
-    /*margin: 0 10% 0 10%;*/
-    height: 600px;
-    margin: 1px;
-    min-width:1220px;
-    width:100%;
-    display:block;
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
+
+body {
+	background-color: #FBFBFB;
+	font-family: 'Open Sans', sans-serif;
+	margin : 0px;
+}
+
+input:focus{
+    outline: 0;
+}
+
+button:focus {
+	outline: 0;
+}
+
+select:focus {
+	outline: 0;
+}
+
+#navbar {
+	background-color: #013345;
+	width: 100%;
+	height: 50px;
+}
+
+#header {
+	background-color: #48C0EB;
+	width: 100%;
+	height: 100px;
+}
+
+#container {
+	margin-left: auto;
+	margin-right: auto;
+	width: 1024px;
+	margin-top: -150px;
+}
+
+#containerNavbar {
+	height: 50px;
+	width: 100%;
+	float: left;
+	color: #fff;
+}
+
+#containerNavbar h1, #containerNavbar input {
+	float: left;
+}
+
+#containerNavbar input {
+	margin-top: 12px;
+	margin-left: 130px;
+	width: 300px;
+	height: 25px;
+	border: none;
+  	-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
+  	border-radius: 4px;
+  	padding-left: 8px;
+  	padding-right: 8px;
+}
+
+#containerNavbar ul {
+	float: right;
+	margin-top: 12px;
+}
+
+#containerNavbar ul:li {
+}
+
+#containerNavbar a:link {
+	text-decoration: underline;
+	color: #fff;
+	font-size: 11px;
+	margin-right: 10px;
+}
+
+#containerNavbar a:visited, #containerNavbar a:active {
+	color: #fff;
+}
+
+#containerNavbar a:hover {
+	color: #48C0EB;
+}
+
+#containerNavbar h1 {
+	font-size: 18px;
+	font-weight: 300;
+}
+
+#containerHeader {
+	float: left;
+	height: 100px;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.headerIcon {
+	text-align: center;
+	float: right;
+	width: 200px;
+	height: 100%;
+}
+
+.headerIcon ul {
+	list-style-type: none;
+	margin-left: -25px;
+	margin-top: 15px;
+	color: #fff;
+	font-size: 22px;
+}
+
+.headerIcon li.text {
+	font-size: 11px;
+}
+
+.headerIcon li.textGroot {
+	font-size: 15px;
+	font-weight: 700;
+}
+
+#sideBar {
+	float: left;
+	width: 224px;
+	margin-bottom: 100px;
+}
+
+#zoekActiviteit, #meterTekst {
+	width: 202px;
+	padding: 10px;
+	float: left;
+	background-color: #fff;
+  	-moz-border-radius: 4px;
+  	-webkit-border-radius: 4px;
+  	border-radius: 4px;
+  	border: 1px solid #EEE;
+}
+
+#zoekActiviteit h2, #meterTekst h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18px;
+	color: #48C0EB;
+}
+
+#zoekActiviteit p, #meterTekst p {
+	margin-top: 0px;
+	font-size: 11px;
+	color: #AAA;
+}
+#zoekActiviteit a {
+	text-decoration: none;
+	color: #555;
+	font-size: 24px;
+	margin: 2px;
+}
+
+#zoekActiviteit input {
+	padding: 10px;
+	margin-top: 15px;
+	border: 1px solid #DDD;
+	height: 10px;
+	width: 60px;
+}
+
+#zoekActiviteit #zoekActiviteitSubmit {
+	padding: 0px;
+	color: #FFF;
+	margin-left: 0px;
+	margin-top: 15px;
+	background-color: #48C0EB;
+	border: none;
+	height: 32px;
+	width: 75px;
+}
+
+#zoekActiviteit #zoekActiviteitSubmit:hover, #zoekActiviteit #zoekActiviteitButton:hover {
+	background-color: #013345;
+	cursor: pointer;
+}
+
+#zoekActiviteit #zoekActiviteitButton {
+	color: #FFF;
+	margin-right: 0px;
+	margin-top: 15px;
+	background-color: #48C0EB;
+	border: none;
+	width: 35px;
+	height: 32px;
+}
+
+#zoekActiviteit i {
+	background-color: #48C0EB;
+	height: 22px;
+	width: 22px;
+	color: #fff;
+}
+
+#meter {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: center;
+	width: 202px;
+	padding: 10px;
+	float: left;
+}
+
+#meter h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 18px;
+	color: #48C0EB;
+}
+
+#meter p {
+	margin-top: 0px;
+	font-size: 11px;
+	color: #AAA;
+}
+
+#meterAchtergrond {
+	margin-top: 0px;
+	border: 1px solid #DDD;
+	background-color: #fff;
+	height: 404px;
+	float: left;
+	width: 5px;
+	margin-left: 98px;
+  	-moz-border-radius: 8px;
+  	-webkit-border-radius: 8px;
+  	border-radius: 8px;
+}
+
+#meterPunten {
+	margin-top: 182px;
+	background-color: #48C0EB;
+	height: 220px;
+	float: left;
+	width: 3px;
+	margin-left: 1px;
+  	-moz-border-radius: 8px;
+  	-webkit-border-radius: 8px;
+  	border-radius: 8px;
+}
+
+#kalender, #feeds {
+	float: left;
+	width: 800px;
+}
+
+.activiteit {
+	border-radius: 7px;
+	float: left;
+	width: 180px;
+	margin-left: 9px;
+	margin-right: 9px;
+	background-color: #fff;
+	border: 1px solid #EEE;
+}
+
+.actHeader img {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+	width: 100%;
+}
+
+.actDetails {
+	padding: 10px;
+}
+
+.actDetails h3 {
+	margin-top: -5px;
+	color: #333;
+	font-size: 10px;
+	font-weight: 400;
 }
 
-.message{
-    float:left;
+.actDetails h1 {
+	margin-top: -5px;
+	font-size: 12px;
+	font-weight: 700;
+	margin-bottom: 0px;
 }
 
+.actDetails h2 {
+	display: inline-block;
+	color: #333;
+	font-size: 10px;
+	font-weight: 400;
+	margin-bottom: 10px;
+}
+
+.actDetails h4 {
+	margin-top: -4px;
+	margin-bottom: 5px;
+	color: #333;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.actOmschrijving {
+	border-top: 1px solid #EEE;
+	padding: 10px;
+}
 
-.topBar {
-    width: 100%;
-    min-width:1210px;
-    height: 60px;
-    background-color: black;
-    color: white;
+.actOmschrijving p {
+	color: #333;
+	font-size: 10px;
+	margin-top: 5px;
 }
 
-.logo {
-    float: left;
-    width: 31%;
-    text-align: center;
-    padding-top: 20px;
+/* Login */
+
+#login {
+	padding: 20px;
+	position: absolute;
+	margin-top: 50px;
+	margin-left: 774px;
+	background-color: #fff;
+	height: 160px;
+	width: 230px;
+  	-moz-border-radius: 5px;
+  	-webkit-border-radius: 5px;
+  	border-radius: 5px;
+  	border: 1px solid #EEE;
+}
+
+#login p {
+	margin-top: 0px;
+	font-weight: 400;
+	font-size: 12px;
 }
 
-.search {
-    float: left;
-    border: solid 1px black;
-    width: 300px;
-    text-align: center;
-    padding-top: 10px;
-    color: black;
-    font-size: 90%;
+#login input {
+	margin-bottom: 10px;
+	width: 205px;
+	padding: 10px;
+	border: 1px solid #DDD;
 }
 
-.searchbaricon {
-    background-image: url('../img/zoek.png');
-    height: 16px;
-    width: 16px;
-    position: absolute;
-    margin: 8px 0 0 5px;
+#login input.submitLogin {
+	width: 50px;
+	background-color: #48C0EB;
+	color: #fff;
+	border: none;
+	float: left;
 }
 
-.searchbar {
-    width: 300px;
-    padding: 5px 5px 5px 30px;
+#login input.submitLogin:hover {
+	cursor: pointer;
+	background-color: #000;
 }
 
-.profile {
-    float: right;
-    width: 35%;
-    min-width:500px;
-    text-align: right;
-    padding-top: 18px;
-    margin-right: 20px;
-    display:block;
+#login a {
+	margin-left: 7px;
+	margin-top: 10px;
+	float: right;
+	font-size: 10px;
+	font-weight: 300;
+	color: #48C0EB;
+	text-decoration: none;
 }
-.profileForm{
-    color:black;
+
+#login a:hover {
+	color: #000;
 }
 
-a:link, a:hover, a:active, a:visited {
-    color:black;
-    text-decoration:none;
+/* activiteit maken */
+
+#activiteitMaken {
+	padding: 10px;
+	float: left;
+	width: 780px;
 }
 
-.topBar a:link, .topBar a:visited, .topBar a:hover, .topBar a:active {
-    text-decration: none;
-    color: white;
+#activiteitMaken h1 {
+	margin-top: 0px;
+	font-size: 18px;
+	color: #555;
 }
 
-.profileForm{
-margin-top: -10px;
+#activiteitMaken h3 {
+	width: 800px;
+	float: left;
+	font-size: 18px;
+	color: #555;
 }
 
-.profileForm form{
+#activiteitMaken input.naam {
+	width: 100%;
+	border: 1px solid #DDD;
+	padding: 10px;
 }
 
-.profile img {
-    margin: -5px 2px 0 2px;
+#activiteitMaken select.heleLengte {
+	width: 800px;
+	border-radius: 0px;
+	height: 30px;
+	margin-bottom: 15px;
+	background-color: #fff;
+	border: 1px solid #DDD;
 }
 
-.leftSideBar {
-    float: left;
-    width: 30%;
-    height: 425px;
-    padding: 10px;
-    min-width:340px;
+#activiteitMaken select.vijfdeDeel {
+	width: 182px;
+	float: left;
+	border-radius: 0px;
+	height: 30px;
+	margin-bottom: 15px;
+	background-color: #fff;
+	border: 1px solid #DDD;
+	margin-right: 20px;
 }
 
-.week {
-    width: 100%;
-    display: block;
-    float: left;
-    margin-top: 30px;
-    height: 30px;
+#activiteitMaken select.derdeDeel {
+	width: 590px;
+	float: left;
+	border-radius: 0px;
+	height: 30px;
+	margin-bottom: 15px;
+	background-color: #fff;
+	border: 1px solid #DDD;
+	margin-right: 20px;
 }
 
-.weeknumber {
-    float: left;
-    text-align: center;
-    font-weight: bold;
-    display: block;
-    width: 280px;
+#activiteitMaken input.beginTijd {
+	text-align: center;
+	width: 70px;
+	float: left;
+	border: 1px solid #DDD;
+	padding: 5px;
+	margin-right: 18px;
 }
 
-.weekarrowleft {
-    background-image: url('../img/arrow_small.png');
-    height: 16px;
-    width: 16px;
-    display: block;
-    float: left;
-    -ms-transform: rotate(180deg); /* IE 9 */
-    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
-    transform: rotate(180deg);
-    margin-top:3px;
+#activiteitMaken input.eindTijd {
+	text-align: center;
+	width: 70px;
+	float: left;
+	margin-right: 0px;
+	margin-left: 0px;
+	border: 1px solid #DDD;
+	padding: 5px;
 }
-
-.weekarrowright {
-    height: 16px;
-    width: 16px;
-    display: block;
-    float: right;
-    background-image: url('../img/arrow_small.png');
-    margin-top:3px;
-}
-
-.calendar {
-    width: 100%;
-    height: 290px;
+
+#activiteitMaken h6 {
+	color: #555;
+	margin-top: 0px;
+	font-size: 14px;
+	font-weight: 300;
+	float: left;
 }
 
-.calendar > .day {
-    background-color: black;
-    padding: 10px;
-    color: white;
-    height: 40px;
-    width: 48%;
-    margin: 5px 0 0 5px;
-    float: left;
-    text-align: center;
-    display: block;
+#activiteitMaken .groepCheckbox {
+	width: 800px;
+	height: 20px;
+	float: left;
+	margin-bottom: 20px;
 }
 
-.day > .weekday {
-    font-weight: bold;
+#activiteitMaken .checkbox {
+	margin-right: 10px;
+	float: left;
 }
 
-.calendar > .inactive {
-    background-color: #DADADA;
+#activiteitMaken h4 {
+	color: #555;
+	float: left;
 }
 
-.plannedActivities {
-    background: #DADADA;
-    color: white;
-    padding: 10px;
-    height: 40px;
-    width: 99.5%;
-    float: left;
-    text-align: center;
-    display: block;
+#activiteitMaken .line {
+	margin-top: 20px;
+	float: left;
+	width: 800px;
+	height: 1px;
+	background-color: #DDD;
 }
 
-.sportType {
-    border-top: solid 2px black;
-    height: 70px;
+#activiteitMaken textarea {
+	float: left;
+	width: 800px;
+	height: 200px;
+	border: 1px solid #DDD;
 }
 
-.rightSide {
-    float: right;
-    width: 69%;
-    min-width:770px;
-    height: 500px;
-    margin: 10px 10px 0 0;
+#activiteitMaken button, #activiteitMaken .submit {
+	float: left;
+	padding: 0px;
+	color: #FFF;
+	margin-right: 20px;
+	margin-top: 15px;
+	background-color: #48C0EB;
+	border: none;
+	height: 32px;
+	width: 130px;
 }
 
-.meter {
-    float: left;
-    width: 100%;
-    height: 100px;
-    margin: 0 0 5px 0;
-    background-color: #ECECEC;
+#activiteitMaken button:hover, #activiteitMaken .submit:hover {
+	cursor: pointer;
+	background-color: #013345;
 }
 
-.meter > .completed {
-    background-color: #95BF31;
-    width: 300px;
-    height: 100%;
-    float: left;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    padding-top: 35px;
+#activiteitMaken .submit {
+	margin-bottom: 100px;
 }
 
-.meter > .completedrecent {
-    background-color: #DDDA1A;
-    width: 30px;
-    height: 100%;
-    float: left;
-    text-align: center;
-    padding-top: 35px;
+#activiteitMaken .heleLengteDiv {
+	float: left;
+	width: 800px;
 }
 
-.meter > .notcompleted {
-    width: 400px;
-    height: 100%;
-    float: right;
-    color: #C6C6C6;
-    text-align: center;
-    padding-top: 35px;
-    font-weight: bold;
+#activiteitMaken .deelnemersMin {
+	float: left;
+	width: 368px;
+	border: 1px solid #DDD;
+	padding: 10px;
+	margin-right: 10px;
 }
 
-.activitiesColumn {
-    float: left;
-    width: 100%;
+#activiteitMaken .deelnemersMax {
+	margin-left: 10px;
+	float: left;
+	width: 368px;
+	border: 1px solid #DDD;
+	padding: 10px;
 }
 
-.description {
-    float: left;
-    width: 100%;
-    height: 80px;
-    margin-top: -5px;
-    background-color: #F6F6F6;
-    margin-bottom: 5px;
-    padding: 10px 0 0 20px;
-    font-size: 80%;
-}
-
-.activity {
-    float: left;
-    background-color: #ECECEC;
-    width: 100%;
-    margin: 0 0 5px 0;
-}
-
-.icon {
-    float: left;
-    height: 75px;
-    margin: 6px 0 0 6px;
-}
-
-.activityTitle {
-    float: left;
-    height: 75px;
-    width: 43%;
-    padding: 13px 5px 0 5px;
-}
-
-.activityTitle > .title {
-    font-weight: bold;
-}
-
-.timeAndDate {
-    float: left;
-    height: 75px;
-    width: 28%;
-    font-size: 90%;
-    padding: 20px 0 0 0;
-}
-
-.attendance {
-    float: left;
-    height: 75px;
-    width: 9%;
-    padding: 20px 2px 0 0;
-}
-
-.activityPoints {
-    float: right;
-    height: 75px;
-    width: 11%;
-    padding: 23px 0 0 5px;
-}
-
-form {
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-form select {
-    margin-top: 10px;
-    margin-bottom: 10px
-}
-
-form input {
-    margin-top: 10px;
-    margin-bottom: 10px
-}
-
-.derdeDeel {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 60%;
-    float: left;
-}
-
-.datum {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 32%;
-    float: left;
-}
-
-.datumMarge {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 32%;
-    float: left;
-    margin-left: 2%;
-}
-
-.derdeDeelInp {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 19%;
-    float: left;
-    margin-left: 1%;
-}
-
-.tweedeDeelA {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 48%;
-    margin-right: 2%;
-    float: left;
-}
-
-.tweedeDeelB {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    width: 48%;
-    margin-left: 2%;
-    float: left;
-}
-
-textarea {
-    display: block;
-    width: 100%;
-    height: 39px;
-    padding: 8px 12px;
-    font-size: 15px;
-    line-height: 1.4;
-    color: #6f6f6f;
-    background-color: #ffffff;
-    background-image: none;
-    border: 1px solid #cccccc;
-    border-radius: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    height: 150px;
-}
-
-.line {
-    float: left;
-    width: 100%;
-    height: 1px;
-    background-color: #6f6f6f;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-/* Profile */
-
-.userInfo > .profilePicture {
-    display:block;
-    background:black;
-    width:150px;
-    height:150px;
-    float:left;
-}
-
-.userInfo > .info {
-    float:left;
-    display:block;
-    margin:30px 0 0 20px;
-}
-
-
-.userInfo > .info > .name {
-    font-size:150%;
-    font-weight:bold;
-}
-
-.userInfo > .info > .activeDate {
-    color:darkgrey;
-    font-weight:200;
-}
-
-.profileLeftSide {
-    float: left;
-    width: 30%;
-    height: 425px;
-    padding: 10px;
-}
-.profileRightSide {
-    float: right;
-    width: 69%;
-    height: 400px;
-    margin: 10px 10px 0 0;
-}
-
-.profileCompleteLevel {
-    display:block;
-    background:#F6F6F6;
-    margin: 5px 0;
-}
-
-.friendlistHeader {
-    background:#ECECEC;
-    color:#9D9C9C;
-    padding:10px;
-}
-
-.friendIcon{
-    display:block;
-    background:black;
-    width:97px;
-    height:97px;
-    float:left;
-    margin:5px;
-}
-
-.completeFriendlist {
-    background:#F6F6F6;
-    height:250px;
-}
-
-.activityText {
-    padding:30px 0 0 0;
-    font-weight:500;
-    font-size:130%;
-}
-
-.activityDate {
-    margin: 0 0 20px 0;
-}
-
-.profileCompleteLevel img {
-    float:left;
-    margin: 0 30px 0 10px;
-}
-
-.profileCompleteLevel {
-    height:115px;
-}
-
-.profileCompleteLevel {
-    height:115px;
-}
-
-.profileCompleteLevel > .completeText {
-    padding:25px 0 0 0;
-    font-size:110%;
-}
-
-.bold {
-    font-weight:bold;
-}
-
-.block {
-    display:block;
-    background:#BCD676;
-    width:186px;
-    height:130px;
-    float:left;
-    color:#fff;
-    font-weight:bold;
-    padding:10px;
-    margin:5px;
-}
-
-.block > .title {
-    height:40px;
-    display:block;
-}
-
-.block > .status {
-    font-size: 250%;
-    margin-top:10px;
-}
-
-.block2{
-    background:#AFCD5B;
-}
-
-.block3{
-    background:#A1C542;
-}
-
-.block4{
-    background:#95BF31;
-}
-
-.activityUpdate {
-    background: #ECECEC;
-    margin: 4px 5px 0 5px;
-    width:775px;
-}
-
-.activityFooter {
-    background:#DADADA;
-    width:100%;
-    height:35px;
-}
-
-.activityLikes{
-    float:left;
-    margin: 5px 0 5px 20px;
-    font-weight:bold;
-}
-
-.react {
-    float:left;
-    margin: 5px 0 5px 20px;
-
-}
-
-#example1 {
-    float:left;
+#activiteitMaken .verzamelPlaats {
+	margin-top: 15px;
+	float: left;
+	width: 780px;
+	border: 1px solid #DDD;
+	padding: 10px;
 }

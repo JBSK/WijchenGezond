@@ -11,53 +11,85 @@
     <script src="/js/hoofdCategorieController.js"></script>
     <script src="/js/activiteitController.js"></script>
     <script src="/js/gebruikerController.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
+    <script src="/js/statController.js"></script>
+    <script src="/js/navController.js"></script>
+    <script src="/js/meterController.js"></script>
     <script src="/js/routes.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-
-    <script src="/js/FlexGauge.js"></script>
-
-    <script src="js/bootstrap/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="/css/stylesheet.css">
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/login.css">
-
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
 </head>
-<body ng-controller="indexController">
-    <div class="topBar">
-        <div class="logo">
-            <a href="/#/home"><strong>WIJCHEN</strong>VERENIGD</a>
-        </div>
-        <div class="search">
-            <div class="searchbaricon"></div>
-            <input type="text" class="searchbar" placeholder="Waar ben je naar op zoek?">
-        </div>
-        <div class="profile animate-switch-container" ng-switch on="selection">
-            <div class="animate-switch" ng-switch-default>
+<body>
 
-                <form class="profileForm" ng-model="login">
-                <input type="text" class="profileForm" placeholder="Gebruikersnaam of Email-adres" ng-model="login.emailUsername" />
-                <input type="password" class="profileForm" placeholder="Wachtwoord" ng-model="login.wachtwoord" />
-                <span class="message" ng-show="logMsg">{{logMessage}}</span>
-                <input class="btn btn-success" type="submit" value="Login" ng-click="log(login)" />
+
+    
+    <div id="navbar">
+    </div>
+
+    <div id="header">
+    </div>
+
+    <div id="container">
+        <div ng-controller="navController">
+            <div id="containerNavbar">
+                <h1>WIJCHENVERENIGD</h1>
+                <input type="text" placeholder = "Waar ben je naar op zoek?" />
+                <ul>
+                    <a href="/#/feed"><li class="fa fa-newspaper-o"> FEED</li></a>
+                    <a href="/#/activiteit"><li class="fa fa-plus"> ACTIVITEIT AANMAKEN</li></a>
+                    <a href ng-click="changeLogin()"><li class="fa fa-user"> {{isIngelogd}}</li></a>
+                </ul>
+            </div>
+
+            <div id="login" ng-show="showLogin">
+                <p>{{loginMessage}}</p>
+                <form ng-init>
+                    <input placeholder="Email of Username" type="text" ng-model="login.emailUsername" />
+                    <input placeholder="Wachtwoord" type="password" ng-model="login.wachtwoord" />
+                    <input class="submitLogin" type="submit" value="Login" ng-click="tryLogin(login)" />
                 </form>
-
-            </div>
-
-            <div class="animate-switch" ng-switch-when="login">
-                <a href="/#/feed/"><img src="./img/feed_wit.png" width="4%" alt="icon"> FEED </a>
-                <a href="/#/activiteit/"><img src="./img/plus_wit.png" alt="icon"> ACTIVITEIT AANMAKEN </a>
-                <a href="/#/gebruiker/"><img src="./img/profile_wit.png" alt="icon"> {{gebruikers.naam}} </a>
+                <a href="/#/register">nog geen lid?</a>
+                <a href="/#/register">Wachtwoord vergeten?</a>
             </div>
 
         </div>
-   </div>
-        <div class="container1" ng-view="">
+
+        <div id="containerHeader" ng-controller="statController">
+            <div class="headerIcon">
+                <ul>
+                    <li class="fa fa-trophy"></li>
+                    <li class="textGroot">{{statistieken.puntenTotaal}}</li>
+                    <li class="text">Punten totaal</li>
+                </ul>
+            </div>
+            <div class="headerIcon">
+                <ul>
+                    <li class="fa fa-line-chart"></li>
+                    <li class="textGroot">{{statistieken.puntenVandaag}}</li>
+                    <li class="text">Punten vandaag</li>
+                </ul>
+            </div>
+            <div class="headerIcon">
+                <ul>
+                    <li class="fa fa-pie-chart"></li>
+                    <li class="textGroot">{{statistieken.populairst}}</li>
+                    <li class="text">Populairste activiteit</li>
+                </ul>
+            </div>
+            <div class="headerIcon">
+                <ul>
+                    <li class="fa fa-users"></li>
+                    <li class="textGroot">{{statistieken.gebruikers}}</li>
+                    <li class="text">Nu actief</li>
+                </ul>
+            </div>
         </div>
+
+    <div ng-view=""></div>
+
+</div>
 
 </body>
 </html>

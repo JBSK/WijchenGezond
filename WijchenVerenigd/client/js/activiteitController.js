@@ -1,4 +1,13 @@
 var activiteitController = function ($routeParams, $scope, $window, dbService) {
+	var creatorId;
+	dbService.login.get(function(res) {
+		if (res.success) {
+			creatorId = res.data._id;
+		} else {
+			console.log("Je bent niet ingelogd.");
+		}
+	});
+	
 	$scope.activiteit = {};
 	$scope.activiteit.punten = 0;
 	$scope.activiteit.dagen = false;
@@ -69,29 +78,32 @@ var activiteitController = function ($routeParams, $scope, $window, dbService) {
 			var eindDatum = new Date(beginDatum);
 			eindDatum.setHours(eindTijdUren, eindTijdMin);
 			return {
-				beginTijd : beginDatum,
-				eindTijd : eindDatum
+				beginTijd : beginDatum.toString(),
+				eindTijd : eindDatum.toString()
 			}
 		}
 		var a = $scope.activiteit;
 		var nA = {};
-		//nA.creatorId = ;
+		nA.creatorId = creatorId;
 		nA.naam = a.naam;
 		nA.subCategorieId = a.subCategorie._id;
 		nA.intensiteit = a.intensiteit;
-		nA.groep = a.groep;
 		nA.doorloopTijd = a.doorloopTijd;
 		nA.omschrijving = a.omschrijving;
 		nA.puntenPerDeelnemer = a.punten;
-		nA.deelnemers = [];
+		nA.deelnemers = [creatorId];
+		nA.verzamelPlaats = a.verzamelPlaats;
 		if (a.groep) {
 			nA.minPers = a.minPers;
 			nA.maxPers = a.maxPers;
+			nA.groep = true;
+		} else {
+			nA.groep = false;
 		}
 		if (a.doorloopTijd === "eenmalig") {
 			nA.eenmalig = {
-				beginTijd : new Date(a.datum.jaar, a.datum.maand, a.datum.dag, (a.datum.beginTijd[0] + a.datum.beginTijd[1]), (a.datum.beginTijd[3] + a.datum.beginTijd[4])),
-				eindTijd : new Date(a.datum.jaar, a.datum.maand, a.datum.dag, (a.datum.eindTijd[0] + a.datum.eindTijd[1]), (a.datum.eindTijd[3] + a.datum.eindTijd[4]))
+				beginTijd : (new Date(a.datum.jaar, a.datum.maand, a.datum.dag, (a.datum.beginTijd[0] + a.datum.beginTijd[1]), (a.datum.beginTijd[3] + a.datum.beginTijd[4]))).toString(),
+				eindTijd : (new Date(a.datum.jaar, a.datum.maand, a.datum.dag, (a.datum.eindTijd[0] + a.datum.eindTijd[1]), (a.datum.eindTijd[3] + a.datum.eindTijd[4]))).toString()
 			};
 		} else if (a.doorloopTijd === "wekelijks") {
 			var dagen = [];
@@ -105,7 +117,9 @@ var activiteitController = function ($routeParams, $scope, $window, dbService) {
 			}
 			nA.dagen = dagen;
 		}
-		console.log(a);
+		dbService.activiteiten.post(nA, function (res) {
+			console.log(res);
+		});
 		console.log(nA);
 	}
 }
