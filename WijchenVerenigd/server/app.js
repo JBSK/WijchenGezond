@@ -14,12 +14,14 @@ var categorieenRouter = require('./routes/categorieenRouter.js')(express);
 var gebruikersRouter = require('./routes/gebruikersRouter.js')(express);
 var activiteitenRouter = require('./routes/activiteitenRouter.js')(express);
 var meterRouter = require('./routes/meterRouter.js')(express);
+var fasRouter = require('./routes/feedsAndStatsRouter.js')(express);
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 app.use(expressSession({secret: 'madMen', saveUninitialized: true, resave: true}));
 
+app.use('/feeds', fasRouter);
 app.use('/activiteiten', activiteitenRouter);
 app.use('/categorieen', categorieenRouter);
 app.use('/gebruikers', gebruikersRouter);

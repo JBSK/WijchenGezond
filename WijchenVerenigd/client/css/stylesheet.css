@@ -20,6 +20,10 @@ select:focus {
 	outline: 0;
 }
 
+textarea:focus {
+	outline: 0;
+}
+
 #navbar {
 	background-color: #013345;
 	width: 100%;
@@ -249,12 +253,15 @@ select:focus {
 #kalender, #feeds {
 	float: left;
 	width: 800px;
+	margin-bottom: 40px;
 }
 
 .activiteit {
 	border-radius: 7px;
 	float: left;
 	width: 180px;
+	height: 370px;
+	margin-top: 15px;
 	margin-left: 9px;
 	margin-right: 9px;
 	background-color: #fff;
@@ -533,4 +540,166 @@ select:focus {
 	width: 780px;
 	border: 1px solid #DDD;
 	padding: 10px;
+}
+
+/* Feeds */
+
+.feed {
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	float: left;
+	width: 790px;
+	background-color: #fff;
+  	-moz-border-radius: 7px;
+  	-webkit-border-radius: 7px;
+  	border-radius: 7px;
+  	border: 1px solid #EEE;
+}
+
+.feedImage, .feedContent {
+	overflow: hidden;
+	float: left;
+	width: 100%;
+	height: 60px;
+	color: #444;
+}
+
+.feedImage img {
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+	width: 100%;
+}
+
+.feedContent img {
+	height: 100%;
+	float: left;
+	margin-right: 10px;
+}
+
+.feedContent h1 {
+	margin-bottom: 0px;
+	font-weight: 400;
+	font-size: 12px;
+	margin-top: 10px;
+}
+
+.feedContent h1 a:link, .feedContent h1 a:visited, .feedContent h1 a:active {
+	text-decoration: none;
+	color: #444;
+	font-weight: 700;
+}
+
+.feedContent h1 a:hover {
+	text-decoration: underline;
+}
+
+.feedContent h4 {
+	float: left;
+	margin-bottom: 0px;
+	font-weight: 400;
+	font-size: 10px;
+	margin-top: 10px;
+}
+
+.feedContent h4 .fa-heart-o {
+	color: #900;
+}
+
+.feedContent h5 {
+	float: left;
+	margin-bottom: 0px;
+	font-weight: 400;
+	font-size: 10px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+.feedReactie, .feedReageer {
+	float: left;
+	width: 770px;
+	border-top: 1px solid #EEE;
+	padding: 10px;
+}
+
+.feedReageer {
+	height: 40px;
+}
+
+.feedReactie p, .feedReactie h5, .feedReactie h6 {
+	margin-bottom: 0px;
+	font-weight: 400;
+}
+
+.feedReactie p {
+	margin-left: 5px;
+	font-size: 11px;
+	float: left;
+	margin-top: 4px;
+}
+
+.feedReactie h5 {
+	margin-left: 28px;
+	font-size: 11px;
+	float: left;
+	margin-top: 4px;
+	font-weight: 700;
+}
+
+.feedReactie h6 {
+	margin-top: 15px;
+	margin-right: 15px;
+	font-size: 8px;
+	float: right;
+	color: #CCC;
+}
+
+.feedReactie img {
+	height: 25px;
+	width: 25px;
+	float: left;
+	margin-left: 8px;
+  	-moz-border-radius: 20px;
+  	-webkit-border-radius: 20px;
+  	border-radius: 20px;
+}
+
+.feedReageer img {
+	height: 40px;
+	width: 40px;
+	float: left;
+  	-moz-border-radius: 20px;
+  	-webkit-border-radius: 20px;
+  	border-radius: 20px;
+}
+
+.feedReageer input {
+	margin-top: 7px;
+	margin-left: 20px;
+	float: left;
+	width: 640px;
+	padding: 5px;
+	height: 15px;
+	border: none;
+	background-color: #EEE;
+}
+
+.feedReageer button {
+	margin-top: 7px;
+	float: left;
+	width: 50px;
+	height: 25px;
+	padding: 5px;
+	background-color: #EEE;
+	border: none;
+}
+
+.feedReageer button:hover {
+	background-color: #444;
+	color: #fff;
+	cursor: pointer;
+}
+
+.feedReageer input.submit {
+	visibility: hidden;
 }

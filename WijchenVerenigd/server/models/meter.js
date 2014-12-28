@@ -1,4 +1,3 @@
-var cb;
 var exports = module.exports = {};
 var A = require('./../models/mongooseSchemas').A;
 var G = require('./../models/mongooseSchemas').G;
@@ -6,9 +5,10 @@ var HC = require('./../models/mongooseSchemas').HC;
 var SC = require('./../models/mongooseSchemas').SC;
 var M = require('./../models/mongooseSchemas').M;
 
-var resp = function (message, data) {
+var resp = function (message, success, data) {
     return {
         message : message,
+        success : success,
         data : data
     }
 }
@@ -17,12 +17,12 @@ exports.getMeter = function (callback) {
     M.find(function (error, res) {
         if (error) {
             console.log(error);
-            callback(resp("De meter kan niet worden gevonden door een fout :(!", false));
+            callback(resp("De meter kan niet worden gevonden door een fout :(!", false, false));
         } else {
             if (res[0]) {
-                callback(resp("De meter is gevonden", res[0]));
+                callback(resp("De meter is gevonden", true, res[0]));
             } else {
-                callback(resp("Er bestaat nog geen meter of doel..", false));
+                callback(resp("Er bestaat nog geen meter of doel..", false, false));
             }
         }
     });
@@ -35,9 +35,9 @@ exports.addPunten = function (gegevens, callback) {
         meter.save(function (error, res) {
             if (error) {
                 console.log(error);
-                callback(resp("Er is iets misgegaan :(..", false));
+                callback(resp("Er is iets misgegaan :(..", false, false));
             } else {
-                callback(resp("De punten zijn toegevoegd! Goed bezig!", res));
+                callback(resp("De punten zijn toegevoegd! Goed bezig!", true, res));
             }
         });
     }
@@ -57,13 +57,13 @@ exports.addPunten = function (gegevens, callback) {
         M.find(function (error, res) {
             if (error) {
                 console.log(error);
-                callback(resp("De meter kan niet worden gevonden door een fout :(!", false));
+                callback(resp("De meter kan niet worden gevonden door een fout :(!", false, false));
             } else {
                 if (res[0]) {
                     meter = res[0];
                     checkOfDoelGehaald();
                 } else {
-                    callback(resp("Er bestaat nog geen meter of doel..", false));
+                    callback(resp("Er bestaat nog geen meter of doel..", false, false));
                 }
             }
         });
@@ -72,7 +72,7 @@ exports.addPunten = function (gegevens, callback) {
         if (typeof parseInt(punten) === "number") {
             getMeter();
         } else {
-            callback(resp("Je hebt geen getal meegegeven", false));
+            callback(resp("Je hebt geen getal meegegeven", false, false));
         }
     }
     checkOfNummer();

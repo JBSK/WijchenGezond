@@ -73,6 +73,7 @@ exports.login = function (req, res) {
 				req.session.ingelogd = true;
 				req.session._id = data.data._id;
 				req.session.username = data.data.username;
+				req.session.avatar = data.data.avatar;
 				res.send({
 					message : data.message,
 					success : true,

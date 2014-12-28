@@ -1,9 +1,10 @@
 var bcrypt   = require('bcrypt-nodejs');
 var G = require('./../models/mongooseSchemas').G;
 
-var response = function (message, data) {
+var response = function (message, success, data) {
     return {
         message : message,
+        success : success,
         data : data
     }
 }
@@ -13,12 +14,12 @@ exports.getGebruiker = function (id, callback) {
     G.findOne({_id : id}, function (error, data) {
         if (error) {
             console.log(error);
-            callback(response("Er is iets misgegaan.", id));
+            callback(response("Er is iets misgegaan.", false, id));
         } else {
             if (data) {
-                callback(response("De gebruiker is gevonden", data));
+                callback(response("De gebruiker is gevonden", true, data));
             } else {
-                callback(response("De gezochte gebruiker kan niet worden gevonden."));
+                callback(response("De gezochte gebruiker kan niet worden gevonden.", false, false));
             }
         }
     });
@@ -29,9 +30,9 @@ exports.getGebruikers = function (callback) {
     G.find(function (error, data) {
         if (error) {
             console.log(error);
-            callback(response("Er is iets misgegaan.", false));
+            callback(response("Er is iets misgegaan.", false, false));
         } else {
-            callback(response("De gebruikers zijn gevonden.", data));
+            callback(response("De gebruikers zijn gevonden.", true, data));
         }
     });
 };
@@ -41,9 +42,9 @@ exports.createGebruiker = function (gebruiker, callback) {
         newGebruiker.save(function (error, madeGebruiker) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegeaan.", {}));
+                callback(response("Er is iets misgegeaan.", false,  false));
             } else {
-                callback(response("De gebruiker is succesvol aangemaakt.", madeGebruiker));
+                callback(response("De gebruiker is succesvol aangemaakt.", true, madeGebruiker));
             }
         });
     }
@@ -60,7 +61,7 @@ exports.createGebruiker = function (gebruiker, callback) {
         if (gebruiker.wachtwoord === gebruiker.bevestigWachtwoord && gebruiker.wachtwoord.length > 6) {
             maakNieuweGebruiker();
         } else {
-            callback(response("Het gegeven wachtwoord komt niet overeen met het bevestigde wachtwoord of is niet lang genoeg.", gebruiker));
+            callback(response("Het gegeven wachtwoord komt niet overeen met het bevestigde wachtwoord of is niet lang genoeg.", false, gebruiker));
         }
     };
 
@@ -69,7 +70,7 @@ exports.createGebruiker = function (gebruiker, callback) {
             if (gebruiker.username.length > 3 && gebruiker.username.indexOf(' ') < 1) {
                 checkWachtwoord();
             } else {
-                callback(response("De gegeven username is niet lang genoeg. Probeer een andere.", gebruiker));
+                callback(response("De gegeven username is niet lang genoeg. Probeer een andere.", false, gebruiker));
             }
         };
 
@@ -77,10 +78,10 @@ exports.createGebruiker = function (gebruiker, callback) {
             G.find({username : gebruiker.username}, function (error, data) {
                 if (error) {
                     console.log(error);
-                    callback(response("Er is iets misgegeaan. Probeer het later nog eens.", gebruiker));
+                    callback(response("Er is iets misgegeaan. Probeer het later nog eens.", false, gebruiker));
                 } else {
                     if (data[0]) {
-                        callback(response("De gegeven username bestaat al. Probeer een andere.", gebruiker));
+                        callback(response("De gegeven username bestaat al. Probeer een andere.", false, gebruiker));
                     } else {
                         valideerUsername();
                     }
@@ -96,17 +97,17 @@ exports.createGebruiker = function (gebruiker, callback) {
             if (re.test(email)) {
                 checkUsername();
             } else {
-                callback(response("Het opgegeven email-adres is niet valide.", gebruiker));
+                callback(response("Het opgegeven email-adres is niet valide.", false, gebruiker));
             }
         }
         var checkOfEmailBestaat = function (email) {
             G.find({email : email}, function(error, data) {
                 if (error) {
                     console.log(error);
-                    callback(response("Er is iets misgegeaan, probeer het later nog eens.", gebruiker));
+                    callback(response("Er is iets misgegeaan, probeer het later nog eens.", false, gebruiker));
                 } else {
                     if (data[0]) {
-                        callback(response("Het opgegeven email-adres bestaat al.", gebruiker));
+                        callback(response("Het opgegeven email-adres bestaat al.", false, gebruiker));
                     } else {
                         valideerEmail(gebruiker.email);
                     }
@@ -120,7 +121,7 @@ exports.createGebruiker = function (gebruiker, callback) {
         if (gebruiker.username && gebruiker.wachtwoord && gebruiker.bevestigWachtwoord && gebruiker.email) {
             checkEmail();
         } else {
-            callback(response("Niet alle verplichte velden zijn ingevuld.", gebruiker));
+            callback(response("Niet alle verplichte velden zijn ingevuld.", false, gebruiker));
         }
     }
     valideerVelden();
@@ -132,9 +133,9 @@ exports.addVriend = function (gegevens, callback) {
         gebruiker.save(function(error, data) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegaan", gegevens));
+                callback(response("Er is iets misgegaan", false, gegevens));
             } else {
-                callback(response("De persoon is toegevoegd aan je vriendenlijst.", gegevens));
+                callback(response("De persoon is toegevoegd aan je vriendenlijst.", true, gegevens));
             }
         });
     }
@@ -151,7 +152,7 @@ exports.addVriend = function (gegevens, callback) {
             for (i = 0; i < gebruiker.vrienden.length; i += 1) {
                 console.log("x");
                 if (gebruiker.vrienden[i] === gegevens.vriendId) {
-                    callback(response("Je bent al vrienden met deze persoon.", gegevens));
+                    callback(response("Je bent al vrienden met deze persoon.", true, gegevens));
                     return;
                 }
             }
@@ -162,12 +163,12 @@ exports.addVriend = function (gegevens, callback) {
         G.find({_id : gegevens.vriendId}, function (error, data) {
             if (error) {
                 console.log(error);
-                    callback(response("De gegeven vriend bestaat niet.", gegevens));
+                    callback(response("De gegeven vriend bestaat niet.", false, gegevens));
             } else {
                 if (data[0]) {
                     checkOfAlVrienden();
                 } else {
-                    callback(response("De gegeven vriend bestaat niet.", gegevens));
+                    callback(response("De gegeven vriend bestaat niet.", false, gegevens));
                 }
             }
         });
@@ -178,13 +179,13 @@ exports.addVriend = function (gegevens, callback) {
         G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
-                    callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+                    callback(response("De gegeven gebruiker bestaat niet.", false, gegevens));
             } else {
                 if (data[0]) {
                     gebruiker = data[0];
                     zoekVriend();
                 } else {
-                    callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+                    callback(response("De gegeven gebruiker bestaat niet.", false, gegevens));
                 }
             }
         });
@@ -194,7 +195,7 @@ exports.addVriend = function (gegevens, callback) {
         if (gegevens._id && gegevens.vriendId) {
             zoekGebruiker();
         } else {
-            callback(response("Niet alle verplichte velden zijn ingevuld", gegevens));
+            callback(response("Niet alle verplichte velden zijn ingevuld", false, gegevens));
         }
     }
     valideerVelden(gegevens);
@@ -211,36 +212,36 @@ exports.getVrienden = function (gebruikerId, callback) {
                 G.find({_id : gebruiker.vrienden[i]}, function(error, data) {
                     if (error) {
                         console.log(error);
-                        callback(response("Er is iets misgegaan", {}));
+                        callback(response("Er is iets misgegaan", false, false));
                         return;
                     } else {
                         if (data[0]) {
                             vrienden.push(data[0]);
                             if (vrienden.length === aantalVrienden) {
-                                callback(response("Het zoeken naar de vrienden is gelukt.", vrienden));
+                                callback(response("Het zoeken naar de vrienden is gelukt.", true, vrienden));
                             }
                         } else {
-                            callback(response("Één van de vrienden bestaat niet.", {}));
+                            callback(response("Één van de vrienden bestaat niet.", false, false));
                             return;
                         }
                     }
                 });
             }
         } else {
-            callback(response("Het zoeken naar de vrienden is gelukt.", vrienden));
+            callback(response("Het zoeken naar de vrienden is gelukt.", true, vrienden));
         }
     };
     var zoekGebruiker = function () {
         G.find({_id : gebruikerId}, function (error, data) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegaan", {}));
+                callback(response("Er is iets misgegaan", false, false));
             } else {
                 if (data[0]) {
                     gebruiker = data[0];
                     verzamelVrienden();
                 } else {
-                    callback(response("De gegeven gebruiker bestaat niet.", {}));
+                    callback(response("De gegeven gebruiker bestaat niet.", false, false));
                 }
             }
         });
@@ -254,9 +255,9 @@ exports.delVriend = function (gegevens, callback) {
         gebruiker.save(function(error, savedGebruiker) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegaan.", gegevens));
+                callback(response("Er is iets misgegaan.", false, gegevens));
             } else {
-                callback(response("De vriend is succesvol verwijderd.", savedGebruiker));
+                callback(response("De vriend is succesvol verwijderd.", true, savedGebruiker));
             }
         });
     };
@@ -279,18 +280,18 @@ exports.delVriend = function (gegevens, callback) {
                 }
             }
         }
-        callback(response("Je bent geen vrienden met deze persoon.", gegevens));
+        callback(response("Je bent geen vrienden met deze persoon.", false, gegevens));
     };
     var checkOfVriendBestaat = function () {
         G.find({_id : gegevens.vriendId}, function (error, data) {
             if (error) {
                 console.log(error);
-                callback(response("De gegeven vriend bestaat niet.", gegevens));
+                callback(response("De gegeven vriend bestaat niet.", false, gegevens));
             } else {
                 if (data[0]) {
                     checkOfVrienden();
                 } else {
-                    callback(response("De gegeven vriend bestaat niet.", gegevens));
+                    callback(response("De gegeven vriend bestaat niet.", false, gegevens));
                 }
             }
         });
@@ -299,13 +300,13 @@ exports.delVriend = function (gegevens, callback) {
         G.find({_id : gegevens._id}, function (error, data) {
             if (error) {
                 console.log(error);
-                callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+                callback(response("De gegeven gebruiker bestaat niet.", false, gegevens));
             } else {
                 if (data[0]) {
                     gebruiker = data[0];
                     checkOfVriendBestaat();
                 } else {
-                    callback(response("De gegeven gebruiker bestaat niet.", gegevens));
+                    callback(response("De gegeven gebruiker bestaat niet.", false, gegevens));
                 }
             }
         });
@@ -314,7 +315,7 @@ exports.delVriend = function (gegevens, callback) {
         if (gegevens._id && gegevens.vriendId) {
             zoekGebruiker();
         } else {
-            callback(response("Niet alle verplichte velden zijn ingevuld", gegevens));
+            callback(response("Niet alle verplichte velden zijn ingevuld", false, gegevens));
         }
     };
     valideerVelden();
@@ -325,22 +326,22 @@ exports.login = function (gebruiker, callback) {
     var checkWachtwoord = function () {
         console.log(bcrypt.compareSync(gebruiker.wachtwoord, inlogGebruiker.wachtwoord));
         if (bcrypt.compareSync(gebruiker.wachtwoord, inlogGebruiker.wachtwoord)) {
-            callback(response("Alles klopt.", {succes : true, _id : inlogGebruiker._id, username : inlogGebruiker.username}));
+            callback(response("Alles klopt.", true, {succes : true, _id : inlogGebruiker._id, username : inlogGebruiker.username, avatar : inlogGebruiker.avatar}));
         } else {
-            callback(response("Het gegeven wachtwoord klopt niet.", {succes : false, _id : false}));
+            callback(response("Het gegeven wachtwoord klopt niet.", false, {succes : false, _id : false}));
         }
     }
     var zoekGebruikerEmail = function () {
         G.find({email : gebruiker.emailUsername}, function (error, data) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegaan", {succes : false, _id : false}));
+                callback(response("Er is iets misgegaan", false, {succes : false, _id : false}));
             } else {
                 if (data[0]) {
                     inlogGebruiker = data[0];
                     checkWachtwoord();
                 } else {
-                    callback(response("Het opgegeven username of email-adres bestaat niet.", {succes : false, _id : false}));
+                    callback(response("Het opgegeven username of email-adres bestaat niet.", false, {succes : false, _id : false}));
                 }
             }
         });
@@ -349,7 +350,7 @@ exports.login = function (gebruiker, callback) {
         G.find({username : gebruiker.emailUsername}, function (error, data) {
             if (error) {
                 console.log(error);
-                callback(response("Er is iets misgegaan", {succes : false, _id : false}));
+                callback(response("Er is iets misgegaan", false, {succes : false, _id : false}));
             } else {
                 if (data[0]) {
                     inlogGebruiker = data[0];
@@ -364,7 +365,7 @@ exports.login = function (gebruiker, callback) {
         if (gebruiker.emailUsername && gebruiker.wachtwoord) {
             zoekGebruikerUsername();
         } else {
-            callback(response("Niet alle verplichte velden zijn ingevuld", {succes : false, _id : false}));
+            callback(response("Niet alle verplichte velden zijn ingevuld", false, {succes : false, _id : false}));
         }
     }
     valideerVelden();

@@ -31,3 +31,9 @@ exports.verwijderDeelnemer = function (req, res) {
 		res.send(data);
 	});
 };
+
+exports.filterActiviteiten = function (req, res) {
+	activiteit.filterActiviteiten(function(data) {
+		res.send(data);
+	});
+};

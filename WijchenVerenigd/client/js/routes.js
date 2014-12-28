@@ -19,6 +19,8 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     db.createGebruiker = $resource("/gebruikers/createGebruiker/",{},actions);
     db.createActiviteit = $resource("/activiteiten/",{},actions);
     db.meter = $resource("/meter/",{},actions);
+    db.feeds = $resource("/feeds/:soort",{},actions);
+    db.react = $resource("/feeds/feeds",{},actions);
 
     return db;
 });
@@ -50,7 +52,7 @@ WijchenGezondApp.config(['$routeProvider', function ($routeProvider ) {
     });
     $routeProvider.when('/feed/', {
         templateUrl: '../views/feed.html',
-        controller: gebruikerController
+        controller: feedsController
     });
 	$routeProvider.otherwise({
 		redirectTo: "/"

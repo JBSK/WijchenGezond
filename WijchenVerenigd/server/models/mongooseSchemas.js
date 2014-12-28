@@ -25,8 +25,6 @@ var ActiviteitSchema = mongoose.Schema({
     deelnemers : {type : [], required : false},
     puntenPerDeelnemer : {type : Number, required : true},
     verzamelPlaats : {type : String, required : true},
-    likes : {type : Number, required : false, default : 0},
-    reacties : {type : [], required : false},
     aanmaakDatum : {type : Date, default : Date.now()}
 }, {collection : "activiteiten"});
 
@@ -55,6 +53,7 @@ exports.SC = mongoose.model('SubCategorie', SubCategorieSchema);
 // Gebruiker
 
 var GebruikerSchema = mongoose.Schema({
+    avatar : {type : String, required : false, default : "img/avatar.png"},
     voornaam : {type : String, required : false},
     achternaam : {type : String, required : false},
     username : {type : String, required : true},
@@ -81,3 +80,20 @@ var MeterSchema = mongoose.Schema({
 }, {collection : "Meter"});
 
 exports.M = mongoose.model('Meter', MeterSchema);
+
+// Feeds
+
+var FeedSchema = mongoose.Schema({
+    nieuws : {type : String, required : true},
+    gebruikerId : {type : String, required : true},
+    activiteitId : {type : String, required : true},
+    likes : {type : Number, required : false},
+    reacties : {type : [{
+        gebruikerId : {type : String},
+        reactie : {type : String},
+        datum : {type : Date, required : true}
+    }], required : false},
+    datum : {type : Date, required : true}
+}, {collection : "Feeds"});
+
+exports.FAS = mongoose.model('Feeds', FeedSchema);

@@ -2,19 +2,8 @@
 
 	    <div id="sideBar">
 	        <div id="zoekActiviteit">
-	        	<h2>Zoek een activiteit</h2>
-	        	<p>Selecteer een categorie:</p>
-	        	<a href="#" class="fa fa-futbol-o"></a>
-	        	<a href="#" class="fa fa-bicycle"></a>
-	        	<a href="#" class="fa fa-life-ring"></a>
-	        	<a href="#" class="fa fa-rub"></a>
-	        	<a href="#" class="fa fa-university"></a>
-	        	<a href="#" class="fa fa-users"></a>
-	        	<form>
-	        		<input placeholder="Wanneer?" type="text" />
-	        		<button id="zoekActiviteitButton" class="fa fa-calendar"></button>
-	        		<input id="zoekActiviteitSubmit" type="submit" value="Zoeken" />
-	        	</form>
+	        	<h2>Vrienden</h2>
+	        	<p>73 vrienden:</p>
 	        </div>
 	        <div id="meter" ng-controller="meterController">
 	        	<h2>{{meterPunten}}</h2>
@@ -31,6 +20,30 @@
 	    </div>
 
 	    <div id="feeds">
-	    	<div ng-repeat="feed in feeds" class="feed">
+	    	<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
+	    		<div class="feedImage">
+	    			<img src="./img/hardlopen.jpg">
+	    		</div>
+	    		<div class="feedContent">
+	    			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
+	    			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}}</h1>
+	    			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
+	    		</div>
+	    		<div class="feedReacties">
+	    			<div ng-repeat="reactie in feed.reacties" class="feedReactie">
+	    				<img src="{{reactie.gebruiker.avatar}}" alt="Profielfoto van de reageerder" /> 
+	    				<h5>{{reactie.gebruiker.username}}:</h5>
+	    				<p> {{reactie.reactie}}</p>
+	    				<h6> {{reactie.datum}}</h6>
+	    			</div>
+	    			<div class="feedReageer">
+	    				<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />
+	    				<form>
+	    					<input type="text" ng-model="reactie" placeholder="Reageer dan"></input>
+	    					<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-paper-plane"></i></button>
+	    					<input ng-click="postFeed(feed.feed._id, reactie)" type="submit" class="submit"></input>
+	    				</form>
+	    			</div>
+	    		</div>
 	    	</div>
 	    </div>
