@@ -18,11 +18,32 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     db.activiteiten = $resource("/activiteiten/", {}, actions);
     db.createGebruiker = $resource("/gebruikers/createGebruiker/",{},actions);
     db.createActiviteit = $resource("/activiteiten/",{},actions);
+    db.addDeelnemer = $resource("/activiteiten/addDeelnemer",{},actions);
+    db.verwijderDeelnemer = $resource("/activiteiten/verwijderDeelnemer",{},actions);
     db.meter = $resource("/meter/",{},actions);
     db.feeds = $resource("/feeds/:soort",{},actions);
     db.react = $resource("/feeds/feeds",{},actions);
 
     return db;
+});
+
+WijchenGezondApp.service('loginService', function loginService($rootScope) {
+    "use strict";
+    var service = {};
+    service.showLogin = false;
+    service.loggedIn = false;
+
+    service.setLoggedIn = function (value) {
+        service.loggedIn = value;
+        $rootScope.$broadcast("loggedInUpdated");
+    } 
+
+    service.setLogin = function (value) {
+        service.showLogin = value;
+        $rootScope.$broadcast("loginUpdated");
+    }
+
+    return service;
 });
 
 WijchenGezondApp.config(['$routeProvider', function ($routeProvider ) {

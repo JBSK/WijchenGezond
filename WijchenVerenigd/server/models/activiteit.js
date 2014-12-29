@@ -33,7 +33,7 @@ exports.createActiviteit = function (gegevens, callback) {
                 callback(resp("Er is iets misgegeaan.", false, gegevens));
             } else {
                 callback(resp("De activiteit is succesvol opgeslagen.", true, data));
-                createFeed(gegevens.creatorId, data._id, "Heeft een activiteit aangemaakt!");
+                createFeed(gegevens.creatorId, data._id, "Heeft een activiteit aangemaakt:");
             }
         });
     }
@@ -213,7 +213,7 @@ exports.getActiviteiten = function (callback) {
 
             var voegToe = function (nummerX) {
                 G.find({_id : dn[nummerX]}, function (error, res) {
-                    gevuldeDeelnemers[nummerX] = res;
+                    gevuldeDeelnemers[nummerX] = res[0];
                     if (nummerX === validateKlaar) {
                         acts[nummerI].deelNemersGevuld = gevuldeDeelnemers;
                     }

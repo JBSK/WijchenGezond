@@ -33,7 +33,7 @@ module.exports = function (express) {
 	activiteitenRouter.get('/filterActs', activiteitenControllers.filterActiviteiten);
 
 	activiteitenRouter.post('/addDeelnemer', activiteitenControllers.voegDeelnemerToe);
-	activiteitenRouter.delete('/verwijderDeelnemer', activiteitenControllers.verwijderDeelnemer);
+	activiteitenRouter.post('/verwijderDeelnemer', activiteitenControllers.verwijderDeelnemer);
 
 	return activiteitenRouter;
 }

@@ -31,19 +31,31 @@
 	    </div>
 
 	    <div id="kalender">
-	    	<div class="activiteit" ng-repeat="act in activiteiten | orderBy:predicate:reverse">
-	    		<div class="actHeader">
-	    			<img src="{{act.subCategorie.iconImg}}" alt="themafoto" />
+	    	<div class="totActiviteit" ng-repeat="act in activiteiten | orderBy:predicate:reverse" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+	    		<div class="actDeelnemen" ng-show="hoverEdit">
+	    			<p>Deelnemers:</p>
+	    			<ul>
+	    				<li ng-repeat="deelnemer in act.deelnemers"><i class="fa fa-user"></i> {{deelnemer.username}}</li>
+	    			</ul>
+	    			<div>
+	    				<button ng-click="deelnemen(act.act._id, deelnemenOfAfmelden(act.deelnemers))"><i class="fa fa-plus"></i> {{deelnemenOfAfmelden(act.deelnemers)}}</button>
+	    			</div>
 	    		</div>
-	    		<div class="actDetails">
-	    			<h3>Door: {{act.creator.username}}</h3>
-	    			<h1>{{act.naam}}</h1>
-	    			<h2><i class="fa fa-user"></i> {{act.aantalDeelnemers}}</h2>
-	    			<h2><i class="fa fa-thumb-tack"></i> {{act.act.verzamelPlaats}}</h2>
-	    			<h4 ng-repeat="dag in act.dagen"><i class="fa fa-clock-o"></i> {{dag.dagNaam}} {{dag.beginTijd}}</h4>
-	    		</div>
-	    		<div class="actOmschrijving">
-	    			<p>{{act.act.omschrijving}}</p>
+
+	    		<div class="activiteit" ng-hide="hoverEdit">
+		    		<div class="actHeader">
+		    			<img src="{{act.subCategorie.iconImg}}" alt="themafoto" />
+		    		</div>
+		    		<div class="actDetails">
+		    			<h3>Door: {{act.creator.username}}</h3>
+		    			<h1>{{act.naam}}</h1>
+		    			<h2><i class="fa fa-user"></i> {{act.aantalDeelnemers}}</h2>
+		    			<h2><i class="fa fa-thumb-tack"></i> {{act.act.verzamelPlaats}}</h2>
+		    			<h4 ng-repeat="dag in act.dagen"><i class="fa fa-clock-o"></i> {{dag.dagNaam}} {{dag.beginTijd}}</h4>
+		    		</div>
+		    		<div class="actOmschrijving">
+		    			<p>{{act.act.omschrijving}}</p>
+		    		</div>
 	    		</div>
 	    	</div>
 	    </div>

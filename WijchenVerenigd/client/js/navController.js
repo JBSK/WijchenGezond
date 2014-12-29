@@ -1,15 +1,19 @@
-var navController = function ($routeParams, $scope, $window, dbService) {
-
+var navController = function ($routeParams, $scope, $window, dbService, $location, loginService) {
 	$scope.showLogin = false;
 	$scope.isIngelogd;
 	var loggedIn;
 	$scope.loginMessage = "Inloggen bij WijchenVerenigd";
+
+	$scope.$on('loginUpdated', function() {
+		$scope.showLogin = loginService.showLogin;
+	});
 
 	dbService.login.get(function(res) {
 		if (res.success) {
 			$scope.isIngelogd = res.data.username.toUpperCase();
 			$scope.showLogin = false;
 			loggedIn = res.data;
+			loginService.setLoggedIn(true);
 		} else {
 			$scope.isIngelogd = "INLOGGEN";
 			loggedIn = false;
@@ -22,6 +26,7 @@ var navController = function ($routeParams, $scope, $window, dbService) {
 				$scope.isIngelogd = res.data.username.toUpperCase();
 				$scope.showLogin = false;
 				loggedIn = res.data;
+				loginService.setLoggedIn(true);
 			} else {
 				$scope.isIngelogd = "INLOGGEN";
 				loggedIn = false;

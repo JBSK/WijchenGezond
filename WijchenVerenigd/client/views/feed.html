@@ -26,7 +26,7 @@
 	    		</div>
 	    		<div class="feedContent">
 	    			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
-	    			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}}</h1>
+	    			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
 	    			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
 	    		</div>
 	    		<div class="feedReacties">
@@ -40,7 +40,7 @@
 	    				<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />
 	    				<form>
 	    					<input type="text" ng-model="reactie" placeholder="Reageer dan"></input>
-	    					<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-paper-plane"></i></button>
+	    					<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-share"></i></button>
 	    					<input ng-click="postFeed(feed.feed._id, reactie)" type="submit" class="submit"></input>
 	    				</form>
 	    			</div>
