@@ -1,70 +1,60 @@
 <div class="profileLeftSide">
+	<div class="profilePicture"><img src="./img/userIcon_groot.png" width="250px"></div>
 	<div class="userInfo">
-		<div class="profilePicture"><img src="./img/userIcon_groot.png" height="100%"></div>
 		<div class="info">
-			<div class="name">Henk<br>
-				Grollen</div>
-			<div class="activeDate">Actief sinds<br>
-			07/12/14</div>
+			<div class="name">Henk Grollen</div>
+			<div class="activeDate">Actief sinds 07 december 2014</div>
 		</div>
 	</div>
 	<div style="clear:both"></div>
 	<div class="profileCompleteLevel">
-		<div id="example1">
-
-		</div>
+		<div id="example1"></div>
 		<div class="completeText">
-			Je profiel is voor<br>
-		75% compleet<br>
-			</div>
-		<a href="#" class="bold">UITBREIDEN</a>
+			Je profiel is voor 75% compleet<br>
+			<a href="#" class="blue noUnderline">Vul je profiel aan</a>
+		</div>
 	</div>
 	<div style="clear:both"></div>
 	<div class="completeFriendlist">
 		<div class="friendlistHeader">
-			<span class="bold">VRIENDEN &bull;</span> 100
+			<span class="bold">Vrienden &bull;</span> <span class="blue">100 vrienden</span>
 		</div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
+		<div class="friendIcon"><img src="http://www.filmtotaal.nl/images/newscontent/4jrxp0kxa30z_200.jpg" height="70px"></div>
+		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="70px"></div>
+		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="70px"></div>
+		<div style="clear:both"></div>
 
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="100%"></div>
+		<a href="#" class="noUnderline black viewFriends">Bekijk alle vrienden</a>
 	</div>
 </div>
 <div class="profileRightSide">
-	<div class="block">
-		<div class="title">AANTAL ACTIVITEITEN</div>
-		<div class="icon"><img src="./img/klok_groen.png" height="60px"></div>
-		<div class="status">11</div>
-	</div>
-	<div class="block block2">
-		<div class="title">TOTAAL AANTAL PUNTEN</div>
-		<div class="icon"><img src="./img/beker_groen.png" height="60px"></div>
-		<div class="status">110</div>
-	</div>
-	<div class="block block3">
-		<div class="title">AANTAL PUNTEN DEZE MAAND</div>
-		<div class="icon"><img src="./img/beker_donkergroen.png" height="60px"></div>
-		<div class="status">60</div>
-	</div>
-	<div class="block block4">
-		<div class="title">FAVORIETE ACTIVITEIT</div>
-		<div class="icon"><img src="./img/hardlopen_groen.png" height="60px"></div>
-		<div class="blockText">HARDLOPEN</div>
-	</div>
-	<div style="clear:both"></div>
-
-	<div class="activityUpdate">
-		<div class="icon"><img src="./img/loop_groot.png" alt="icon" height="120%"></div>
-		<div class="activityText">GAAT HARDLOPEN<span class="bold"> / DE VESTE</span></div>
-
-		<div class="activityDate"><img src="./img/klok.png" alt="icon">19:30 | 17/12</div>
-		<div class="activityFooter">
-			<a href="#"><div class="activityLikes"><img src="./img/likes.png" height="20px"> 12</div></a>
-			<a href="#"><div class="react"><img src="./img/textballoon.png" height="20px"> Reageer</div></a>
+FEED MOET NOG AAN WORDEN GEPAST MAAR IS NOG GEEN TESTDATA VOOR, DIT IS EEN KOPIE VAN DE FEED UIT DE FEED PAGINA OMDAT IK NIET WEET HOE VER JE BENT KWA CSS ENZO.
+	<div id="feeds">
+		<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
+			<div class="feedImage">
+				<img src="./img/hardlopen.jpg">
+			</div>
+			<div class="feedContent">
+				<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
+				<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
+				<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
+			</div>
+			<div class="feedReacties">
+				<div ng-repeat="reactie in feed.reacties" class="feedReactie">
+					<img src="{{reactie.gebruiker.avatar}}" alt="Profielfoto van de reageerder" />
+					<h5>{{reactie.gebruiker.username}}:</h5>
+					<p> {{reactie.reactie}}</p>
+					<h6> {{reactie.datum}}</h6>
+				</div>
+				<div class="feedReageer">
+					<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />
+					<form>
+						<input type="text" ng-model="reactie" placeholder="Reageer dan"></input>
+						<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-share"></i></button>
+						<input ng-click="postFeed(feed.feed._id, reactie)" type="submit" class="submit"></input>
+					</form>
+				</div>
+			</div>
 		</div>
-	</div>
-
+</div>
 </div>
