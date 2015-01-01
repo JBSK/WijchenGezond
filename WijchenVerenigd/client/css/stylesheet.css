@@ -777,3 +777,61 @@ textarea:focus {
 .feedReageer input.submit {
 	visibility: hidden;
 }
+
+/* Profiel */
+
+.profileLeftSide {
+	width:250px;
+	float:left;
+	font-size: 11px;
+	text-decoration:none;
+	background:white;
+	border: 1px solid #F4F4F4;
+}
+
+.profileRightSide {
+	width:750px;
+	margin-left:10px;
+	float:left;
+	background:white;
+}
+
+.userInfo{
+	margin:5px;
+}
+
+.userInfo > .info > .name {
+	color:#48C0EB;
+	font-weight:500;
+	font-size:22px;
+}
+
+.profileCompleteLevel, .friendlistHeader, .viewFriends{
+	margin:5px;
+
+}
+
+.profileCompleteLevel {
+	margin: 20px 5px 20px 5px;
+}
+
+.blue {
+	color:#48C0EB;
+}
+
+.black {
+	color:#000;
+}
+
+.noUnderline {
+	text-decoration:none;
+}
+
+.friendIcon {
+	float:left;
+	margin: 5px;
+	border: 1px solid black;
+	height:70px;
+	width:70px;
+	overflow:hidden;
+}
