@@ -255,13 +255,19 @@ textarea:focus {
 	margin-bottom: 40px;
 }
 
+.totActiviteit {
+	float: left;
+	margin-top: 0px;
+	height: 370px;
+	margin-bottom: 15px;
+}
+
 .actDeelnemen {
 	padding: 10px;
 	border-radius: 7px;
 	float: left;
 	width: 160px;
 	height: 350px;
-	margin-top: 15px;
 	margin-left: 9px;
 	margin-right: 9px;
 	background-color: #fff;
@@ -319,7 +325,6 @@ textarea:focus {
 	float: left;
 	width: 180px;
 	height: 370px;
-	margin-top: 15px;
 	margin-left: 9px;
 	margin-right: 9px;
 	background-color: #fff;
@@ -330,6 +335,17 @@ textarea:focus {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 	width: 100%;
+}
+
+.actHeader h4 {
+	margin-top: 70px;
+	letter-spacing: -0.4px;
+	text-align: center;
+	color: #fff;
+	width: 180px;
+	font-weight: 400;
+	font-size: 16px;
+	position: absolute;
 }
 
 .actDetails {

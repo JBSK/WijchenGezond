@@ -86,4 +86,30 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 		}
 		return "Deelnemen";
 	}
+
+	$scope.toonDatum = function(datum) {
+		var d = new Date(datum),
+		maanden = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+		maand = maanden[d.getMonth()];
+		var checkMinutes = function (minutes) {
+			var m = minutes;
+			var minutes = minutes.toString();
+			if (minutes.length === 1 && minutes === "0") {
+				return minutes + "0";
+			} else if (minutes.length === 1 && m > 0) {
+				return "0" + minutes;
+			} else {
+				return minutes;
+			}
+		}
+		var checkField = function (field) {
+			if (field === "-") {
+				return "";
+			} else {
+				return field;
+			}
+		}
+		d = d.toLocaleDateString().toString()[0] + checkField(d.toLocaleDateString().toString()[1]) + " " + maand + " | " + (d.getHours() - 1) + ":" + checkMinutes(d.getMinutes());
+		return d;
+	}
 };

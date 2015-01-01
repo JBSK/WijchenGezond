@@ -1,4 +1,4 @@
-var activiteitController = function ($routeParams, $scope, $window, dbService) {
+var activiteitController = function ($routeParams, $scope, $window, dbService, $location) {
 	var creatorId;
 	dbService.login.get(function(res) {
 		if (res.success) {
@@ -118,7 +118,11 @@ var activiteitController = function ($routeParams, $scope, $window, dbService) {
 			nA.dagen = dagen;
 		}
 		dbService.activiteiten.post(nA, function (res) {
-			console.log(res);
+			if (res.success) {
+				$location.path("/feed");
+			} else {
+				console.log(res);
+			}
 		});
 		console.log(nA);
 	}

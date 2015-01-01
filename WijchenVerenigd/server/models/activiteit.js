@@ -156,18 +156,38 @@ exports.getActiviteiten = function (callback) {
 
         callback(resp("Hierbij de activiteiten", true, alleActs));
     }
+    var berekenDichtstbijzijndeDatum = function (data) {
+        var i, d, t = new Date(), nummer, v = 366, timeDiff, diffDays, theDate;
+        for (i = 0; i < data.length; i += 1) {
+            d = new Date(data[i].beginTijd);
+            if (d > t) {
+                timeDiff = Math.abs(t.getTime() - d.getTime());
+                diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+                console.log("Hier " + diffDays);
+                if (diffDays < v) {
+                    v = diffDays;
+                    nummer = i;
+                }
+            }
+        }
+        theDate = new Date(data[nummer].beginTijd);
+        theDate.setHours((theDate.getHours() + 1));
+        return new Date(theDate.toString());
+    }
     var setDagNamen = function () {
-        var i, x, dagen;
+        var i, x, dagen, newDate;
         for (i = 0; i < acts.length; i += 1) {
             dagen = [];
             if (acts[i].doorloopTijd === "eenmalig") {
-                acts[i].datum = new Date(acts[i].eenmalig.beginTijd);
+                newDate = new Date(acts[i].eenmalig.beginTijd);
+                newDate.setHours((newDate.getHours() + 1));
+                acts[i].datum = new Date(newDate.toString());
                 acts[i].dagen = [{
                     dagNaam : acts[i].eenmalig.beginTijd[0]+acts[i].eenmalig.beginTijd[1]+acts[i].eenmalig.beginTijd[2],
                     beginTijd : acts[i].eenmalig.beginTijd[16] + acts[i].eenmalig.beginTijd[17] + acts[i].eenmalig.beginTijd[18] + acts[i].eenmalig.beginTijd[19] + acts[i].eenmalig.beginTijd[20]
                 }];
             } else if (acts[i].doorloopTijd === "wekelijks") {
-                acts[i].datum = new Date(acts[i].wekelijks[0].beginTijd);
+                acts[i].datum = berekenDichtstbijzijndeDatum(acts[i].wekelijks);
                 for (x = 0; x < acts[i].wekelijks.length; x += 1) {
                     dagen[x] = {
                         dagNaam : acts[i].wekelijks[x].beginTijd[0]+acts[i].wekelijks[x].beginTijd[1]+acts[i].wekelijks[x].beginTijd[2],
@@ -435,6 +455,9 @@ exports.filterActiviteiten = function (callback) {
         }
         console.log("Nieuwe meter-stand: " + meter.puntenTussenstand);
     }
+    var makeNewFeed = function (gebruikerId, actId) {
+        createFeed(gebruikerId, actId, "Heeft de volgende activiteit gedaan:");
+    }
     var checkOfOudeDatumAct = function (datum) {
         var vandaag = new Date(Date.now());
         return (datum > vandaag);
@@ -464,6 +487,7 @@ exports.filterActiviteiten = function (callback) {
                 if (!(actsEenmalig[i].gesloten)) {
                     if (!(checkOfOudeDatumAct(new Date(actsEenmalig[i].eenmalig.beginTijd)))) {
                         updateMeter((actsEenmalig[i].deelnemers.length * actsEenmalig[i].puntenPerDeelnemer));
+                        makeNewFeed(actsEenmalig[i].creatorId, actsEenmalig[i]._id);
                         actsEenmalig[i].gesloten = true;
                     }
                 }
@@ -522,6 +546,7 @@ exports.filterActiviteiten = function (callback) {
                 for (x = 0; x < actsWekelijks[i].wekelijks.length; x += 1) {
                     if (!(checkOfOudeDatumAct(new Date(actsWekelijks[i].wekelijks[x].beginTijd)))) {
                         updateMeter((actsWekelijks[i].deelnemers.length * actsWekelijks[i].puntenPerDeelnemer));
+                        makeNewFeed(actsWekelijks[i].creatorId, actsWekelijks[i]._id);
                         actsWekelijks[i].wekelijks[x] = berekenNieuweDatum(actsWekelijks[i].wekelijks[x]);
                     }
                 }
