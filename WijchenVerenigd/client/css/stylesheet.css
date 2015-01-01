@@ -131,7 +131,7 @@ textarea:focus {
 	margin-bottom: 100px;
 }
 
-#zoekActiviteit, #meterTekst {
+#zoekActiviteit, #meterTekst, #profiel {
 	width: 202px;
 	padding: 10px;
 	float: left;
@@ -142,18 +142,61 @@ textarea:focus {
   	border: 1px solid #EEE;
 }
 
-#zoekActiviteit h2, #meterTekst h2 {
+#profiel img {
+	width: 100%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#profielVrienden {
+	width: 213px;
+	margin-left: -11px;
+	float: left;
+	margin-bottom: -10px;
+}
+
+#profiel #profielVrienden img {
+	margin-left: 10px;
+	width: 61px;
+	float: left;
+}
+
+#zoekActiviteit h2, #meterTekst h2, #profiel h2 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-size: 18px;
 	color: #48C0EB;
 }
 
-#zoekActiviteit p, #meterTekst p {
+#zoekActiviteit p, #meterTekst p, #profiel p {
 	margin-top: 0px;
 	font-size: 11px;
 	color: #AAA;
 }
+
+#profiel p {
+	font-weight: 700;
+	color: #013345;
+}
+
+#profiel button {
+	border-radius: 7px;
+	width: 115px;
+	background-color: #555;
+	color: #fff;
+	border: none;
+	margin-top: 7px;
+	margin-left: -122px;
+	height: 25px;
+	position: absolute;
+}
+
+#profiel button:hover {
+	background-color: #48C0EB;
+	color: #333;
+	cursor: pointer;
+}
+
 #zoekActiviteit a {
 	text-decoration: none;
 	color: #555;

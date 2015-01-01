@@ -1,60 +1,45 @@
-<div class="profileLeftSide">
-	<div class="profilePicture"><img src="./img/userIcon_groot.png" width="250px"></div>
-	<div class="userInfo">
-		<div class="info">
-			<div class="name">Henk Grollen</div>
-			<div class="activeDate">Actief sinds 07 december 2014</div>
-		</div>
-	</div>
-	<div style="clear:both"></div>
-	<div class="profileCompleteLevel">
-		<div id="example1"></div>
-		<div class="completeText">
-			Je profiel is voor 75% compleet<br>
-			<a href="#" class="blue noUnderline">Vul je profiel aan</a>
-		</div>
-	</div>
-	<div style="clear:both"></div>
-	<div class="completeFriendlist">
-		<div class="friendlistHeader">
-			<span class="bold">Vrienden &bull;</span> <span class="blue">100 vrienden</span>
-		</div>
-		<div class="friendIcon"><img src="http://www.filmtotaal.nl/images/newscontent/4jrxp0kxa30z_200.jpg" height="70px"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="70px"></div>
-		<div class="friendIcon"><img src="./img/userIcon_klein.png" height="70px"></div>
-		<div style="clear:both"></div>
+<div id="sideBar">
+    <div id="profiel">
+    	<img src="{{gebruiker.gebruiker.avatar}}" alt="profielfoto" />
+    	<button ng-show="toonVriendenKnop" ng-click="deelnemen(act.act._id, deelnemenOfAfmelden(act.deelnemers))">
+    		<i class="fa fa-plus"></i> Vrienden worden</button>
+    	<h2>{{gebruiker.gebruiker.username}}</h2>
+    	<p>Actief sinds 01-01-2015</p>
+    	<p>Dit profiel is voor {{gebruiker.percentageProfiel}} ingevuld</p>
+    	<p>Vrienden({{gebruiker.gebruiker.vrienden.length}}):</p>
+    	<div id="profielVrienden">
+    		<a ng-repeat="vriend in gebruiker.vrienden" href="/#/gebruikers/{{vriend._id}}">
+    			<img src="{{vriend.avatar}}" alt="vrienden avatar" />
+    		</a>
+    	</div>
+    </div>
+</div>
 
-		<a href="#" class="noUnderline black viewFriends">Bekijk alle vrienden</a>
-	</div>
-</div>
-<div class="profileRightSide">
-FEED MOET NOG AAN WORDEN GEPAST MAAR IS NOG GEEN TESTDATA VOOR, DIT IS EEN KOPIE VAN DE FEED UIT DE FEED PAGINA OMDAT IK NIET WEET HOE VER JE BENT KWA CSS ENZO.
-	<div id="feeds">
-		<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
-			<div class="feedImage">
-				<img src="./img/hardlopen.jpg">
+<div id="feeds" ng-controller="feedsController">
+	<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
+		<div class="feedImage">
+			<img src="./img/hardlopen.jpg">
+		</div>
+		<div class="feedContent">
+			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
+			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
+			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
+		</div>
+		<div class="feedReacties">
+			<div ng-repeat="reactie in feed.reacties" class="feedReactie">
+				<img src="{{reactie.gebruiker.avatar}}" alt="Profielfoto van de reageerder" /> 
+				<h5>{{reactie.gebruiker.username}}:</h5>
+				<p> {{reactie.reactie}}</p>
+				<h6> {{reactie.datum}}</h6>
 			</div>
-			<div class="feedContent">
-				<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
-				<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
-				<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
-			</div>
-			<div class="feedReacties">
-				<div ng-repeat="reactie in feed.reacties" class="feedReactie">
-					<img src="{{reactie.gebruiker.avatar}}" alt="Profielfoto van de reageerder" />
-					<h5>{{reactie.gebruiker.username}}:</h5>
-					<p> {{reactie.reactie}}</p>
-					<h6> {{reactie.datum}}</h6>
-				</div>
-				<div class="feedReageer">
-					<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />
-					<form>
-						<input type="text" ng-model="reactie" placeholder="Reageer dan"></input>
-						<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-share"></i></button>
-						<input ng-click="postFeed(feed.feed._id, reactie)" type="submit" class="submit"></input>
-					</form>
-				</div>
+			<div class="feedReageer">
+				<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />
+				<form>
+					<input type="text" ng-model="reactie" placeholder="Reageer dan"></input>
+					<button ng-click="postFeed(feed.feed._id, reactie)"><i class="fa fa-share"></i></button>
+					<input ng-click="postFeed(feed.feed._id, reactie)" type="submit" class="submit"></input>
+				</form>
 			</div>
 		</div>
-</div>
+	</div>
 </div>

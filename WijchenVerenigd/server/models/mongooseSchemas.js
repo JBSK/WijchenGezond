@@ -53,7 +53,7 @@ exports.SC = mongoose.model('SubCategorie', SubCategorieSchema);
 // Gebruiker
 
 var GebruikerSchema = mongoose.Schema({
-    avatar : {type : String, required : false, default : "img/avatar.png"},
+    avatar : {type : String, required : false, default : "img/profielfoto.jpg"},
     voornaam : {type : String, required : false},
     achternaam : {type : String, required : false},
     username : {type : String, required : true},
@@ -64,7 +64,11 @@ var GebruikerSchema = mongoose.Schema({
     beperking : {type : String, required : false},
     sportvereniging : {type : String, required : false},
     sporten : {type : [], required : false},
-    aantalPunten : {type : Number, required : false},
+    aantalPunten : {type : [{
+        punten : {type : Number},
+        datumBehaald : {type : Date},
+        activiteitId : {type : String}
+    }], required : false},
     vrienden : {type : [], required : false}
 }, {collection : "gebruikers"});
 

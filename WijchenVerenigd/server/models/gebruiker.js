@@ -1,5 +1,7 @@
 var bcrypt   = require('bcrypt-nodejs');
 var G = require('./../models/mongooseSchemas').G;
+var A = require('./../models/mongooseSchemas').A;
+var SC = require('./../models/mongooseSchemas').SC;
 
 var response = function (message, success, data) {
     return {
@@ -11,18 +13,95 @@ var response = function (message, success, data) {
 
 exports.getGebruiker = function (id, callback) {
     'use strict';
-    G.findOne({_id : id}, function (error, data) {
-        if (error) {
-            console.log(error);
-            callback(response("Er is iets misgegaan.", false, id));
-        } else {
-            if (data) {
-                callback(response("De gebruiker is gevonden", true, data));
-            } else {
-                callback(response("De gezochte gebruiker kan niet worden gevonden.", false, false));
+    var pkg = {
+        gebruiker : {},
+        vrienden : [],
+        aantalActiviteiten : 0,
+        aantalPuntenMaand : 0,
+        aantalPuntenTotaal : 0,
+        populairsteActiviteit : "Voetballen",
+        percentageProfiel : "25%"
+    };
+    var acts = [];
+    var sendGebruiker = function () {
+        callback(response("De gebruiker is gevonden", true, pkg));
+    }
+    var getPuntenTotaal = function () {
+        sendGebruiker();
+    }
+    var getPuntenMaand = function () {
+        getPuntenTotaal();
+    }
+    var getPopulairsteActiviteit = function () {
+        getPuntenMaand();
+    }
+    var getAantalActiviteiten = function () {
+        var i, x;
+        for (i = 0; i < acts.length; i += 1) {
+            for (x = 0; x < acts[i].deelnemers.length; x += 1) {
+                if (acts[i].deelnemers[x] === pkg.gebruiker._id) {
+                    pkg.aantalActiviteiten += 1;
+                }
             }
         }
-    });
+        getPopulairsteActiviteit();
+    }
+    var getActiviteiten = function () {
+        var getActs = function() {
+            A.find(function (error, data) {
+                if (error) {
+                    console.log(error);
+                    callback(response("Er is iets misgegaan..", false, false));
+                } else {
+                    acts = data;
+                    getAantalActiviteiten();
+                }
+            });
+        }
+        getActs();
+    }
+    var getVrienden = function () {
+        var vulVriend = function (nummer) {
+            G.findOne({_id : pkg.gebruiker.vrienden[nummer]}, function (error, data) {
+                if (error) {
+                    console.log(error);
+                    callback(response("Er is iets misgegaan..", false, false));
+                } else {
+                    pkg.vrienden.push(data);
+                    if (nummer === (pkg.gebruiker.vrienden.length - 1)) {
+                        getActiviteiten();
+                    }
+                }
+            });
+        }
+        var loop = function () {
+            var i;
+            for (i = 0; i < pkg.gebruiker.vrienden.length; i += 1) {
+                vulVriend(i);
+            }
+        }
+        if (pkg.gebruiker.vrienden.length > 0) {
+            loop();
+        } else {
+            getActiviteiten();
+        }
+    }
+    var getGeb = function () {
+        G.findOne({_id : id}, function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(response("Er is iets misgegaan.", false, id));
+            } else {
+                if (data) {
+                    pkg.gebruiker = data;
+                    getVrienden();
+                } else {
+                    callback(response("De gezochte gebruiker kan niet worden gevonden.", false, false));
+                }
+            }
+        });
+    }
+    getGeb();
 }
 
 exports.getGebruikers = function (callback) {
