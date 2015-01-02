@@ -33,7 +33,6 @@ exports.getHoofdCategorieen = function (callback) {
 }
 
 exports.deleteHoofdCategorie = function (_id, callback) {
-    console.log(_id);
     'use strict';
     HC.remove({_id : _id}).exec(function (err) {
         if (err) {

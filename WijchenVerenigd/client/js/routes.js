@@ -24,6 +24,13 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     db.feeds = $resource("/feeds/:soort",{},actions);
     db.react = $resource("/feeds/feeds",{},actions);
     db.gebruiker = $resource("/gebruikers/gebruiker/:_id", {}, actions);
+    db.volg = $resource("/gebruikers/addVriend/", {}, actions);
+    db.ontVolg = $resource("/gebruikers/delVriend/", {}, actions);
+    db.volgers = $resource("/gebruikers/getVrienden/:_id", {}, actions);
+    db.volgend = $resource("/gebruikers/zoekVrienden/:_id", {}, actions);
+
+    db.feedsGebruiker = $resource("/feeds/feeds/gebruiker/:_id", {}, actions);
+    db.feedsGebruikerVrienden = $resource("/feeds/feeds/:_id", {}, actions);
 
     return db;
 });

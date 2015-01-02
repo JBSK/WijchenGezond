@@ -35,7 +35,7 @@
 	    		<div class="actDeelnemen" ng-show="hoverEdit">
 	    			<p>Deelnemers:</p>
 	    			<ul>
-	    				<li ng-repeat="deelnemer in act.deelnemers"><i class="fa fa-user"></i> {{deelnemer.username}}</li>
+	    				<li ng-repeat="deelnemer in act.deelnemers"><a href="/#/gebruikers/{{deelnemer._id}}"<i class="fa fa-user"></i> {{deelnemer.username}}</a></li>
 	    			</ul>
 	    			<div>
 	    				<button ng-click="deelnemen(act.act._id, deelnemenOfAfmelden(act.deelnemers))"><i class="fa fa-plus"></i> {{deelnemenOfAfmelden(act.deelnemers)}}</button>
@@ -49,7 +49,7 @@
 		    		</div>
 		    		<div class="actDetails">
 		    			<h3>Door: {{act.creator.username}}</h3>
-		    			<h1>{{act.naam}}</h1>
+		    			<h1>{{act.act.naam}}</h1>
 		    			<h2><i class="fa fa-user"></i> {{act.aantalDeelnemers}}</h2>
 		    			<h2><i class="fa fa-thumb-tack"></i> {{act.act.verzamelPlaats}}</h2>
 		    			<h4 ng-repeat="dag in act.dagen"><i class="fa fa-clock-o"></i> {{dag.dagNaam}} {{dag.beginTijd}}</h4>

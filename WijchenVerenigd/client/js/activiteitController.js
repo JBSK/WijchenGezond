@@ -42,7 +42,6 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 		}
 	};
 	$scope.verwijderDag = function() {
-		console.log("Verwijderen");
 		if ($scope.activiteit.dagen.length > 1) {
 			$scope.activiteit.dagen.pop();
 		}
@@ -58,7 +57,6 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 			var vandaag = new Date();
 			var huidigDagNummer = parseInt(vandaag.getDay());
 			var ratio;
-			console.log(beginTijdMin + " " + vandaag.getMinutes());
 			if (huidigDagNummer > dagNummer) {
 				ratio = (7 - huidigDagNummer) + dagNummer;
 			} else if (huidigDagNummer < dagNummer) {
@@ -71,7 +69,6 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 					ratio = 7;
 				}
 			}
-			console.log("Ratio " + ratio);
 			var beginDatum = new Date(vandaag.getTime() + ratio * 24 * 60 * 60 * 1000);
 			beginDatum.setHours(beginTijdUren, beginTijdMin);
 			beginDatum.setHours(beginTijdUren, beginTijdMin);
@@ -124,6 +121,5 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 				console.log(res);
 			}
 		});
-		console.log(nA);
 	}
 }

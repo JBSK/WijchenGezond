@@ -16,12 +16,13 @@ module.exports = function (express) {
 	gebruikerRouter.get('/', gebruikerControllers.getGebruikers);
 	gebruikerRouter.post('/', gebruikerControllers.createGebruiker);
 	gebruikerRouter.get('/getVrienden/:_id', gebruikerControllers.getVrienden);
+	gebruikerRouter.get('/zoekVrienden/:_id', gebruikerControllers.zoekVrienden);
 	gebruikerRouter.post('/addVriend/', gebruikerControllers.addVriend);
 	
 	gebruikerRouter.get('/login/', gebruikerControllers.isIngelogd);
 	gebruikerRouter.post('/login/', gebruikerControllers.login);
     gebruikerRouter.post('/logout/', gebruikerControllers.logout);
-	gebruikerRouter.delete('/delVriend/', gebruikerControllers.delVriend);
+	gebruikerRouter.post('/delVriend/', gebruikerControllers.delVriend);
 
 	return gebruikerRouter;
 };

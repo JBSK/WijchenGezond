@@ -12,7 +12,6 @@ var gebruikerController = function ($routeParams, $scope, $window, dbService) {
 	};
 
     $scope.reg = function() {
-        console.log($scope.createGebruiker);
         if($scope.createGebruiker.wachtwoord != $scope.createGebruiker.bevestigWachtwoord)
         {
             $scope.IsMatch=true;

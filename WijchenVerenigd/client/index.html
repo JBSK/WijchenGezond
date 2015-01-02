@@ -15,7 +15,8 @@
     <script src="/js/statController.js"></script>
     <script src="/js/navController.js"></script>
     <script src="/js/meterController.js"></script>
-    <script src="/js/feedController.js"></script>
+    <script src="/js/feedsController.js"></script>
+    <script src="/js/feedsGebruikerController.js"></script>
     <script src="/js/routes.js"></script>
 
 
@@ -36,11 +37,11 @@
     <div id="container">
         <div ng-controller="navController">
             <div id="containerNavbar">
-                <h1>WIJCHENVERENIGD</h1>
+                <h1><a href="/#/">WIJCHENVERENIGD</a></h1>
                 <input type="text" placeholder = "Waar ben je naar op zoek?" />
                 <ul>
-                    <a href="/#/feed"><li class="fa fa-newspaper-o"> FEED</li></a>
-                    <a href="/#/activiteit"><li class="fa fa-plus"> ACTIVITEIT AANMAKEN</li></a>
+                    <a href ng-click="viewFeeds()"><li class="fa fa-newspaper-o"> FEED</li></a>
+                    <a href ng-click="actMaken()"><li class="fa fa-plus"> ACTIVITEIT AANMAKEN</li></a>
                     <a href ng-click="changeLogin()"><li class="fa fa-user"> {{isIngelogd}}</li></a>
                 </ul>
             </div>

@@ -1,20 +1,17 @@
 
 	    <div id="sideBar">
-	        <div id="zoekActiviteit">
-	        	<h2>Zoek een activiteit</h2>
-	        	<p>Selecteer een categorie:</p>
-	        	<a href="#" class="fa fa-futbol-o"></a>
-	        	<a href="#" class="fa fa-bicycle"></a>
-	        	<a href="#" class="fa fa-life-ring"></a>
-	        	<a href="#" class="fa fa-rub"></a>
-	        	<a href="#" class="fa fa-university"></a>
-	        	<a href="#" class="fa fa-users"></a>
-	        	<form>
-	        		<input placeholder="Wanneer?" type="text" />
-	        		<button id="zoekActiviteitButton" class="fa fa-calendar"></button>
-	        		<input id="zoekActiviteitSubmit" type="submit" value="Zoeken" />
-	        	</form>
+	        <div id="meter" ng-controller="meterController">
+	        	<h2>{{meterPunten}}</h2>
+	        	<p>Punten</p>
+	        	<div id="meterAchtergrond">
+	        		<div id="meterPunten">
+	        		</div>
+	        	</div>
 	        </div>
+		    <div id="meterTekst" ng-controller="meterController">
+		    	<h2>Beweeg mee voor het gezamelijke doel!</h2>
+		    	<p>{{meterDoel}}</p>
+		    </div>
 	    </div>
 
 		<div id="activiteitMaken">

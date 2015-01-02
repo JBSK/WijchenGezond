@@ -1,8 +1,12 @@
 	<div id="sideBar">
-	        <div id="zoekActiviteit">
-	        	<h2>Vrienden</h2>
-	        	<p>73 vrienden:</p>
-	        </div>
+	        <div class="profiel">
+		    	<p>Volgers ({{vrienden.length}}):</p>
+		    	<div class="profielVrienden">
+		    		<a ng-repeat="vriend in vrienden" href="/#/gebruikers/{{vriend._id}}">
+		    			<img src="{{vriend.avatar}}" alt="vrienden avatar" />
+		    		</a>
+		    	</div>
+		    </div>
 	        <div id="meter" ng-controller="meterController">
 	        	<h2>{{meterPunten}}</h2>
 	        	<p>Punten</p>
@@ -24,7 +28,7 @@
 	    		</div>
 	    		<div class="feedContent">
 	    			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
-	    			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
+	    			<h1><a href="/#/gebruikers/{{feed.maker._id}}">{{feed.maker.username}}</a> {{maakNieuws(feed)}}</h1>
 	    			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
 	    		</div>
 	    		<div class="feedReacties">

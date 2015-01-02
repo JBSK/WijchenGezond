@@ -53,6 +53,17 @@ textarea:focus {
 	float: left;
 }
 
+#containerNavbar h1 a:link, #containerNavbar h1 a:visited, #containerNavbar h1 a:active {
+	font-size: 18px;
+	font-weight: 300;
+	color: #fff;
+	text-decoration: none;
+}
+
+#containerNavbar h1 a:hover {
+	text-decoration: underline;
+}
+
 #containerNavbar input {
 	margin-top: 12px;
 	margin-left: 130px;
@@ -131,7 +142,7 @@ textarea:focus {
 	margin-bottom: 100px;
 }
 
-#zoekActiviteit, #meterTekst, #profiel {
+#zoekActiviteit, #meterTekst, .profiel {
 	width: 202px;
 	padding: 10px;
 	float: left;
@@ -142,44 +153,48 @@ textarea:focus {
   	border: 1px solid #EEE;
 }
 
-#profiel img {
+.profiel {
+	margin-bottom: 15px;
+}
+
+.profiel img {
 	width: 100%;
 	float: left;
 	margin-bottom: 10px;
 }
 
-#profielVrienden {
+.profielVrienden {
 	width: 213px;
 	margin-left: -11px;
 	float: left;
 	margin-bottom: -10px;
 }
 
-#profiel #profielVrienden img {
+.profiel .profielVrienden img {
 	margin-left: 10px;
 	width: 61px;
 	float: left;
 }
 
-#zoekActiviteit h2, #meterTekst h2, #profiel h2 {
+#zoekActiviteit h2, #meterTekst h2, .profiel h2 {
 	margin-top: 0px;
 	margin-bottom: 0px;
 	font-size: 18px;
 	color: #48C0EB;
 }
 
-#zoekActiviteit p, #meterTekst p, #profiel p {
+#zoekActiviteit p, #meterTekst p, .profiel p {
 	margin-top: 0px;
 	font-size: 11px;
 	color: #AAA;
 }
 
-#profiel p {
+.profiel p {
 	font-weight: 700;
 	color: #013345;
 }
 
-#profiel button {
+.profiel button {
 	border-radius: 7px;
 	width: 115px;
 	background-color: #555;
@@ -191,7 +206,7 @@ textarea:focus {
 	position: absolute;
 }
 
-#profiel button:hover {
+.profiel button:hover {
 	background-color: #48C0EB;
 	color: #333;
 	cursor: pointer;
@@ -337,6 +352,16 @@ textarea:focus {
 	color: #333;
 }
 
+.actDeelnemen ul li a:link, .actDeelnemen ul li a:visited, .actDeelnemen ul li a:active {
+	font-size: 12px;
+	color: #333;
+	text-decoration: none;
+}
+
+.actDeelnemen ul li a:hover {
+	text-decoration: underline;
+}
+
 .actDeelnemen div {
 	margin-left: -10px;
 	margin-right: -10px;
@@ -404,8 +429,8 @@ textarea:focus {
 
 .actDetails h1 {
 	margin-top: -5px;
-	font-size: 12px;
-	font-weight: 700;
+	font-size: 11px;
+	font-weight: 400;
 	margin-bottom: 0px;
 }
 

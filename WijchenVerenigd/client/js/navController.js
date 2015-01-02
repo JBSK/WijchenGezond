@@ -1,7 +1,7 @@
 var navController = function ($routeParams, $scope, $window, dbService, $location, loginService) {
 	$scope.showLogin = false;
 	$scope.isIngelogd;
-	var loggedIn;
+	var loggedIn = false;
 	$scope.loginMessage = "Inloggen bij WijchenVerenigd";
 
 	$scope.$on('loginUpdated', function() {
@@ -38,9 +38,24 @@ var navController = function ($routeParams, $scope, $window, dbService, $locatio
 
 	$scope.changeLogin = function () {
 		if (loggedIn) {
-
+			$location.path("/gebruikers/" + loggedIn._id);
 		} else {
 			$scope.showLogin = !$scope.showLogin;
+		}
+	}
+
+	$scope.actMaken = function () {
+		if (loggedIn) {
+			$location.path("/activiteit");
+		} else {
+			$scope.showLogin = true;
+		}
+	}
+	$scope.viewFeeds = function () {
+		if (loggedIn) {
+			$location.path("/feed");
+		} else {
+			$scope.showLogin = true;
 		}
 	}
 }

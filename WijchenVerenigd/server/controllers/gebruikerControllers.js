@@ -44,6 +44,12 @@ exports.getVrienden = function (req, res) {
 	});
 };
 
+exports.zoekVrienden = function (req, res) {
+	gebruiker.zoekVrienden(req.params._id, function(data) {
+		res.send(data);
+	});
+};
+
 exports.isIngelogd = function(req, res) {
 	if (req.session.ingelogd) {
 		res.send({
@@ -68,7 +74,6 @@ exports.login = function (req, res) {
 		});
 	} else {
 		gebruiker.login(req.body, function(data) {
-			console.log(data);
 			if (data.data.succes) {
 				req.session.ingelogd = true;
 				req.session._id = data.data._id;
@@ -79,7 +84,7 @@ exports.login = function (req, res) {
 					success : true,
 					data : {
 						_id : req.session._id,
-						username : req.session.username
+						username : req.session.username,
 					}
 				});
 			} else {

@@ -15,12 +15,12 @@ var resp = function (message, success, data) {
     }
 }
 
-var createFeed = function (gebruikerId, activiteitId, nieuws) {
-    console.log("Feed maken..");
+var createFeed = function (gebruikerId, activiteitId, nieuws, datum) {
     var feed = {
         gebruikerId : gebruikerId,
         activiteitId : activiteitId,
-        nieuws : nieuws
+        nieuws : nieuws,
+        datum : datum
     };
     F.addFeed(feed);
 }
@@ -33,7 +33,7 @@ exports.createActiviteit = function (gegevens, callback) {
                 callback(resp("Er is iets misgegeaan.", false, gegevens));
             } else {
                 callback(resp("De activiteit is succesvol opgeslagen.", true, data));
-                createFeed(gegevens.creatorId, data._id, "Heeft een activiteit aangemaakt:");
+                createFeed(gegevens.creatorId, data._id, "Heeft een activiteit aangemaakt:", new Date());
             }
         });
     }
@@ -141,6 +141,7 @@ exports.getActiviteit = function (_id, callback) {
 exports.getActiviteiten = function (callback) {
     var acts = [];
     var stuurActs = function () {
+        console.log("De bende sturen..");
         var alleActs = [];
         for (i = 0; i < acts.length; i += 1) {
             alleActs[i] = {
@@ -154,16 +155,17 @@ exports.getActiviteiten = function (callback) {
             }
         }
 
+        console.log("Callbacken..");
         callback(resp("Hierbij de activiteiten", true, alleActs));
     }
     var berekenDichtstbijzijndeDatum = function (data) {
+        console.log("De data bepalen..");
         var i, d, t = new Date(), nummer, v = 366, timeDiff, diffDays, theDate;
         for (i = 0; i < data.length; i += 1) {
             d = new Date(data[i].beginTijd);
             if (d > t) {
                 timeDiff = Math.abs(t.getTime() - d.getTime());
                 diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-                console.log("Hier " + diffDays);
                 if (diffDays < v) {
                     v = diffDays;
                     nummer = i;
@@ -175,6 +177,7 @@ exports.getActiviteiten = function (callback) {
         return new Date(theDate.toString());
     }
     var setDagNamen = function () {
+        console.log("De dagnamen instellen..");
         var i, x, dagen, newDate;
         for (i = 0; i < acts.length; i += 1) {
             dagen = [];
@@ -200,6 +203,7 @@ exports.getActiviteiten = function (callback) {
         stuurActs();
     }
     var setAantalDeelnemers = function () {
+        console.log("Het aantal deelnemers bepalen..");
         var i;
         for (i = 0; i < acts.length; i += 1) {
             acts[i].setAantalDeelnemers = acts[i].deelnemers.length + "/" + acts[i].maxPers;
@@ -207,12 +211,14 @@ exports.getActiviteiten = function (callback) {
         setDagNamen();
     }
     var voegSubCategorieenToe = function () {
+        console.log("Categorieën toevoegen..");
         var i;
         var validateKlaar = acts.length - 1;
         var voegSubCategorieToe = function (nummer) {
             SC.find({_id : acts[nummer].subCategorieId}, function (error, res) {
                 acts[nummer].subCategorie = res[0];
                 if (nummer === validateKlaar) {
+                    console.log("Ik mag verder..");
                     setAantalDeelnemers();
                 }
             });
@@ -222,45 +228,46 @@ exports.getActiviteiten = function (callback) {
         }
     }
     var voegDeelnemersToe = function () {
-        var i, x;
-        var validateKlaar = acts.length - 1;
-
-        var voegDeelnemerToe = function (nummerI) {
-            var dn = acts[nummerI].deelnemers;
-            var validateKlaar = dn.length - 1;
+        var voegToe = function (nummerX, nummerI) {
+            G.findOne({_id : acts[nummerI].deelnemers[nummerX]}, function (error, data) {
+                if (error) {
+                    console.log(error);
+                } else {
+                    acts[nummerI].deelNemersGevuld.push(data);
+                    console.log("I: " + nummerI);
+                    console.log("X: " + nummerX);
+                    if ((nummerI === acts.length - 1) && (nummerX === acts[nummerI].deelnemers.length - 1)) {
+                        voegSubCategorieenToe();
+                    }
+                }
+            }); 
+        }
+        var loopDeelnemers = function (nummer) {
+            acts[nummer].deelNemersGevuld = [];
+            var x;
+            for (x = 0; x < acts[nummer].deelnemers.length; x += 1) {
+                console.log("Loopen..");
+                voegToe(x, nummer);
+            }
+        }
+        var loop = function () {
             var i;
-            var gevuldeDeelnemers = [];
-
-            var voegToe = function (nummerX) {
-                G.find({_id : dn[nummerX]}, function (error, res) {
-                    gevuldeDeelnemers[nummerX] = res[0];
-                    if (nummerX === validateKlaar) {
-                        acts[nummerI].deelNemersGevuld = gevuldeDeelnemers;
+            for (i = 0; i < acts.length; i += 1) {
+                if (acts[i].deelnemers.length > 0) {
+                    loopDeelnemers(i);
+                } else {
+                    if (i === (acts.length - 1)) {
+                        voegSubCategorieenToe(); 
                     }
-                    if (nummerI === acts.length - 1) {
-                        voegSubCategorieenToe();
-                    }
-                });
-            }
-            if (dn.length === 0) {
-                if (nummerI === acts.length - 1) {
-                        voegSubCategorieenToe();
-                }
-            } else {
-                for (i = 0; i < dn.length; i += 1) {
-                    voegToe(i);
                 }
             }
         }
-
-        for (i = 0; i < acts.length; i += 1) {
-            voegDeelnemerToe(i);
-        }
+        loop();
     }
     var voegMakersToe = function () {
-        var i;
-        var validateKlaar = acts.length - 1;
+        console.log("Makers toevoegen..");
         var voegMakerToe = function (nummer) {
+            var validateKlaar = acts.length - 1;
             G.find({_id : acts[nummer].creatorId}, function (error, res) {
                 acts[nummer].creator = res[0];
                 if (nummer === validateKlaar) {
@@ -268,15 +275,21 @@ exports.getActiviteiten = function (callback) {
                 }
             });
         }
-        for (i = 0; i < acts.length; i += 1) {
-            voegMakerToe(i);
+        var loop = function () {
+            var i;
+            for (i = 0; i < acts.length; i += 1) {
+                voegMakerToe(i);
+            }
         }
+        loop();
     }
     var getActs = function () {
+        console.log("Activiteiten halen..");
         var i;
         A.find(function (error, data) {
             if (error) {
                 console.log(error);
+                console.log("Callbacken..");
                 callback(resp("De gezochte avtiviteiten kunnen niet gevonden worden.", false, false));
             } else {
                 if (data.length > 0) {
@@ -287,6 +300,7 @@ exports.getActiviteiten = function (callback) {
                     }
                     voegMakersToe();
                 } else {
+                    console.log("Callbacken..");
                     callback(resp("Er zijn 0 activiteiten.", true, false));
                 }
             }
@@ -304,7 +318,7 @@ exports.voegDeelnemerToe = function (gegevens, callback) {
                 callback(resp("Het toegevoegen aan de activiteit is mislukt.", false, gegevens));
             } else {
                 callback(resp("Je bent toegevoegd aan de activiteit.", true, data));
-                createFeed(gegevens._id, data._id, "Doet mee met: ");
+                createFeed(gegevens._id, data._id, "Doet mee met: ", new Date());
             }
         });
     }
@@ -455,12 +469,45 @@ exports.filterActiviteiten = function (callback) {
         }
         console.log("Nieuwe meter-stand: " + meter.puntenTussenstand);
     }
-    var makeNewFeed = function (gebruikerId, actId) {
-        createFeed(gebruikerId, actId, "Heeft de volgende activiteit gedaan:");
+    var makeNewFeed = function (gebruikerId, actId, datum) {
+        createFeed(gebruikerId, actId, "Heeft de volgende activiteit gedaan:", datum);
     }
     var checkOfOudeDatumAct = function (datum) {
         var vandaag = new Date(Date.now());
         return (datum > vandaag);
+    }
+    var updateDeelnemers = function (deelnemers, punten, actId, datum) {
+        var slaOp = function (gebruiker) {
+            gebruiker.save(function (error, res) {
+                if (error) {
+                    console.log(error);
+                }
+            });
+        }
+        var updateDeelnemer = function (nummer) {
+            var pkg;
+            G.findOne({_id : deelnemers[nummer]}, function (error, gebruiker) {
+                if (error) {
+                    console.log(error);
+                    console.log("De punten van de gebruiker kunnen niet worden geupdate..");
+                } else {
+                    pkg = {
+                        punten : punten,
+                        datumBehaald : datum,
+                        activiteitId : actId
+                    };
+                    gebruiker.aantalPunten.push(pkg);
+                    slaOp(gebruiker);
+                }
+            });
+        }
+        var loop = function () {
+            var i;
+            for (i = 0; i < deelnemers.length; i += 1) {
+                updateDeelnemer(i);
+            }
+        }
+        loop();
     }
     var berekenEenmaligeActs = function () {
         var slaActiviteitOp = function (nummer) {
@@ -487,7 +534,10 @@ exports.filterActiviteiten = function (callback) {
                 if (!(actsEenmalig[i].gesloten)) {
                     if (!(checkOfOudeDatumAct(new Date(actsEenmalig[i].eenmalig.beginTijd)))) {
                         updateMeter((actsEenmalig[i].deelnemers.length * actsEenmalig[i].puntenPerDeelnemer));
-                        makeNewFeed(actsEenmalig[i].creatorId, actsEenmalig[i]._id);
+
+                        updateDeelnemers(actsEenmalig[i].deelnemers, actsEenmalig[i].puntenPerDeelnemer, actsEenmalig[i]._id, new Date(actsEenmalig[i].eenmalig.beginTijd));
+
+                        makeNewFeed(actsEenmalig[i].creatorId, actsEenmalig[i]._id, new Date(actsEenmalig[i].eenmalig.beginTijd));
                         actsEenmalig[i].gesloten = true;
                     }
                 }
@@ -546,7 +596,10 @@ exports.filterActiviteiten = function (callback) {
                 for (x = 0; x < actsWekelijks[i].wekelijks.length; x += 1) {
                     if (!(checkOfOudeDatumAct(new Date(actsWekelijks[i].wekelijks[x].beginTijd)))) {
                         updateMeter((actsWekelijks[i].deelnemers.length * actsWekelijks[i].puntenPerDeelnemer));
-                        makeNewFeed(actsWekelijks[i].creatorId, actsWekelijks[i]._id);
+
+                        updateDeelnemers(actsWekelijks[i].deelnemers, actsWekelijks[i].puntenPerDeelnemer, actsWekelijks[i]._id, new Date(actsWekelijks[i].wekelijks[x].beginTijd));
+
+                        makeNewFeed(actsWekelijks[i].creatorId, actsWekelijks[i]._id, new Date(actsWekelijks[i].wekelijks[x].beginTijd));
                         actsWekelijks[i].wekelijks[x] = berekenNieuweDatum(actsWekelijks[i].wekelijks[x]);
                     }
                 }

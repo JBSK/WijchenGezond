@@ -450,3 +450,32 @@ exports.login = function (gebruiker, callback) {
     valideerVelden();
 }
 
+exports.zoekVrienden = function (id, callback) {
+    var gebs;
+    var zoekWieVolgt = function () {
+        var i, x, volgers = [];
+        for (i = 0; i < gebs.length; i += 1) {
+            if (gebs[i].vrienden.length > 0) {
+                for (x = 0; x < gebs[i].vrienden.length; x += 1) {
+                    if (gebs[i].vrienden[x].toString() === id.toString()) {
+                        volgers.push(gebs[i]);
+                    }
+                }
+            }
+        }
+        callback(response("De volgers zijn gevonden..", true, volgers));
+    }
+    var zoekGebruikers = function () {
+        G.find(function (error, gebruikers) {
+            if (error) {
+                console.log(error);
+                callback(response("Er is iets misgegaan", false, false));
+            } else {
+                gebs = gebruikers;
+                zoekWieVolgt();
+            }
+        })
+    }
+    zoekGebruikers();
+}
+

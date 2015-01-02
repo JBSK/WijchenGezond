@@ -31,7 +31,6 @@ exports.addPunten = function (gegevens, callback) {
     var punten = gegevens.punten;
     var meter;
     var slaMeterOp = function () {
-        console.log(meter);
         meter.save(function (error, res) {
             if (error) {
                 console.log(error);

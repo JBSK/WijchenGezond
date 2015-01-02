@@ -10,7 +10,6 @@ var categorieController = function ($routeParams, $scope, $window, dbService) {
 		dbService.hoofdCategorieen.delete({_id : _id}, function(res) {
 			$scope.message = res.message;
 			dbService.hoofdCategorieen.get({}, function(res) {
-				console.log = res;
 				$scope.message = res.message;
 				$scope.hoofdCategorieen = res.data;
 			});

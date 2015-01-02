@@ -5,7 +5,6 @@ var hoofdCategorieController = function ($routeParams, $scope, $window, dbServic
 	if ($routeParams._id) {
 		dbService.hoofdCategorieen.get({_id : $routeParams._id}, function(res) {
 			$scope.message = res.message;
-			console.log(res.data);
 			$scope.hoofdCategorie = res.data;
 		});
 
@@ -18,7 +17,6 @@ var hoofdCategorieController = function ($routeParams, $scope, $window, dbServic
 		dbService.hoofdCategorieen.post(hoofdCategorie, function(res) {
 			$scope.message = res.message;
 			if (!$routeParams._id) {
-				console.log(res.data._id);
 				$routeParams._id = res.data._id;
 			}
 		});

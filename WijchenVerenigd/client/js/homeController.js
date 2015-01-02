@@ -15,7 +15,9 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	checkLogin();
 
 	var getActiviteiten = function () {
+		console.log("Proberen..");
 		dbService.activiteiten.get(function (res) {
+			console.log(res);
 			if (res.success) {
 				$scope.activiteiten = res.data;
 				$scope.deelnemenOfAfmelden($scope);

@@ -1,28 +1,36 @@
 <div id="sideBar">
-    <div id="profiel">
+    <div class="profiel">
     	<img src="{{gebruiker.gebruiker.avatar}}" alt="profielfoto" />
-    	<button ng-show="toonVriendenKnop" ng-click="deelnemen(act.act._id, deelnemenOfAfmelden(act.deelnemers))">
-    		<i class="fa fa-plus"></i> Vrienden worden</button>
+    	<button ng-show="toonVriendenKnop" ng-click="vriendenWordenOpzeggen(vriendenKnopValue)">
+    		<i class="fa fa-plus"></i> {{vriendenKnopValue}}</button>
     	<h2>{{gebruiker.gebruiker.username}}</h2>
     	<p>Actief sinds 01-01-2015</p>
     	<p>Dit profiel is voor {{gebruiker.percentageProfiel}} ingevuld</p>
-    	<p>Vrienden({{gebruiker.gebruiker.vrienden.length}}):</p>
-    	<div id="profielVrienden">
+    	<p>Volgt ({{gebruiker.gebruiker.vrienden.length}}):</p>
+    	<div class="profielVrienden">
     		<a ng-repeat="vriend in gebruiker.vrienden" href="/#/gebruikers/{{vriend._id}}">
     			<img src="{{vriend.avatar}}" alt="vrienden avatar" />
     		</a>
     	</div>
     </div>
+	<div class="profiel">
+	    <p>Volgers ({{vrienden.length}}):</p>
+	    <div class="profielVrienden">
+	    	<a ng-repeat="vriend in vrienden" href="/#/gebruikers/{{vriend._id}}">
+	    		<img src="{{vriend.avatar}}" alt="vrienden avatar" />
+	    	</a>
+	    </div>
+	</div>
 </div>
 
-<div id="feeds" ng-controller="feedsController">
+<div id="feeds" ng-controller="feedsGebruikerController">
 	<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
 		<div class="feedImage">
 			<img src="./img/hardlopen.jpg">
 		</div>
 		<div class="feedContent">
 			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
-			<h1><a href="#">{{feed.maker.username}}</a> {{feed.feed.nieuws}} <a href="#"> {{feed.activiteit.naam}}</a></h1>
+			<h1><a href="/#/gebruikers/{{feed.maker._id}}">{{feed.maker.username}}</a> {{maakNieuws(feed)}}</h1>
 			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
 		</div>
 		<div class="feedReacties">
