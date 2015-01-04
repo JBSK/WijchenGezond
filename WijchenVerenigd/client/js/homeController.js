@@ -1,4 +1,6 @@
-var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService) {
+var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService, statService) {
+    statService.setShowGebruiker(false);
+    var allActs = [];
 	$scope.activiteiten = [];
 	$scope.predicate = 'datum';
 	$scope.gebruikerLogin = {};
@@ -20,6 +22,7 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 			console.log(res);
 			if (res.success) {
 				$scope.activiteiten = res.data;
+				allActs = res.data;
 				$scope.deelnemenOfAfmelden($scope);
 			}
 		});
@@ -113,5 +116,18 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 		}
 		d = d.toLocaleDateString().toString()[0] + checkField(d.toLocaleDateString().toString()[1]) + " " + maand + " | " + (d.getHours() - 1) + ":" + checkMinutes(d.getMinutes());
 		return d;
+	}
+
+	$scope.filter = function(pointer) {
+		var i, filteredActs = [];
+		$scope.activiteiten = allActs;
+		if (pointer.toString() !== "All") {
+			for (i = 0; i < $scope.activiteiten.length; i += 1) {
+				if ($scope.activiteiten[i].subCategorie.naam.toString() === pointer.toString()) {
+					filteredActs.push($scope.activiteiten[i]);
+				}
+			}
+			$scope.activiteiten = filteredActs;
+		}
 	}
 };

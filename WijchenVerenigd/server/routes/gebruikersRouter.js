@@ -22,6 +22,7 @@ module.exports = function (express) {
 	gebruikerRouter.get('/login/', gebruikerControllers.isIngelogd);
 	gebruikerRouter.post('/login/', gebruikerControllers.login);
     gebruikerRouter.post('/logout/', gebruikerControllers.logout);
+    gebruikerRouter.get('/logout/', gebruikerControllers.logout);
 	gebruikerRouter.post('/delVriend/', gebruikerControllers.delVriend);
 
 	return gebruikerRouter;

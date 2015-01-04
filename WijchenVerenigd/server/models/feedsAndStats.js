@@ -2,6 +2,7 @@ var exports = module.exports = {};
 var FAS = require('./../models/mongooseSchemas').FAS;
 var G = require('./../models/mongooseSchemas').G;
 var A = require('./../models/mongooseSchemas').A;
+var SC = require('./../models/mongooseSchemas').SC;
 
 var resp = function (message, success, data) {
     return {
@@ -194,9 +195,18 @@ exports.getFeeds = function (callback) {
                 } else {
                     feeds[nummer].activiteit = res[0];
                     feeds[nummer].aantalDeelnemers = res[0].deelnemers.length;
-                    if (nummer === feeds.length - 1) {
-                        makersToevoegen();
-                    }
+
+                    SC.findOne({_id : res[0].subCategorieId}, function (error, data) {
+                        if (error) {
+                            console.log(error);
+                            callback(resp("Er is iets misgegaan.", false, false));
+                        } else {
+                            feeds[nummer].subCategorie = data;
+                            if (nummer === feeds.length - 1) {
+                                makersToevoegen();
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -455,9 +465,18 @@ exports.getFeedsGebruiker = function (id, callback) {
                 } else {
                     feeds[nummer].activiteit = res[0];
                     feeds[nummer].aantalDeelnemers = res[0].deelnemers.length;
-                    if (nummer === feeds.length - 1) {
-                        makersToevoegen();
-                    }
+
+                    SC.findOne({_id : res[0].subCategorieId}, function (error, data) {
+                        if (error) {
+                            console.log(error);
+                            callback(resp("Er is iets misgegaan.", false, false));
+                        } else {
+                            feeds[nummer].subCategorie = data;
+                            if (nummer === feeds.length - 1) {
+                                makersToevoegen();
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -753,9 +772,18 @@ exports.getFeedsGebruikerVrienden = function (id, callback) {
                 } else {
                     feeds[nummer].activiteit = res[0];
                     feeds[nummer].aantalDeelnemers = res[0].deelnemers.length;
-                    if (nummer === feeds.length - 1) {
-                        makersToevoegen();
-                    }
+
+                    SC.findOne({_id : res[0].subCategorieId}, function (error, data) {
+                        if (error) {
+                            console.log(error);
+                            callback(resp("Er is iets misgegaan.", false, false));
+                        } else {
+                            feeds[nummer].subCategorie = data;
+                            if (nummer === feeds.length - 1) {
+                                makersToevoegen();
+                            }
+                        }
+                    });
                 }
             });
         }

@@ -142,17 +142,21 @@
 		    	</div>
 		    	<div class="line"></div>
 
+		    	<!--
 				<h3>In een groep of alleen?</h3>
 				<div class="groepCheckbox">
 		  			<input class="checkbox" type="checkbox" ng-model="activiteit.groep"><h6>Vink aan als dit een groepsactiviteit is.</h6>
 		  		</div>
+		  		-->
+
+				<h3>Aantal deelnemers</h3>
 
 		  		<div class="heleLengteDiv">
-			  		<input class="deelnemersMin" ng-show="activiteit.groep" type="number" ng-model="activiteit.minPers" placeholder="Minimaal aantal deelnemers" />
+			  		<input class="deelnemersMin" type="number" ng-model="activiteit.minPers" placeholder="Minimaal aantal deelnemers" />
 
-			  		<input class="deelnemersMax" ng-show="activiteit.groep" type="number" ng-model="activiteit.maxPers" placeholder="Maximaal aantal deelnemers" />
+			  		<input class="deelnemersMax" type="number" ng-model="activiteit.maxPers" placeholder="Maximaal aantal deelnemers" />
 
-			  		<input class="verzamelPlaats" ng-show="activiteit.groep" type="text" ng-model="activiteit.verzamelPlaats" placeholder="Verzamelplaats, startpunt of adres" />
+			  		<input class="verzamelPlaats" type="text" ng-model="activiteit.verzamelPlaats" placeholder="Verzamelplaats, startpunt of adres" />
 
 			  		<h4>Je krijgt voor deze activiteit per deelnemer {{activiteit.punten}} punten per keer!</h4>
 

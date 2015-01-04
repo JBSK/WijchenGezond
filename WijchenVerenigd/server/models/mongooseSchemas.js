@@ -53,7 +53,7 @@ exports.SC = mongoose.model('SubCategorie', SubCategorieSchema);
 // Gebruiker
 
 var GebruikerSchema = mongoose.Schema({
-    avatar : {type : String, required : false, default : "img/profielfoto.jpg"},
+    avatar : {type : String, required : false, default : "img/avatar.jpg"},
     voornaam : {type : String, required : false},
     achternaam : {type : String, required : false},
     username : {type : String, required : true},

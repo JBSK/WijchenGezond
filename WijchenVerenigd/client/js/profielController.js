@@ -1,4 +1,5 @@
-var profielController = function ($routeParams, $scope, $window, dbService, loginService) {
+var profielController = function ($routeParams, $scope, $window, dbService, loginService, statService) {
+    statService.setShowGebruiker(true);
     var inlogId = "0";
     $scope.gebruiker = {};
     $scope.toonVriendenKnop = false;

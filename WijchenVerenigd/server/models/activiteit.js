@@ -4,6 +4,7 @@ var G = require('./../models/mongooseSchemas').G;
 var HC = require('./../models/mongooseSchemas').HC;
 var SC = require('./../models/mongooseSchemas').SC;
 var M = require('./../models/mongooseSchemas').M;
+var FAS = require('./../models/mongooseSchemas').FAS;
 
 var F = require('./../models/feedsAndStats');
 
@@ -140,16 +141,19 @@ exports.getActiviteit = function (_id, callback) {
 
 exports.getActiviteiten = function (callback) {
     var acts = [];
+    var gebruikers = [];
+    var subCategorieen = [];
     var stuurActs = function () {
         console.log("De bende sturen..");
         var alleActs = [];
+        var i;
         for (i = 0; i < acts.length; i += 1) {
             alleActs[i] = {
                 act : acts[i],
                 creator : acts[i].creator,
                 subCategorie : acts[i].subCategorie,
                 deelnemers : acts[i].deelNemersGevuld,
-                aantalDeelnemers : acts[i].setAantalDeelnemers,
+                aantalDeelnemers : acts[i].aantalDeelnemers,
                 dagen : acts[i].dagen,
                 datum : acts[i].datum
             }
@@ -206,82 +210,67 @@ exports.getActiviteiten = function (callback) {
         console.log("Het aantal deelnemers bepalen..");
         var i;
         for (i = 0; i < acts.length; i += 1) {
-            acts[i].setAantalDeelnemers = acts[i].deelnemers.length + "/" + acts[i].maxPers;
+            acts[i].aantalDeelnemers = acts[i].deelnemers.length + "/" + acts[i].maxPers;
         }
         setDagNamen();
     }
     var voegSubCategorieenToe = function () {
-        console.log("Categorieën toevoegen..");
-        var i;
-        var validateKlaar = acts.length - 1;
-        var voegSubCategorieToe = function (nummer) {
-            SC.find({_id : acts[nummer].subCategorieId}, function (error, res) {
-                acts[nummer].subCategorie = res[0];
-                if (nummer === validateKlaar) {
-                    console.log("Ik mag verder..");
-                    setAantalDeelnemers();
-                }
-            });
-        }
+        var i, x;
         for (i = 0; i < acts.length; i += 1) {
-            voegSubCategorieToe(i);
+            for (x = 0; x < subCategorieen.length; x += 1) {
+                if (acts[i].subCategorieId.toString() === subCategorieen[x]._id.toString()) {
+                    acts[i].subCategorie = subCategorieen[x];
+                }
+            }
         }
+        setAantalDeelnemers();
     }
     var voegDeelnemersToe = function () {
-        var voegToe = function (nummerX, nummerI) {
-            G.findOne({_id : acts[nummerI].deelnemers[nummerX]}, function (error, data) {
-                if (error) {
-                    console.log(error);
-                } else {
-                    acts[nummerI].deelNemersGevuld.push(data);
-                    console.log("I: " + nummerI);
-                    console.log("X: " + nummerX);
-                    if ((nummerI === acts.length - 1) && (nummerX === acts[nummerI].deelnemers.length - 1)) {
-                        voegSubCategorieenToe();
+        var i, x, y;
+        for (i = 0; i < acts.length; i += 1) {
+            acts[i].deelNemersGevuld = [];
+            for (x = 0; x < acts[i].deelnemers.length; x += 1) {
+                for (y = 0; y < gebruikers.length; y += 1) {
+                    if (acts[i].deelnemers[x].toString() === gebruikers[y]._id.toString()) {
+                        acts[i].deelNemersGevuld.push(gebruikers[y]);
                     }
-                }
-            }); 
+                } 
+            }   
         }
-        var loopDeelnemers = function (nummer) {
-            acts[nummer].deelNemersGevuld = [];
-            var x;
-            for (x = 0; x < acts[nummer].deelnemers.length; x += 1) {
-                console.log("Loopen..");
-                voegToe(x, nummer);
-            }
-        }
-        var loop = function () {
-            var i;
-            for (i = 0; i < acts.length; i += 1) {
-                if (acts[i].deelnemers.length > 0) {
-                    loopDeelnemers(i);
-                } else {
-                    if (i === (acts.length - 1)) {
-                        voegSubCategorieenToe(); 
-                    }
-                }
-            }
-        }
-        loop();
+        voegSubCategorieenToe();
     }
     var voegMakersToe = function () {
-        console.log("Makers toevoegen..");
-        var voegMakerToe = function (nummer) {
-            var validateKlaar = acts.length - 1;
-            G.find({_id : acts[nummer].creatorId}, function (error, res) {
-                acts[nummer].creator = res[0];
-                if (nummer === validateKlaar) {
-                    voegDeelnemersToe();
+        var i, x;
+        for (i = 0; i < acts.length; i += 1) {
+            for (x = 0; x < gebruikers.length; x += 1) {
+                if (acts[i].creatorId.toString() === gebruikers[x]._id.toString()) {
+                    acts[i].creator = gebruikers[x];
                 }
-            });
-        }
-        var loop = function () {
-            var i;
-            for (i = 0; i < acts.length; i += 1) {
-                voegMakerToe(i);
             }
         }
-        loop();
+        voegDeelnemersToe();
+    }
+    var getSubCategorieen = function () {
+        SC.find(function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(resp("Er is iets misgegaan..", false, false));
+            } else {
+                subCategorieen = data;
+                voegMakersToe();
+            }
+        });
+    }
+    var getGebruikers = function () {
+        G.find(function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(resp("Er is iets misgegaan..", false, false));
+            } else {
+                gebruikers = data;
+                getSubCategorieen();
+            }
+        });
     }
     var getActs = function () {
         console.log("Activiteiten halen..");
@@ -298,7 +287,7 @@ exports.getActiviteiten = function (callback) {
                             acts.push(data[i]);
                         }
                     }
-                    voegMakersToe();
+                    getGebruikers();
                 } else {
                     console.log("Callbacken..");
                     callback(resp("Er zijn 0 activiteiten.", true, false));
@@ -318,7 +307,7 @@ exports.voegDeelnemerToe = function (gegevens, callback) {
                 callback(resp("Het toegevoegen aan de activiteit is mislukt.", false, gegevens));
             } else {
                 callback(resp("Je bent toegevoegd aan de activiteit.", true, data));
-                createFeed(gegevens._id, data._id, "Doet mee met: ", new Date());
+                createFeed(gegevens._id, data._id, "doet mee met: ", new Date());
             }
         });
     }
@@ -392,7 +381,8 @@ exports.verwijderDeelnemer = function (gegevens, callback) {
                 console.log(error);
                 callback(resp("Het verwijderen uit de activiteit is mislukt.", false, gegevens));
             } else {
-                callback(resp("Je bent verwijderd uit de activiteit.", true, data));
+                createFeed(gegevens._id, act._id, "doet niet meer mee met:", new Date());
+                callback(resp("Het verwijderen uit de activiteit is gelukt.", true, gegevens));
             }
         });
     }

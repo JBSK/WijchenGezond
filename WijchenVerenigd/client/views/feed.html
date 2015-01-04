@@ -24,7 +24,7 @@
 	    <div id="feeds">
 	    	<div ng-repeat="feed in feeds | orderBy:predicate:true" class="feed">
 	    		<div class="feedImage">
-	    			<img src="./img/hardlopen.jpg">
+	    			<img src="{{feed.subCategorie.iconImg}}">
 	    		</div>
 	    		<div class="feedContent">
 	    			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />

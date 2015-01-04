@@ -60,32 +60,11 @@
         </div>
 
         <div id="containerHeader" ng-controller="statController">
-            <div class="headerIcon">
+            <div ng-repeat="stat in statistieken" class="headerIcon">
                 <ul>
-                    <li class="fa fa-trophy"></li>
-                    <li class="textGroot">{{statistieken.puntenTotaal}}</li>
-                    <li class="text">Punten totaal</li>
-                </ul>
-            </div>
-            <div class="headerIcon">
-                <ul>
-                    <li class="fa fa-line-chart"></li>
-                    <li class="textGroot">{{statistieken.puntenVandaag}}</li>
-                    <li class="text">Punten vandaag</li>
-                </ul>
-            </div>
-            <div class="headerIcon">
-                <ul>
-                    <li class="fa fa-pie-chart"></li>
-                    <li class="textGroot">{{statistieken.populairst}}</li>
-                    <li class="text">Populairste activiteit</li>
-                </ul>
-            </div>
-            <div class="headerIcon">
-                <ul>
-                    <li class="fa fa-users"></li>
-                    <li class="textGroot">{{statistieken.gebruikers}}</li>
-                    <li class="text">Nu actief</li>
+                    <li class="{{stat.icon}}"></li>
+                    <li class="textGroot">{{stat.data}}</li>
+                    <li class="text">{{stat.pointer}}</li>
                 </ul>
             </div>
         </div>

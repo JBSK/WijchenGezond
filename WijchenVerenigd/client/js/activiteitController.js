@@ -1,4 +1,5 @@
-var activiteitController = function ($routeParams, $scope, $window, dbService, $location) {
+var activiteitController = function ($routeParams, $scope, $window, dbService, $location, statService) {
+    statService.setShowGebruiker(false);
 	var creatorId;
 	dbService.login.get(function(res) {
 		if (res.success) {
@@ -90,13 +91,9 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 		nA.puntenPerDeelnemer = a.punten;
 		nA.deelnemers = [creatorId];
 		nA.verzamelPlaats = a.verzamelPlaats;
-		if (a.groep) {
-			nA.minPers = a.minPers;
-			nA.maxPers = a.maxPers;
-			nA.groep = true;
-		} else {
-			nA.groep = false;
-		}
+		nA.minPers = a.minPers;
+		nA.maxPers = a.maxPers;
+		nA.groep = true;
 		if (a.doorloopTijd === "eenmalig") {
 			nA.eenmalig = {
 				beginTijd : (new Date(a.datum.jaar, a.datum.maand, a.datum.dag, (a.datum.beginTijd[0] + a.datum.beginTijd[1]), (a.datum.beginTijd[3] + a.datum.beginTijd[4]))).toString(),

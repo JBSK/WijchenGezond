@@ -54,6 +54,19 @@ WijchenGezondApp.service('loginService', function loginService($rootScope) {
     return service;
 });
 
+WijchenGezondApp.service('statService', function statService($rootScope) {
+    "use strict";
+    var service = {};
+    service.showGebruiker = false;
+
+    service.setShowGebruiker = function (value) {
+        service.showGebruiker = value;
+        $rootScope.$broadcast("showGebruikerUpdated");
+    } 
+
+    return service;
+});
+
 WijchenGezondApp.config(['$routeProvider', function ($routeProvider ) {
 	$routeProvider.when('/', {
 		templateUrl: '../views/home.html',

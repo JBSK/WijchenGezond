@@ -1,4 +1,5 @@
-var feedsController = function ($routeParams, $scope, $window, dbService, loginService) {
+var feedsController = function ($routeParams, $scope, $window, dbService, loginService, statService) {
+    statService.setShowGebruiker(false);
 	$scope.feeds = [];
 	$scope.predicate = 'datum';
 	$scope.gebruikerLogin = {};
@@ -7,6 +8,7 @@ var feedsController = function ($routeParams, $scope, $window, dbService, loginS
 
 	var getFeeds = function () {
 		dbService.feedsGebruikerVrienden.get({_id : $scope.gebruikerLogin._id}, function (res) {
+			console.log(res);
 			$scope.feeds = res.data;
 		});
 	}
@@ -74,7 +76,7 @@ var feedsController = function ($routeParams, $scope, $window, dbService, loginS
 			}
 		}
 		if (feed.feed.nieuws.toString() === "Heeft de volgende activiteit gedaan:") {
-			return feed.feed.nieuws + " " + feed.activiteit.naam + ". Samen met " + feed.activiteit.deelnemers.length + " " + checkLength(feed.activiteit.deelnemers.length) + ".";
+			return feed.feed.nieuws + " " + feed.activiteit.naam + ". Samen met " + feed.activiteit.deelnemers.length + " " + checkLength(feed.activiteit.deelnemers.length) + ", voor " + feed.activiteit.puntenPerDeelnemer + " punten per deelnemer.";
 		} else {
 			return feed.feed.nieuws + " " + feed.activiteit.naam;
 		}
