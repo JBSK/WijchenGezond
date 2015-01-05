@@ -20,12 +20,14 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 
 	var setFilter = function () {
 		var i, filteredActs = [];
-		for (i = 0; i < $scope.activiteiten.length; i += 1) {
-			if ($scope.activiteiten[i].hoofdCategorie.naam.toString() === $scope.selectedFilter.toString()) {
-				filteredActs.push($scope.activiteiten[i]);
+		if ($scope.selectedFilter !== "All") {
+			for (i = 0; i < $scope.activiteiten.length; i += 1) {
+				if ($scope.activiteiten[i].hoofdCategorie.naam.toString() === $scope.selectedFilter.toString()) {
+					filteredActs.push($scope.activiteiten[i]);
+				}
 			}
+			$scope.activiteiten = filteredActs;
 		}
-		$scope.activiteiten = filteredActs;
 	}
 
 	var getActiviteiten = function () {
