@@ -19,15 +19,11 @@
     <script src="/js/feedsGebruikerController.js"></script>
     <script src="/js/routes.js"></script>
 
-
     <link rel="stylesheet" href="/css/stylesheet.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
 <body>
-
-
-    
     <div id="navbar">
     </div>
 
@@ -53,14 +49,20 @@
                     <input placeholder="Wachtwoord" type="password" ng-model="login.wachtwoord" />
                     <input class="submitLogin" type="submit" value="Login" ng-click="tryLogin(login)" />
                 </form>
-                <a href="/#/register">nog geen lid?</a>
+                <a class="registreer" href="/#/register">Nog geen lid?</a>
                 <a href="/#/register">Wachtwoord vergeten?</a>
             </div>
 
         </div>
 
         <div id="containerHeader" ng-controller="statController">
-            <div ng-repeat="stat in statistieken" class="headerIcon">
+            <div ng-controller="meterController" class="headerDoelMeter">
+
+                {{meterDoel}}<br>
+                <span class="text">Doel van deze maand</span>
+            </div>
+            {{meterDoel}}
+            <div ng-hide="hide" ng-repeat="stat in statistieken" class="headerIcon">
                 <ul>
                     <li class="{{stat.icon}}"></li>
                     <li class="textGroot">{{stat.data}}</li>

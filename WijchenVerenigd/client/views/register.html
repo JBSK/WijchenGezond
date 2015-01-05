@@ -1,46 +1,19 @@
-<div id="logincontainer">
-	<div class="loginTop">
-        <div class="loginTopLeft">
-            <div loginTopLeftTitle>
-                <p>
-                Meld je nu GRATIS
-                </p>
-                <p>aan voor</p>
-                <p>Wijchenverenigd</p>
+<div class="registerPage">
 
-            </div>
-            <div class="imgAndBulletList">
-                <div class="loginImg">
-                        <img src="test.jpg">
-                </div>
-                <div class="loginBulletList">
-                    <ul>
-                        <li>Sport met dorpsgenoten</li>
-                        <li>Maak eigen activiteiten aan</li>
-                        <li>Spaar punten door mee te doen</li>
-                        <li>Stem voor Wijchense prijzen</li>
-                    </ul>
-                </div>
-            </div>
 
-        </div>
-        <div class="loginTopRight">
-            <form ng-model="createGebruiker">
-                <input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="createGebruiker.username" />
-                <input type="text" class="form-control" placeholder="Email-adres" ng-model="createGebruiker.email" />
-                <input type="password" class="form-control" placeholder="Wachtwoord" ng-model="createGebruiker.wachtwoord" />
-                <input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="createGebruiker.bevestigWachtwoord" />
+<div class="registerTop">
+
+</div>
+
+
+<form class="tester" ng-model="createGebruiker">
+                <input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="createGebruiker.username" /></br>
+                <input type="text" class="form-control" placeholder="Email-adres" ng-model="createGebruiker.email" /></br>
+                <input type="password" class="form-control" placeholder="Wachtwoord" ng-model="createGebruiker.wachtwoord" /></br>
+                <input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="createGebruiker.bevestigWachtwoord" /></br>
                 <span class="message" ng-show="IsMatch">Emails have to match!</span>
                 <span class="message" ng-show="regMsg">{{regMessage}}</span>
                 <input class="btn btn-success" type="submit" value="Registreer" ng-click="reg()" />
             </form>
 
-        </div>
-	</div>
-
-
-
-	<div class="loginBottom">
-
-	</div>
 </div>

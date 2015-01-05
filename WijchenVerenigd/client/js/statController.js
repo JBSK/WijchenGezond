@@ -1,27 +1,29 @@
 var statController = function ($routeParams, $scope, $window, dbService, statService) {
 	$scope.statistieken = {};
+    $scope.hide = false;
 
 	var getTotaalStats = function() {
 		$scope.statistieken = [
 		{
-			icon : "fa fa-trophy",
-			pointer : "Punten totaal",
-			data : "574/750"
+
+			icon : "fa fa-users",
+			pointer : "Nu actief",
+			data : 5241
 		},
 		{
-			icon : "fa fa-line-chart",
+			icon : "fa fa-pie-chart",
 			pointer : "Punten vandaag",
 			data : 122
 		},
 		{
-			icon : "fa fa-pie-chart",
+			icon : "fa fa-line-chart",
 			pointer : "Populairste activiteit",
 			data : "Voetbal"
 		},
 		{
-			icon : "fa fa-users",
-			pointer : "Nu actief",
-			data : 5241
+			icon : "fa fa-trophy",
+			pointer : "Punten totaal",
+			data : "574/750"
 		}];
 	}
 
@@ -60,5 +62,9 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 
 	$scope.$on('showGebruikerUpdated', function() {
 		BepaalStats();
+    });
+
+    $scope.$on('showUpdated', function() {
+        $scope.hide = statService.show;
     });
 }
