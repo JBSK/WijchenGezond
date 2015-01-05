@@ -118,16 +118,84 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 		return d;
 	}
 
-	$scope.filter = function(pointer) {
+	// Zoek activiteiten
+	$scope.filters = [];
+	$scope.selectedFilter = "All";
+	var setFilters = function (filters) {
+		$scope.filters = filters;
+	}
+	var getCategorieen = function () {
+		dbService.hoofdCategorieen.get(function (res) {
+			setFilters(res.data);
+		});
+	}
+	getCategorieen();
+	$scope.setClass = function (pointer) {
+		if (pointer.naam === $scope.selectedFilter) {
+			return pointer.icoonHover;
+		} else {
+			return pointer.icoon;
+		}
+	}
+	$scope.changeFilter = function (pointer) {
 		var i, filteredActs = [];
 		$scope.activiteiten = allActs;
+		$scope.selectedFilter = "All";
 		if (pointer.toString() !== "All") {
 			for (i = 0; i < $scope.activiteiten.length; i += 1) {
-				if ($scope.activiteiten[i].subCategorie.naam.toString() === pointer.toString()) {
+				if ($scope.activiteiten[i].hoofdCategorie.naam.toString() === pointer.toString()) {
 					filteredActs.push($scope.activiteiten[i]);
 				}
 			}
 			$scope.activiteiten = filteredActs;
+			$scope.selectedFilter = pointer;
 		}
 	}
+	/*
+	$scope.filters = [
+	{
+		"icon" : "fa fa-calendar-o",
+		"naam" : "Calendar",
+		"filter" : "All",
+		"class" : "selected"
+	},
+	{
+		"icon" : "fa fa-futbol-o",
+		"naam" : "Voetballen",
+		"filter" : "Voetballen",
+		"class" : "notSelected"
+	},
+	{
+		"icon" : "fa fa-bicycle",
+		"naam" : "Fietsen",
+		"filter" : "Fietsen",
+		"class" : "notSelected"
+	},
+	{
+		"icon" : "fa fa-life-ring",
+		"naam" : "Zwemmen",
+		"filter" : "Zwemmen",
+		"class" : "notSelected"
+	},
+	{
+		"icon" : "fa fa-users",
+		"naam" : "Vrienden",
+		"filter" : "Vrienden",
+		"class" : "notSelected"
+	},
+	{
+		"icon" : "fa fa-rub",
+		"naam" : "Vrienden",
+		"filter" : "Vrienden",
+		"class" : "notSelected"
+	},
+	{
+		"icon" : "fa fa-university",
+		"naam" : "Vrienden",
+		"filter" : "Vrienden",
+		"class" : "notSelected"
+	}
+	]
+	*/
+	//
 };

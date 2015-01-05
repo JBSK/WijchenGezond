@@ -35,6 +35,7 @@ exports.A = mongoose.model('Activiteit', ActiviteitSchema);
 var HoofdCategorieSchema = mongoose.Schema({
     naam : {type : String, required : true},
     icoon : {type : String, required : true},
+    icoonHover : {type : String, required : true}
 }, {collection : "HoofdCategorieen"});
 
 exports.HC = mongoose.model('HoofdCategorie', HoofdCategorieSchema);

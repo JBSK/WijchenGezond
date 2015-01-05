@@ -214,10 +214,17 @@ textarea:focus {
 }
 
 #zoekActiviteit a {
-	text-decoration: none;
-	color: #555;
 	font-size: 24px;
 	margin: 2px;
+}
+
+#zoekActiviteit img {
+	width: 31px;
+	margin: 1px;
+}
+
+#zoekActiviteit img:hover {
+	cursor: pointer;
 }
 
 #zoekActiviteit a:hover {
@@ -416,6 +423,13 @@ textarea:focus {
 	overflow: hidden;
 }
 
+.actHeader img.mainIcon {
+	margin-left: 65px;
+	margin-top: 15px;
+	position: absolute;
+	width: 50px;
+}
+
 .actHeader h4 {
 	margin-top: 70px;
 	letter-spacing: -0.4px;
@@ -487,6 +501,7 @@ textarea:focus {
   	-webkit-border-radius: 5px;
   	border-radius: 5px;
   	border: 1px solid #EEE;
+  	z-index: 999;
 }
 
 #login p {

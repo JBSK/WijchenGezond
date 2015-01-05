@@ -143,6 +143,7 @@ exports.getActiviteiten = function (callback) {
     var acts = [];
     var gebruikers = [];
     var subCategorieen = [];
+    var hoofdCategorieen = [];
     var stuurActs = function () {
         console.log("De bende sturen..");
         var alleActs = [];
@@ -152,6 +153,7 @@ exports.getActiviteiten = function (callback) {
                 act : acts[i],
                 creator : acts[i].creator,
                 subCategorie : acts[i].subCategorie,
+                hoofdCategorie : acts[i].hoofdCategorie,
                 deelnemers : acts[i].deelNemersGevuld,
                 aantalDeelnemers : acts[i].aantalDeelnemers,
                 dagen : acts[i].dagen,
@@ -214,6 +216,17 @@ exports.getActiviteiten = function (callback) {
         }
         setDagNamen();
     }
+    var voegHoofdCategorieenToe = function () {
+        var i, x;
+        for (i = 0; i < acts.length; i += 1) {
+            for (x = 0; x < hoofdCategorieen.length; x += 1) {
+                if (acts[i].subCategorie.hoofdCategorieId.toString() === hoofdCategorieen[x]._id.toString()) {
+                    acts[i].hoofdCategorie = hoofdCategorieen[x];
+                }
+            }
+        }
+        setAantalDeelnemers();
+    }
     var voegSubCategorieenToe = function () {
         var i, x;
         for (i = 0; i < acts.length; i += 1) {
@@ -223,7 +236,7 @@ exports.getActiviteiten = function (callback) {
                 }
             }
         }
-        setAantalDeelnemers();
+        voegHoofdCategorieenToe();
     }
     var voegDeelnemersToe = function () {
         var i, x, y;
@@ -250,6 +263,17 @@ exports.getActiviteiten = function (callback) {
         }
         voegDeelnemersToe();
     }
+    var getHoofdCategorieen = function () {
+        HC.find(function (error, data) {
+            if (error) {
+                console.log(error);
+                callback(resp("Er is iets misgegaan..", false, false));
+            } else {
+                hoofdCategorieen = data;
+                voegMakersToe();
+            }
+        });
+    }
     var getSubCategorieen = function () {
         SC.find(function (error, data) {
             if (error) {
@@ -257,7 +281,7 @@ exports.getActiviteiten = function (callback) {
                 callback(resp("Er is iets misgegaan..", false, false));
             } else {
                 subCategorieen = data;
-                voegMakersToe();
+                getHoofdCategorieen();
             }
         });
     }

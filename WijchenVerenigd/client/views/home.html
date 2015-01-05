@@ -4,13 +4,7 @@
 	        <div id="zoekActiviteit">
 	        	<h2>Filter activiteiten</h2>
 	        	<p>Selecteer een categorie:</p>
-	        	<a href ng-click="filter('All')" class="fa fa-calendar-o"></a>
-	        	<a href ng-model="Voetballen" ng-click="filter('Voetballen')" class="fa fa-futbol-o"></a>
-	        	<a href ng-click="filter('Fietsen')" class="fa fa-bicycle"></a>
-	        	<a href ng-click="filter('Zwemmen')" class="fa fa-life-ring"></a>
-	        	<a href class="fa fa-rub"></a>
-	        	<a href class="fa fa-university"></a>
-	        	<a href class="fa fa-users"></a>
+	        	<img ng-repeat="filter in filters" ng-click="changeFilter(filter.naam)" src="{{setClass(filter)}}" alt="categorie themafoto" />
 	        	<form>
 	        		<input placeholder="Wanneer?" type="text" />
 	        		<button id="zoekActiviteitButton" class="fa fa-calendar"></button>
@@ -45,6 +39,7 @@
 
 	    		<div class="activiteit" ng-hide="hoverEdit">
 		    		<div class="actHeader">
+		    			<img class="mainIcon" src="{{act.hoofdCategorie.icoonHover}}" alt="themafoto" />
 		    			<h4>{{toonDatum(act.datum)}}</h4>
 		    			<img src="{{act.subCategorie.iconImg}}" alt="themafoto" />
 		    		</div>
