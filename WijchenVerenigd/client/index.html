@@ -60,6 +60,12 @@
         </div>
 
         <div id="containerHeader" ng-controller="statController">
+            <div ng-controller="meterController" class="headerDoelMeter">
+
+                {{meterDoel}}<br>
+                <span class="text">Doel van deze maand</span>
+            </div>
+            {{meterDoel}}
             <div ng-repeat="stat in statistieken" class="headerIcon">
                 <ul>
                     <li class="{{stat.icon}}"></li>
