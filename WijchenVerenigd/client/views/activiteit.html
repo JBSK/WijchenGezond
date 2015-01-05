@@ -142,13 +142,6 @@
 		    	</div>
 		    	<div class="line"></div>
 
-		    	<!--
-				<h3>In een groep of alleen?</h3>
-				<div class="groepCheckbox">
-		  			<input class="checkbox" type="checkbox" ng-model="activiteit.groep"><h6>Vink aan als dit een groepsactiviteit is.</h6>
-		  		</div>
-		  		-->
-
 				<h3>Aantal deelnemers</h3>
 
 		  		<div class="heleLengteDiv">
@@ -164,7 +157,7 @@
 
 		    	<div class="line"></div>
 				<h3>Omschrijving van de activiteit</h3>
-		    	<textarea ng-model="activiteit.omschrijving"></textarea>
+		    	<textarea ng-model="activiteit.omschrijving" placeholder="Typ hier een omschrijving van je activiteit bijvoorbeeld welke sport je precies wilt doen en andere belangrijke informatie."></textarea>
 		    	<div class="line"></div>
 
 				<input class="submit" type="submit" value="Maak activiteit aan" ng-click="saveActiviteit()" />
