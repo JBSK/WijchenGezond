@@ -111,6 +111,8 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 		var d = new Date(datum),
 		maanden = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
 		maand = maanden[d.getMonth()];
+		return d.toDateString();
+		/*
 		var checkMinutes = function (minutes) {
 			var m = minutes;
 			var minutes = minutes.toString();
@@ -131,6 +133,7 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 		}
 		d = d.toLocaleDateString().toString()[0] + checkField(d.toLocaleDateString().toString()[1]) + " " + maand + " | " + (d.getHours() - 1) + ":" + checkMinutes(d.getMinutes());
 		return d;
+		*/
 	}
 
 	// Zoek activiteiten
