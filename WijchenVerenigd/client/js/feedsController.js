@@ -81,4 +81,9 @@ var feedsController = function ($routeParams, $scope, $window, dbService, loginS
 			return feed.feed.nieuws + " " + feed.activiteit.naam;
 		}
 	}
+
+	$scope.toonDatum = function (datum) {
+		var d = new Date(datum);
+		return d.toDateString();
+	}
 }

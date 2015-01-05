@@ -31,14 +31,14 @@
 		<div class="feedContent">
 			<img src="{{feed.maker.avatar}}" alt="gebruiker-avatar" />
 			<h1><a href="/#/gebruikers/{{feed.maker._id}}">{{feed.maker.username}}</a> {{maakNieuws(feed)}}</h1>
-			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{feed.feed.datum}}</h5>
+			<h4><i class="fa fa-heart-o"></i> {{feed.feed.likes}} </h4> <h5>{{toonDatum(feed.feed.datum)}}</h5>
 		</div>
 		<div class="feedReacties">
 			<div ng-repeat="reactie in feed.reacties" class="feedReactie">
 				<img src="{{reactie.gebruiker.avatar}}" alt="Profielfoto van de reageerder" /> 
 				<h5>{{reactie.gebruiker.username}}:</h5>
 				<p> {{reactie.reactie}}</p>
-				<h6> {{reactie.datum}}</h6>
+				<h6> {{toonDatum(reactie.datum)}}</h6>
 			</div>
 			<div class="feedReageer">
 				<img src="{{gebruikerLogin.avatar}}" alt="Jouw profielfoto" />

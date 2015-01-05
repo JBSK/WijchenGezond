@@ -67,4 +67,9 @@ var feedsGebruikerController = function ($routeParams, $scope, $window, dbServic
 			return feed.feed.nieuws + " " + feed.activiteit.naam;
 		}
 	}
+
+	$scope.toonDatum = function (datum) {
+		var d = new Date(datum);
+		return d.toDateString();
+	}
 }
