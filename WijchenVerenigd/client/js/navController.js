@@ -58,4 +58,9 @@ var navController = function ($routeParams, $scope, $window, dbService, $locatio
 			$scope.showLogin = true;
 		}
 	}
+
+	$scope.register = function () {
+		$scope.showLogin = false;
+		$location.path("/register");
+	}
 }

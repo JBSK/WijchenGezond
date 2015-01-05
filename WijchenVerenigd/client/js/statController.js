@@ -1,6 +1,5 @@
 var statController = function ($routeParams, $scope, $window, dbService, statService) {
 	$scope.statistieken = {};
-    $scope.hide = false;
 
 	var getTotaalStats = function() {
 		$scope.statistieken = [
@@ -60,11 +59,11 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 	}
 	BepaalStats();
 
-	$scope.$on('showGebruikerUpdated', function() {
-		BepaalStats();
-    });
+	$scope.meterPunten;
+	$scope.meterDoel;
 
-    $scope.$on('showUpdated', function() {
-        $scope.hide = statService.show;
-    });
+	dbService.meter.get(function (res) {
+		$scope.meterPunten = res.data.puntenTussenstand + " / " + res.data.puntenDoel;
+		$scope.meterDoel = res.data.doel;
+	});
 }

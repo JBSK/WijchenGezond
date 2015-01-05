@@ -1,19 +1,13 @@
-<div class="registerPage">
-
-
-<div class="registerTop">
-
-</div>
-
-
-<form class="tester" ng-model="createGebruiker">
-                <input type="text" class="form-control" placeholder="Gebruikersnaam" ng-model="createGebruiker.username" /></br>
-                <input type="text" class="form-control" placeholder="Email-adres" ng-model="createGebruiker.email" /></br>
-                <input type="password" class="form-control" placeholder="Wachtwoord" ng-model="createGebruiker.wachtwoord" /></br>
-                <input type="password" class="form-control" placeholder="Bevestig wachtwoord" ng-model="createGebruiker.bevestigWachtwoord" /></br>
-                <span class="message" ng-show="IsMatch">Emails have to match!</span>
-                <span class="message" ng-show="regMsg">{{regMessage}}</span>
-                <input class="btn btn-success" type="submit" value="Registreer" ng-click="reg()" />
-            </form>
-
+<div id="registerContainer">
+	<img src="./img/regImage.png" alt="Aanmelden image" />
+    <div id="registerForm">
+        <h1>{{message}}</h1>
+        <form id="regForm" ng-model="register">
+            <input type="text" ng-model="register.username" placeholder="Gebruikersnaam" />
+            <input type="text" ng-model="register.email" placeholder="Email-adres" />
+            <input type="password" ng-model="register.wachtwoord" placeholder="Wachtwoord" />
+            <input type="password" ng-model="register.bevestigWachtwoord" placeholder="Herhaal wachtwoord" />
+            <input type="submit" class="regSubmit" value="AANMELDEN" ng-click="registreer(register)" />
+        </form>
+    </div>
 </div>

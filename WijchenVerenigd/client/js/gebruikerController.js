@@ -1,27 +1,15 @@
-var gebruikerController = function ($routeParams, $scope, $window, dbService, statService) {
-	$scope.ingelogd = false;
-	$scope.inlogMessage = "";
-	$scope.checkLogin = function () {
-
-	};
-
-	$scope.logout = function () {
-		dbService.logout(function(res) {
-			inlogMessage = res.message;
-		});
-	};
-
-    $scope.reg = function() {
-        if($scope.createGebruiker.wachtwoord != $scope.createGebruiker.bevestigWachtwoord)
-        {
-            $scope.IsMatch=true;
-            return false;
-        }
-        $scope.IsMatch=false;
-
-        dbService.createGebruiker.post($scope.createGebruiker ,function (res) {
-            $scope.regMsg = true;
-            $scope.regMessage = res.message;
+var gebruikerController = function ($routeParams, $scope, $window, $location, dbService, statService, loginService) {
+    loginService.showLogin = false;
+	$scope.message = "DOE MEE!";
+    $scope.registreer = function (reg) {
+        console.log(reg);
+        dbService.createGebruiker.post(reg ,function (res) {
+            console.log(res);
+            if (res.success) {
+                $location.path("/");
+            } else {
+                $scope.message = res.message;
+            }
         });
-	};
+    }
 };

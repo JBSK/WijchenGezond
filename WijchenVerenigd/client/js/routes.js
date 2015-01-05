@@ -16,6 +16,7 @@ WijchenGezondApp.service('dbService', function dbService($resource) {
     db.subHoofdCategorieen = $resource("/categorieen/hoofdCategorieen/subCategorieen/:_id", {}, actions);
     db.login = $resource("/gebruikers/login/", {}, actions);
     db.activiteiten = $resource("/activiteiten/", {}, actions);
+    db.reken = $resource("/activiteiten/filterActs", {}, actions);
     db.createGebruiker = $resource("/gebruikers/createGebruiker/",{},actions);
     db.createActiviteit = $resource("/activiteiten/",{},actions);
     db.addDeelnemer = $resource("/activiteiten/addDeelnemer",{},actions);
@@ -58,16 +59,20 @@ WijchenGezondApp.service('statService', function statService($rootScope) {
     "use strict";
     var service = {};
     service.showGebruiker = false;
-    service.show = true;
 
     service.setShowGebruiker = function (value) {
         service.showGebruiker = value;
         $rootScope.$broadcast("showGebruikerUpdated");
     }
 
-    service.setShow = function (value) {
-        service.show = value;
-        $rootScope.$broadcast("showUpdated");
+    return service;
+});
+
+WijchenGezondApp.service('actService', function actService($rootScope) {
+    "use strict";
+    var service = {};
+    service.signal = function () {
+        $rootScope.$broadcast("signalUpdate");
     }
 
     return service;

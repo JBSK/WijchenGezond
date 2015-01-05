@@ -4,6 +4,8 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	$scope.activiteiten = [];
 	$scope.predicate = 'datum';
 	$scope.gebruikerLogin = {};
+	$scope.filters = [];
+	$scope.selectedFilter = "All";
 
 	var checkLogin = function () {
 		dbService.login.get(function(res) {
@@ -16,6 +18,16 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	};
 	checkLogin();
 
+	var setFilter = function () {
+		var i, filteredActs = [];
+		for (i = 0; i < $scope.activiteiten.length; i += 1) {
+			if ($scope.activiteiten[i].hoofdCategorie.naam.toString() === $scope.selectedFilter.toString()) {
+				filteredActs.push($scope.activiteiten[i]);
+			}
+		}
+		$scope.activiteiten = filteredActs;
+	}
+
 	var getActiviteiten = function () {
 		console.log("Proberen..");
 		dbService.activiteiten.get(function (res) {
@@ -23,6 +35,7 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 			if (res.success) {
 				$scope.activiteiten = res.data;
 				allActs = res.data;
+				setFilter();
 				$scope.deelnemenOfAfmelden($scope);
 			}
 		});
@@ -119,8 +132,6 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	}
 
 	// Zoek activiteiten
-	$scope.filters = [];
-	$scope.selectedFilter = "All";
 	var setFilters = function (filters) {
 		$scope.filters = filters;
 	}
@@ -151,51 +162,8 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 			$scope.selectedFilter = pointer;
 		}
 	}
-	/*
-	$scope.filters = [
-	{
-		"icon" : "fa fa-calendar-o",
-		"naam" : "Calendar",
-		"filter" : "All",
-		"class" : "selected"
-	},
-	{
-		"icon" : "fa fa-futbol-o",
-		"naam" : "Voetballen",
-		"filter" : "Voetballen",
-		"class" : "notSelected"
-	},
-	{
-		"icon" : "fa fa-bicycle",
-		"naam" : "Fietsen",
-		"filter" : "Fietsen",
-		"class" : "notSelected"
-	},
-	{
-		"icon" : "fa fa-life-ring",
-		"naam" : "Zwemmen",
-		"filter" : "Zwemmen",
-		"class" : "notSelected"
-	},
-	{
-		"icon" : "fa fa-users",
-		"naam" : "Vrienden",
-		"filter" : "Vrienden",
-		"class" : "notSelected"
-	},
-	{
-		"icon" : "fa fa-rub",
-		"naam" : "Vrienden",
-		"filter" : "Vrienden",
-		"class" : "notSelected"
-	},
-	{
-		"icon" : "fa fa-university",
-		"naam" : "Vrienden",
-		"filter" : "Vrienden",
-		"class" : "notSelected"
-	}
-	]
-	*/
-	//
+
+	$scope.$on('signalUpdate', function() {
+		getActiviteiten();
+	});
 };

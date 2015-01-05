@@ -1,4 +1,4 @@
-var meterController = function ($scope, dbService) {
+var meterController = function ($scope, dbService, actService) {
 	var meterAchtergrond = document.getElementById("meterAchtergrond");
 	var meterPunten = document.getElementById("meterPunten");
 	$scope.meterPunten;
@@ -11,10 +11,20 @@ var meterController = function ($scope, dbService) {
 		meterPunten.style.marginTop = margeMeterPunten + "px";
 	}
 
-	dbService.meter.get(function (res) {
-		$scope.meterPunten = res.data.puntenTussenstand + " / " + res.data.puntenDoel;
-		$scope.meterDoel = res.data.doel;
-        console.log(res.data);
-		setMeter(res.data);
-	});
+	var getMeter = function () {
+		dbService.meter.get(function (res) {
+			$scope.meterPunten = res.data.puntenTussenstand + " / " + res.data.puntenDoel;
+			$scope.meterDoel = res.data.doel;
+	        console.log(res.data);
+			setMeter(res.data);
+		});
+	}
+	getMeter();
+
+	setInterval(function () {
+		dbService.reken.get(function(res) {
+			getMeter();
+			actService.signal();
+		});
+	}, 10000);
 }
