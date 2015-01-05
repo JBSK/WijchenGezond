@@ -1,5 +1,6 @@
 var statController = function ($routeParams, $scope, $window, dbService, statService) {
 	$scope.statistieken = {};
+    $scope.hide = false;
 
 	var getTotaalStats = function() {
 		$scope.statistieken = [
@@ -61,5 +62,9 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 
 	$scope.$on('showGebruikerUpdated', function() {
 		BepaalStats();
+    });
+
+    $scope.$on('showUpdated', function() {
+        $scope.hide = statService.show;
     });
 }

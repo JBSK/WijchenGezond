@@ -66,7 +66,7 @@
                 <span class="text">Doel van deze maand</span>
             </div>
             {{meterDoel}}
-            <div ng-repeat="stat in statistieken" class="headerIcon">
+            <div ng-hide="hide" ng-repeat="stat in statistieken" class="headerIcon">
                 <ul>
                     <li class="{{stat.icon}}"></li>
                     <li class="textGroot">{{stat.data}}</li>

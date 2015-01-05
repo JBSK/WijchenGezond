@@ -58,11 +58,17 @@ WijchenGezondApp.service('statService', function statService($rootScope) {
     "use strict";
     var service = {};
     service.showGebruiker = false;
+    service.show = true;
 
     service.setShowGebruiker = function (value) {
         service.showGebruiker = value;
         $rootScope.$broadcast("showGebruikerUpdated");
-    } 
+    }
+
+    service.setShow = function (value) {
+        service.show = value;
+        $rootScope.$broadcast("showUpdated");
+    }
 
     return service;
 });

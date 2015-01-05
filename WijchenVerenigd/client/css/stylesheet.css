@@ -23,6 +23,23 @@ select:focus {
 textarea:focus {
 	outline: 0;
 }
+
+.registerPage{
+    float:left;
+    height: 100px;
+    background-color: white;
+    margin-top:-110px;
+    width: 135%;
+    margin-left: -18%;
+    padding:50px;
+    z-index: 3;
+}
+
+.registerTop{
+    margin-top:100px;
+}
+
+
 #navbar {
 	background-color: #013345;
 	width: 100%;
