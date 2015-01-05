@@ -247,6 +247,22 @@ exports.getFeedsGebruiker = function (id, callback) {
     var gebruiker = {};
 
     var sendFeeds = function (filteredFeeds) {
+        var i, x, filteredFs = [], inFeeds;
+        if (filteredFeeds.length > 0) {
+            filteredFs = [filteredFeeds[0]];
+            for (i = 0; i < filteredFeeds.length; i += 1) {
+                inFeeds = false;
+                for (x = 0; x < filteredFs.length; x += 1) {
+                    if (filteredFeeds[i].feed._id.toString() === filteredFs[x].feed._id.toString()) {
+                        inFeeds = true;
+                    }
+                }
+                if (!inFeeds) {
+                    filteredFs.push(filteredFeeds[i]);
+                }
+            }
+            filteredFeeds = filteredFs;
+        }
         callback(resp("De feeds zijn gevonden..", true, filteredFeeds));
     }
 
@@ -532,6 +548,22 @@ exports.getFeedsGebruikerVrienden = function (id, callback) {
     var gebruiker = {};
 
     var sendFeeds = function (filteredFeeds) {
+        var i, x, filteredFs = [], inFeeds;
+        if (filteredFeeds.length > 0) {
+            filteredFs = [filteredFeeds[0]];
+            for (i = 0; i < filteredFeeds.length; i += 1) {
+                inFeeds = false;
+                for (x = 0; x < filteredFs.length; x += 1) {
+                    if (filteredFeeds[i].feed._id.toString() === filteredFs[x].feed._id.toString()) {
+                        inFeeds = true;
+                    }
+                }
+                if (!inFeeds) {
+                    filteredFs.push(filteredFeeds[i]);
+                }
+            }
+            filteredFeeds = filteredFs;
+        }
         callback(resp("De feeds zijn gevonden..", true, filteredFeeds));
     }
 
