@@ -28,9 +28,7 @@ textarea:focus {
     float:left;
     height: 100px;
     background-color: white;
-    margin-top:-110px;
-    width: 135%;
-    margin-left: -18%;
+    width: 100%;
     padding:50px;
     z-index: 3;
 }

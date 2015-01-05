@@ -1,5 +1,4 @@
 var gebruikerController = function ($routeParams, $scope, $window, dbService, statService) {
-    statService.setShow(true);
 	$scope.ingelogd = false;
 	$scope.inlogMessage = "";
 	$scope.checkLogin = function () {
