@@ -108,7 +108,8 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	}
 
 	$scope.toonDatum = function(datum) {
-		var d = new Date(datum),
+		var d = new Date(datum);
+
 		maanden = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
 		maand = maanden[d.getMonth()];
 		return d.toDateString();
@@ -148,8 +149,10 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	getCategorieen();
 	$scope.setClass = function (pointer) {
 		if (pointer.naam === $scope.selectedFilter) {
+			console.log(pointer.icoonHover);
 			return pointer.icoonHover;
 		} else {
+			console.log(pointer.icoon);
 			return pointer.icoon;
 		}
 	}
