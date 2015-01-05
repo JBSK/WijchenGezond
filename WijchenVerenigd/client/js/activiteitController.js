@@ -9,6 +9,10 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 		}
 	});
 	
+	var totTitel = 50;
+	var totOmschr = 190;
+	$scope.titelOmschr = 50;
+	$scope.karaktersOmschr = 190;
 	$scope.activiteit = {};
 	$scope.activiteit.punten = 0;
 	$scope.activiteit.dagen = false;
@@ -118,5 +122,25 @@ var activiteitController = function ($routeParams, $scope, $window, dbService, $
 				console.log(res);
 			}
 		});
+	}
+
+	$scope.validateTitle = function (text) {
+		if (totTitel - text.length > -1) {
+			$scope.titelOmschr = totTitel - text.length;
+			$scope.activiteit.naam = text;
+		} else {
+			$scope.titelOmschr = 0;
+			$scope.activiteit.naam = text.substring(0, totTitel);
+		}
+	}
+
+	$scope.validateOmschr = function (text) {
+		if (totOmschr - text.length > -1) {
+			$scope.karaktersOmschr = totOmschr - text.length;
+			$scope.activiteit.omschrijving = text;
+		} else {
+			$scope.karaktersOmschr = 0;
+			$scope.activiteit.omschrijving = text.substring(0, totOmschr);
+		}
 	}
 }

@@ -18,7 +18,8 @@
 
 			<h1>Maak een nieuwe activiteit aan!</h1>
 			<form ng-model="activiteit">
-				<input class="naam" type="text" placeholder="Naam van de activiteit" ng-model="activiteit.naam" />
+				<h3>Titel ({{titelOmschr}})
+				<input class="naam" type="text" placeholder="Naam van de activiteit" ng-model="activiteit.naam" ng-change="validateTitle(activiteit.naam)" />
 		    	<div class="line"></div>
 
 				<h3>Categorieën</h3>
@@ -156,8 +157,8 @@
 		  		</div>
 
 		    	<div class="line"></div>
-				<h3>Omschrijving van de activiteit</h3>
-		    	<textarea ng-model="activiteit.omschrijving" placeholder="Typ hier een omschrijving van je activiteit bijvoorbeeld welke sport je precies wilt doen en andere belangrijke informatie."></textarea>
+				<h3>Omschrijving van de activiteit ({{karaktersOmschr}})</h3>
+		    	<textarea ng-model="activiteit.omschrijving" ng-change="validateOmschr(activiteit.omschrijving)" placeholder="Typ hier een omschrijving van je activiteit bijvoorbeeld welke sport je precies wilt doen en andere belangrijke informatie."></textarea>
 		    	<div class="line"></div>
 
 				<input class="submit" type="submit" value="Maak activiteit aan" ng-click="saveActiviteit()" />
