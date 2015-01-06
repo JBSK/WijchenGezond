@@ -1,4 +1,4 @@
-var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService,$rootScope) {
+var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService, $rootScope, actService) {
 	$rootScope.$broadcast('locatieNietProfiel');
     var allActs = [];
 	$scope.activiteiten = [];
@@ -31,7 +31,6 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	}
 
 	var getActiviteiten = function () {
-		console.log("Proberen..");
 		dbService.activiteiten.get(function (res) {
 			if (res.success) {
 				$scope.activiteiten = res.data;

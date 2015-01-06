@@ -1,4 +1,4 @@
-var navController = function ($routeParams, $scope, $window, dbService, $location, loginService) {
+var navController = function ($routeParams, $scope, $window, dbService, $location, loginService, actService) {
 	$scope.showLogin = false;
 	$scope.isIngelogd;
 	var loggedIn = false;
@@ -14,6 +14,7 @@ var navController = function ($routeParams, $scope, $window, dbService, $locatio
 			$scope.showLogin = false;
 			loggedIn = res.data;
 			loginService.setLoggedIn(true);
+			$scope.checked = true;
 		} else {
 			$scope.isIngelogd = "INLOGGEN";
 			loggedIn = false;
@@ -27,6 +28,7 @@ var navController = function ($routeParams, $scope, $window, dbService, $locatio
 				$scope.showLogin = false;
 				loggedIn = res.data;
 				loginService.setLoggedIn(true);
+				$scope.checked = true;
 			} else {
 				$scope.isIngelogd = "INLOGGEN";
 				loggedIn = false;

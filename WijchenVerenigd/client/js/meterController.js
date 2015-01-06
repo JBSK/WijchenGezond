@@ -1,4 +1,4 @@
-var meterController = function ($scope, dbService) {
+var meterController = function ($scope, dbService, actService) {
 	var meterAchtergrond = document.getElementById("meterAchtergrond");
 	var meterPunten = document.getElementById("meterPunten");
 	$scope.meterPunten;
@@ -22,7 +22,6 @@ var meterController = function ($scope, dbService) {
 
 	setInterval(function () {
 		dbService.reken.get(function(res) {
-			console.log("Update");
 			getMeter();
 			actService.signal();
 		});
