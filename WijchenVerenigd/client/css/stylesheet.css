@@ -3,1010 +3,1010 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400);
 
 body {
-	background-color: #FBFBFB;
-	font-family: 'Open Sans', sans-serif;
-	margin : 0px;
+    background-color: #FBFBFB;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
 }
 
-input:focus{
+input:focus {
     outline: 0;
 }
 
 button:focus {
-	outline: 0;
+    outline: 0;
 }
 
 select:focus {
-	outline: 0;
+    outline: 0;
 }
 
 textarea:focus {
-	outline: 0;
+    outline: 0;
 }
 
 #navbar {
-	background-color: #013345;
-	width: 100%;
-	height: 50px;
+    background-color: #013345;
+    width: 100%;
+    height: 50px;
 }
 
 #header {
-	background-color: #48C0EB;
-	width: 100%;
-	height: 100px;
+    background-color: #48C0EB;
+    width: 100%;
+    height: 100px;
 }
 
 #container {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1024px;
-	margin-top: -150px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1024px;
+    margin-top: -150px;
 }
 
 #containerNavbar {
-	height: 50px;
-	width: 100%;
-	float: left;
-	color: #fff;
+    height: 50px;
+    width: 100%;
+    float: left;
+    color: #fff;
 }
 
 #containerNavbar h1, #containerNavbar input {
-	float: left;
+    float: left;
 }
 
 #containerNavbar h1 a:link, #containerNavbar h1 a:visited, #containerNavbar h1 a:active {
-	font-size: 18px;
-	font-weight: 300;
-	color: #fff;
-	text-decoration: none;
+    font-size: 18px;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
 }
 
 #containerNavbar h1 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 #containerNavbar input {
-	margin-top: 12px;
-	margin-left: 130px;
-	width: 300px;
-	height: 25px;
-	border: none;
-  	-moz-border-radius: 4px;
-  	-webkit-border-radius: 4px;
-  	border-radius: 4px;
-  	padding-left: 8px;
-  	padding-right: 8px;
+    margin-top: 12px;
+    margin-left: 130px;
+    width: 300px;
+    height: 25px;
+    border: none;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
 #containerNavbar ul {
-	float: right;
-	margin-top: 12px;
+    float: right;
+    margin-top: 12px;
 }
 
 #containerNavbar ul:li {
 }
 
 #containerNavbar a:link {
-	text-decoration: underline;
-	color: #fff;
-	font-size: 11px;
-	margin-right: 10px;
+    text-decoration: underline;
+    color: #fff;
+    font-size: 11px;
+    margin-right: 10px;
 }
 
 #containerNavbar a:visited, #containerNavbar a:active {
-	color: #fff;
+    color: #fff;
 }
 
 #containerNavbar a:hover {
-	color: #48C0EB;
+    color: #48C0EB;
 }
 
 #containerNavbar h1 {
-	font-size: 18px;
-	font-weight: 300;
+    font-size: 18px;
+    font-weight: 300;
 }
 
 #containerHeader {
-	float: left;
-	height: 100px;
-	width: 100%;
-	margin-bottom: 10px;
+    float: left;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .headerIcon {
-	text-align: center;
-	float: right;
-	width: 200px;
-	height: 100%;
+    text-align: center;
+    float: right;
+    width: 200px;
+    height: 100%;
 }
 
 .headerIcon ul {
-	list-style-type: none;
-	margin-left: -25px;
-	margin-top: 15px;
-	color: #fff;
-	font-size: 22px;
+    list-style-type: none;
+    margin-left: -25px;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 22px;
 }
 
 .headerIcon li.text {
-	font-size: 11px;
+    font-size: 11px;
 }
 
 .headerIcon li.textGroot {
-	font-size: 15px;
-	font-weight: 700;
+    font-size: 15px;
+    font-weight: 700;
 }
 
 #sideBar {
-	float: left;
-	width: 224px;
-	margin-bottom: 100px;
+    float: left;
+    width: 224px;
+    margin-bottom: 100px;
 }
 
 #zoekActiviteit, #meterTekst, .profiel {
-	width: 202px;
-	padding: 10px;
-	float: left;
-	background-color: #fff;
-  	-moz-border-radius: 4px;
-  	-webkit-border-radius: 4px;
-  	border-radius: 4px;
-  	border: 1px solid #EEE;
+    width: 202px;
+    padding: 10px;
+    float: left;
+    background-color: #fff;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #EEE;
 }
 
 .profiel {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .profiel img {
-	width: 100%;
-	float: left;
-	margin-bottom: 10px;
+    width: 100%;
+    float: left;
+    margin-bottom: 10px;
 }
 
 .profielVrienden {
-	width: 213px;
-	margin-left: -11px;
-	float: left;
-	margin-bottom: -10px;
+    width: 213px;
+    margin-left: -11px;
+    float: left;
+    margin-bottom: -10px;
 }
 
 .profiel .profielVrienden img {
-	margin-left: 10px;
-	width: 61px;
-	height: 61px;
-	float: left;
+    margin-left: 10px;
+    width: 61px;
+    height: 61px;
+    float: left;
 }
 
 #zoekActiviteit h2, #meterTekst h2, .profiel h2 {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	font-size: 18px;
-	color: #48C0EB;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #48C0EB;
 }
 
 #zoekActiviteit p, #meterTekst p, .profiel p {
-	margin-top: 0px;
-	font-size: 11px;
-	color: #AAA;
+    margin-top: 0px;
+    font-size: 11px;
+    color: #AAA;
 }
 
 .profiel p {
-	font-weight: 700;
-	color: #013345;
+    font-weight: 700;
+    color: #013345;
 }
 
 .profiel button {
-	border-radius: 7px;
-	width: 115px;
-	background-color: #555;
-	color: #fff;
-	border: none;
-	margin-top: 7px;
-	margin-left: -122px;
-	height: 25px;
-	position: absolute;
+    border-radius: 7px;
+    width: 115px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    margin-top: 7px;
+    margin-left: -122px;
+    height: 25px;
+    position: absolute;
 }
 
 .profiel button:hover {
-	background-color: #48C0EB;
-	color: #333;
-	cursor: pointer;
+    background-color: #48C0EB;
+    color: #333;
+    cursor: pointer;
 }
 
 #zoekActiviteit a {
-	font-size: 24px;
-	margin: 2px;
+    font-size: 24px;
+    margin: 2px;
 }
 
 #zoekActiviteit img {
-	width: 31px;
-	margin: 1px;
+    width: 31px;
+    margin: 1px;
 }
 
 #zoekActiviteit img:hover {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 #zoekActiviteit a:hover {
-	text-decoration: none;
-	color: #48C0EB;
+    text-decoration: none;
+    color: #48C0EB;
 }
 
 #zoekActiviteit input {
-	padding: 10px;
-	margin-top: 15px;
-	border: 1px solid #DDD;
-	height: 10px;
-	width: 60px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid #DDD;
+    height: 10px;
+    width: 60px;
 }
 
 #zoekActiviteit #zoekActiviteitSubmit {
-	padding: 0px;
-	color: #FFF;
-	margin-left: 0px;
-	margin-top: 15px;
-	background-color: #48C0EB;
-	border: none;
-	height: 32px;
-	width: 75px;
+    padding: 0px;
+    color: #FFF;
+    margin-left: 0px;
+    margin-top: 15px;
+    background-color: #48C0EB;
+    border: none;
+    height: 32px;
+    width: 75px;
 }
 
 #zoekActiviteit #zoekActiviteitSubmit:hover, #zoekActiviteit #zoekActiviteitButton:hover {
-	background-color: #013345;
-	cursor: pointer;
+    background-color: #013345;
+    cursor: pointer;
 }
 
 #zoekActiviteit #zoekActiviteitButton {
-	color: #FFF;
-	margin-right: 0px;
-	margin-top: 15px;
-	background-color: #48C0EB;
-	border: none;
-	width: 35px;
-	height: 32px;
+    color: #FFF;
+    margin-right: 0px;
+    margin-top: 15px;
+    background-color: #48C0EB;
+    border: none;
+    width: 35px;
+    height: 32px;
 }
 
 #zoekActiviteit i {
-	background-color: #48C0EB;
-	height: 22px;
-	width: 22px;
-	color: #fff;
+    background-color: #48C0EB;
+    height: 22px;
+    width: 22px;
+    color: #fff;
 }
 
 #meter {
-	margin-top: 10px;
-	margin-bottom: 10px;
-	text-align: center;
-	width: 202px;
-	padding: 10px;
-	float: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    width: 202px;
+    padding: 10px;
+    float: left;
 }
 
 #meter h2 {
-	margin-top: 0px;
-	margin-bottom: 0px;
-	font-size: 18px;
-	color: #48C0EB;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #48C0EB;
 }
 
 #meter p {
-	margin-top: 0px;
-	font-size: 11px;
-	color: #AAA;
+    margin-top: 0px;
+    font-size: 11px;
+    color: #AAA;
 }
 
 #meterAchtergrond {
-	margin-top: 0px;
-	border: 1px solid #DDD;
-	background-color: #fff;
-	height: 404px;
-	float: left;
-	width: 5px;
-	margin-left: 98px;
-  	-moz-border-radius: 8px;
-  	-webkit-border-radius: 8px;
-  	border-radius: 8px;
+    margin-top: 0px;
+    border: 1px solid #DDD;
+    background-color: #fff;
+    height: 404px;
+    float: left;
+    width: 5px;
+    margin-left: 98px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 
 #meterPunten {
-	margin-top: 182px;
-	background-color: #48C0EB;
-	height: 220px;
-	float: left;
-	width: 3px;
-	margin-left: 1px;
-  	-moz-border-radius: 8px;
-  	-webkit-border-radius: 8px;
-  	border-radius: 8px;
+    margin-top: 182px;
+    background-color: #48C0EB;
+    height: 220px;
+    float: left;
+    width: 3px;
+    margin-left: 1px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
 }
 
 #kalender, #feeds {
-	float: left;
-	width: 800px;
-	margin-bottom: 40px;
+    float: left;
+    width: 800px;
+    margin-bottom: 40px;
 }
 
 .totActiviteit {
-	float: left;
-	margin-top: 0px;
-	height: 370px;
-	margin-bottom: 15px;
+    float: left;
+    margin-top: 0px;
+    height: 370px;
+    margin-bottom: 15px;
 }
 
 .actDeelnemen {
-	padding: 10px;
-	border-radius: 7px;
-	float: left;
-	width: 160px;
-	height: 350px;
-	margin-left: 9px;
-	margin-right: 9px;
-	background-color: #fff;
-	border: 1px solid #EEE;
+    padding: 10px;
+    border-radius: 7px;
+    float: left;
+    width: 160px;
+    height: 350px;
+    margin-left: 9px;
+    margin-right: 9px;
+    background-color: #fff;
+    border: 1px solid #EEE;
 }
 
 .actDeelnemen p {
-	font-weight: 700;
-	margin-top: 0px;
-	margin-bottom: 0px;
-	font-size: 18px;
-	color: #48C0EB;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 18px;
+    color: #48C0EB;
 }
 
 .actDeelnemen ul {
-	margin-top: 10px;
-	list-style-type: none;
-	margin-left: -35px;
-	height: 270px;
+    margin-top: 10px;
+    list-style-type: none;
+    margin-left: -35px;
+    height: 270px;
 }
 
 .actDeelnemen ul li {
-	font-size: 12px;
-	color: #333;
+    font-size: 12px;
+    color: #333;
 }
 
 .actDeelnemen ul li a:link, .actDeelnemen ul li a:visited, .actDeelnemen ul li a:active {
-	font-size: 12px;
-	color: #333;
-	text-decoration: none;
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
 }
 
 .actDeelnemen ul li a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .actDeelnemen div {
-	margin-left: -10px;
-	margin-right: -10px;
-	border-top: 1px solid #EEE;
-	float: left;
-	width: 180px;
+    margin-left: -10px;
+    margin-right: -10px;
+    border-top: 1px solid #EEE;
+    float: left;
+    width: 180px;
 }
 
 .actDeelnemen div button {
-	border-radius: 7px;
-	width: 85px;
-	background-color: #555;
-	color: #fff;
-	border: none;
-	margin-top: 7px;
-	margin-right: 10px;
-	float: right;
-	height: 25px;
+    border-radius: 7px;
+    width: 85px;
+    background-color: #555;
+    color: #fff;
+    border: none;
+    margin-top: 7px;
+    margin-right: 10px;
+    float: right;
+    height: 25px;
 }
 
 .actDeelnemen div button:hover {
-	background-color: #48C0EB;
-	color: #333;
-	cursor: pointer;
+    background-color: #48C0EB;
+    color: #333;
+    cursor: pointer;
 }
 
 .activiteit {
-	border-radius: 7px;
-	float: left;
-	width: 180px;
-	height: 370px;
-	margin-left: 9px;
-	margin-right: 9px;
-	background-color: #fff;
-	border: 1px solid #EEE;
+    border-radius: 7px;
+    float: left;
+    width: 180px;
+    height: 370px;
+    margin-left: 9px;
+    margin-right: 9px;
+    background-color: #fff;
+    border: 1px solid #EEE;
 }
 
 .actHeader img {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
-	width: 100%;
+    width: 100%;
 }
 
 .actHeader {
-	height: 105px;
-	overflow: hidden;
+    height: 105px;
+    overflow: hidden;
 }
 
 .actHeader img.mainIcon {
-	margin-left: 65px;
-	margin-top: 15px;
-	position: absolute;
-	width: 50px;
+    margin-left: 65px;
+    margin-top: 15px;
+    position: absolute;
+    width: 50px;
 }
 
 .actHeader h4 {
-	margin-top: 70px;
-	letter-spacing: -0.4px;
-	text-align: center;
-	color: #fff;
-	width: 180px;
-	font-weight: 400;
-	font-size: 16px;
-	position: absolute;
+    margin-top: 70px;
+    letter-spacing: -0.4px;
+    text-align: center;
+    color: #fff;
+    width: 180px;
+    font-weight: 400;
+    font-size: 16px;
+    position: absolute;
 }
 
 .actDetails {
-	padding: 10px;
+    padding: 10px;
 }
 
 .actDetails h3 {
-	margin-top: -5px;
-	color: #333;
-	font-size: 10px;
-	font-weight: 400;
+    margin-top: -5px;
+    color: #333;
+    font-size: 10px;
+    font-weight: 400;
 }
 
 .actDetails h1 {
-	margin-top: -5px;
-	font-size: 11px;
-	font-weight: 400;
-	margin-bottom: 0px;
+    margin-top: -5px;
+    font-size: 11px;
+    font-weight: 400;
+    margin-bottom: 0px;
 }
 
 .actDetails h2 {
-	display: inline-block;
-	color: #333;
-	font-size: 10px;
-	font-weight: 400;
-	margin-bottom: -1px;
-	margin-top: 0px;
+    display: inline-block;
+    color: #333;
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: -1px;
+    margin-top: 0px;
 }
 
 .actDetails h4 {
-	margin-top: 1px;
-	margin-bottom: 1px;
-	color: #333;
-	font-size: 12px;
-	font-weight: 400;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    color: #333;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .actOmschrijving {
-	border-top: 1px solid #EEE;
-	padding: 10px;
+    border-top: 1px solid #EEE;
+    padding: 10px;
 }
 
 .actOmschrijving p {
-	color: #333;
-	font-size: 10px;
-	margin-top: 0px;
+    color: #333;
+    font-size: 10px;
+    margin-top: 0px;
 }
 
 /* Login */
 
 #login {
-	padding: 20px;
-	position: absolute;
-	margin-top: 50px;
-	margin-left: 774px;
-	background-color: #fff;
-	height: 160px;
-	width: 230px;
-  	-moz-border-radius: 5px;
-  	-webkit-border-radius: 5px;
-  	border-radius: 5px;
-  	border: 1px solid #EEE;
-  	z-index: 999;
+    padding: 20px;
+    position: absolute;
+    margin-top: 50px;
+    margin-left: 774px;
+    background-color: #fff;
+    height: 160px;
+    width: 230px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #EEE;
+    z-index: 999;
 }
 
-.registreer{
-	font-weight:bold;
+.registreer {
+    font-weight: bold;
 }
 
 #login p {
-	margin-top: 0;
-	font-weight: 400;
-	font-size: 12px;
+    margin-top: 0;
+    font-weight: 400;
+    font-size: 12px;
 }
 
 #login input {
-	margin-bottom: 10px;
-	width: 205px;
-	padding: 10px;
-	border: 1px solid #DDD;
+    margin-bottom: 10px;
+    width: 205px;
+    padding: 10px;
+    border: 1px solid #DDD;
 }
 
 #login input.submitLogin {
-	width: 50px;
-	background-color: #48C0EB;
-	color: #fff;
-	border: none;
-	float: left;
+    width: 50px;
+    background-color: #48C0EB;
+    color: #fff;
+    border: none;
+    float: left;
 }
 
 #login input.submitLogin:hover {
-	cursor: pointer;
-	background-color: #000;
+    cursor: pointer;
+    background-color: #000;
 }
 
 #login a {
-	margin-left: 7px;
-	margin-top: 10px;
-	float: right;
-	font-size: 10px;
-	font-weight: 300;
-	color: #48C0EB;
-	text-decoration: none;
+    margin-left: 7px;
+    margin-top: 10px;
+    float: right;
+    font-size: 10px;
+    font-weight: 300;
+    color: #48C0EB;
+    text-decoration: none;
 }
 
 #login a:hover {
-	color: #000;
+    color: #000;
 }
 
 /* activiteit maken */
 
 #activiteitMaken {
-	padding: 10px;
-	float: left;
-	width: 780px;
+    padding: 10px;
+    float: left;
+    width: 780px;
 }
 
 #activiteitMaken h1 {
-	margin-top: 0px;
-	font-size: 25px;
-	color: #555;
+    margin-top: 0;
+    font-size: 25px;
+    color: #555;
 }
 
 #activiteitMaken h3 {
-	width: 800px;
-	float: left;
-	font-size: 18px;
-	color: #555;
+    width: 800px;
+    float: left;
+    font-size: 18px;
+    color: #555;
 }
 
 #activiteitMaken input.naam {
-	width: 100%;
-	border: 1px solid #DDD;
-	padding: 10px;
-	margin-top: 15px;
+    width: 100%;
+    border: 1px solid #DDD;
+    padding: 10px;
+    margin-top: 15px;
 }
 
 #activiteitMaken select.heleLengte {
-	width: 800px;
-	border-radius: 0px;
-	height: 30px;
-	margin-bottom: 15px;
-	background-color: #fff;
-	border: 1px solid #DDD;
+    width: 800px;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #DDD;
 }
 
 #activiteitMaken select.vijfdeDeel {
-	width: 182px;
-	float: left;
-	border-radius: 0px;
-	height: 30px;
-	margin-bottom: 15px;
-	background-color: #fff;
-	border: 1px solid #DDD;
-	margin-right: 20px;
+    width: 182px;
+    float: left;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #DDD;
+    margin-right: 20px;
 }
 
 #activiteitMaken select.derdeDeel {
-	width: 590px;
-	float: left;
-	border-radius: 0px;
-	height: 30px;
-	margin-bottom: 15px;
-	background-color: #fff;
-	border: 1px solid #DDD;
-	margin-right: 20px;
+    width: 590px;
+    float: left;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #DDD;
+    margin-right: 20px;
 }
 
 #activiteitMaken input.beginTijd {
-	text-align: center;
-	width: 70px;
-	float: left;
-	border: 1px solid #DDD;
-	padding: 5px;
-	margin-right: 18px;
+    text-align: center;
+    width: 70px;
+    float: left;
+    border: 1px solid #DDD;
+    padding: 5px;
+    margin-right: 18px;
 }
 
 #activiteitMaken input.eindTijd {
-	text-align: center;
-	width: 70px;
-	float: left;
-	margin-right: 0px;
-	margin-left: 0px;
-	border: 1px solid #DDD;
-	padding: 5px;
+    text-align: center;
+    width: 70px;
+    float: left;
+    margin-right: 0;
+    margin-left: 0;
+    border: 1px solid #DDD;
+    padding: 5px;
 }
 
 #activiteitMaken h6 {
-	color: #555;
-	margin-top: 0px;
-	font-size: 14px;
-	font-weight: 300;
-	float: left;
+    color: #555;
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 300;
+    float: left;
 }
 
 #activiteitMaken .groepCheckbox {
-	width: 800px;
-	height: 20px;
-	float: left;
-	margin-bottom: 20px;
+    width: 800px;
+    height: 20px;
+    float: left;
+    margin-bottom: 20px;
 }
 
 #activiteitMaken .checkbox {
-	margin-right: 10px;
-	float: left;
+    margin-right: 10px;
+    float: left;
 }
 
 #activiteitMaken h4 {
-	color: #555;
-	float: left;
+    color: #555;
+    float: left;
 }
 
 #activiteitMaken .line {
-	margin-top: 20px;
-	float: left;
-	width: 800px;
-	height: 1px;
-	background-color: #DDD;
+    margin-top: 20px;
+    float: left;
+    width: 800px;
+    height: 1px;
+    background-color: #DDD;
 }
 
 #activiteitMaken textarea {
-	float: left;
-	width: 800px;
-	height: 30px;
-	border: 1px solid #DDD;
+    float: left;
+    width: 800px;
+    height: 30px;
+    border: 1px solid #DDD;
 }
 
 #activiteitMaken button, #activiteitMaken .submit {
-	float: left;
-	padding: 0px;
-	color: #FFF;
-	margin-right: 20px;
-	margin-top: 15px;
-	background-color: #48C0EB;
-	border: none;
-	height: 32px;
-	width: 130px;
+    float: left;
+    padding: 0;
+    color: #FFF;
+    margin-right: 20px;
+    margin-top: 15px;
+    background-color: #48C0EB;
+    border: none;
+    height: 32px;
+    width: 130px;
 }
 
 #activiteitMaken button:hover, #activiteitMaken .submit:hover {
-	cursor: pointer;
-	background-color: #013345;
+    cursor: pointer;
+    background-color: #013345;
 }
 
 #activiteitMaken .submit {
-	margin-bottom: 100px;
+    margin-bottom: 100px;
 }
 
 #activiteitMaken .heleLengteDiv {
-	float: left;
-	width: 800px;
+    float: left;
+    width: 800px;
 }
 
 #activiteitMaken .deelnemersMin {
-	float: left;
-	width: 368px;
-	border: 1px solid #DDD;
-	padding: 10px;
-	margin-right: 10px;
+    float: left;
+    width: 368px;
+    border: 1px solid #DDD;
+    padding: 10px;
+    margin-right: 10px;
 }
 
 #activiteitMaken .deelnemersMax {
-	margin-left: 10px;
-	float: left;
-	width: 368px;
-	border: 1px solid #DDD;
-	padding: 10px;
+    margin-left: 10px;
+    float: left;
+    width: 368px;
+    border: 1px solid #DDD;
+    padding: 10px;
 }
 
 #activiteitMaken .verzamelPlaats {
-	margin-top: 15px;
-	float: left;
-	width: 780px;
-	border: 1px solid #DDD;
-	padding: 10px;
+    margin-top: 15px;
+    float: left;
+    width: 780px;
+    border: 1px solid #DDD;
+    padding: 10px;
 }
 
 /* Feeds */
 
 .feed {
-	margin-bottom: 10px;
-	margin-left: 10px;
-	margin-right: 10px;
-	float: left;
-	width: 790px;
-	background-color: #fff;
-  	-moz-border-radius: 7px;
-  	-webkit-border-radius: 7px;
-  	border-radius: 7px;
-  	border: 1px solid #EEE;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    width: 790px;
+    background-color: #fff;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+    border: 1px solid #EEE;
 }
 
 .feedImage, .feedContent {
-	overflow: hidden;
-	float: left;
-	width: 100%;
-	height: 60px;
-	color: #444;
+    overflow: hidden;
+    float: left;
+    width: 100%;
+    height: 60px;
+    color: #444;
 }
 
 .feedImage img {
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
-	width: 100%;
+    width: 100%;
 }
 
 .feedContent img {
-	height: 100%;
-	float: left;
-	margin-right: 10px;
+    height: 100%;
+    float: left;
+    margin-right: 10px;
 }
 
 .feedContent h1 {
-	margin-bottom: 0px;
-	font-weight: 400;
-	font-size: 12px;
-	margin-top: 10px;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 12px;
+    margin-top: 10px;
 }
 
 .feedContent h1 a:link, .feedContent h1 a:visited, .feedContent h1 a:active {
-	text-decoration: none;
-	color: #444;
-	font-weight: 700;
+    text-decoration: none;
+    color: #444;
+    font-weight: 700;
 }
 
 .feedContent h1 a:hover {
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 .feedContent h4 {
-	float: left;
-	margin-bottom: 0px;
-	font-weight: 400;
-	font-size: 10px;
-	margin-top: 10px;
+    float: left;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 10px;
+    margin-top: 10px;
 }
 
 .feedContent h4 .fa-heart-o {
-	color: #900;
+    color: #900;
 }
 
 .feedContent h5 {
-	float: left;
-	margin-bottom: 0px;
-	font-weight: 400;
-	font-size: 10px;
-	margin-top: 10px;
-	margin-left: 20px;
+    float: left;
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 .feedReactie, .feedReageer {
-	float: left;
-	width: 770px;
-	border-top: 1px solid #EEE;
-	padding: 10px;
+    float: left;
+    width: 770px;
+    border-top: 1px solid #EEE;
+    padding: 10px;
 }
 
 .feedReageer {
-	height: 40px;
+    height: 40px;
 }
 
 .feedReactie p, .feedReactie h5, .feedReactie h6 {
-	margin-bottom: 0px;
-	font-weight: 400;
+    margin-bottom: 0;
+    font-weight: 400;
 }
 
 .feedReactie p {
-	margin-left: 5px;
-	font-size: 11px;
-	float: left;
-	margin-top: 4px;
+    margin-left: 5px;
+    font-size: 11px;
+    float: left;
+    margin-top: 4px;
 }
 
 .feedReactie h5 {
-	margin-left: 28px;
-	font-size: 11px;
-	float: left;
-	margin-top: 4px;
-	font-weight: 700;
+    margin-left: 28px;
+    font-size: 11px;
+    float: left;
+    margin-top: 4px;
+    font-weight: 700;
 }
 
 .feedReactie h6 {
-	margin-top: 15px;
-	margin-right: 15px;
-	font-size: 8px;
-	float: right;
-	color: #CCC;
+    margin-top: 15px;
+    margin-right: 15px;
+    font-size: 8px;
+    float: right;
+    color: #CCC;
 }
 
 .feedReactie img {
-	height: 25px;
-	width: 25px;
-	float: left;
-	margin-left: 8px;
-  	-moz-border-radius: 20px;
-  	-webkit-border-radius: 20px;
-  	border-radius: 20px;
+    height: 25px;
+    width: 25px;
+    float: left;
+    margin-left: 8px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
 }
 
 .feedReageer img {
-	height: 40px;
-	width: 40px;
-	float: left;
-  	-moz-border-radius: 20px;
-  	-webkit-border-radius: 20px;
-  	border-radius: 20px;
+    height: 40px;
+    width: 40px;
+    float: left;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
 }
 
 .feedReageer input {
-	margin-top: 7px;
-	margin-left: 20px;
-	float: left;
-	width: 640px;
-	padding: 5px;
-	height: 15px;
-	border: none;
-	background-color: #EEE;
+    margin-top: 7px;
+    margin-left: 20px;
+    float: left;
+    width: 640px;
+    padding: 5px;
+    height: 15px;
+    border: none;
+    background-color: #EEE;
 }
 
 .feedReageer button {
-	margin-top: 7px;
-	float: left;
-	width: 50px;
-	height: 25px;
-	padding: 5px;
-	background-color: #EEE;
-	border: none;
+    margin-top: 7px;
+    float: left;
+    width: 50px;
+    height: 25px;
+    padding: 5px;
+    background-color: #EEE;
+    border: none;
 }
 
 .feedReageer button:hover {
-	background-color: #444;
-	color: #fff;
-	cursor: pointer;
+    background-color: #444;
+    color: #fff;
+    cursor: pointer;
 }
 
 .feedReageer input.submit {
-	visibility: hidden;
+    visibility: hidden;
 }
 
 /* Profiel */
 
 .profileLeftSide {
-	width:250px;
-	float:left;
-	font-size: 11px;
-	text-decoration:none;
-	background:white;
-	border: 1px solid #F4F4F4;
+    width: 250px;
+    float: left;
+    font-size: 11px;
+    text-decoration: none;
+    background: white;
+    border: 1px solid #F4F4F4;
 }
 
 .profileRightSide {
-	width:750px;
-	margin-left:10px;
-	float:left;
-	background:white;
+    width: 750px;
+    margin-left: 10px;
+    float: left;
+    background: white;
 }
 
-.userInfo{
-	margin:5px;
+.userInfo {
+    margin: 5px;
 }
 
 .userInfo > .info > .name {
-	color:#48C0EB;
-	font-weight:500;
-	font-size:22px;
+    color: #48C0EB;
+    font-weight: 500;
+    font-size: 22px;
 }
 
-.profileCompleteLevel, .friendlistHeader, .viewFriends{
-	margin:5px;
+.profileCompleteLevel, .friendlistHeader, .viewFriends {
+    margin: 5px;
 
 }
 
 .profileCompleteLevel {
-	margin: 20px 5px 20px 5px;
+    margin: 20px 5px 20px 5px;
 }
 
 .blue {
-	color:#48C0EB;
+    color: #48C0EB;
 }
 
 .black {
-	color:#000;
+    color: #000;
 }
 
 .noUnderline {
-	text-decoration:none;
+    text-decoration: none;
 }
 
 .friendIcon {
-	float:left;
-	margin: 5px;
-	border: 1px solid black;
-	height:70px;
-	width:70px;
-	overflow:hidden;
+    float: left;
+    margin: 5px;
+    border: 1px solid black;
+    height: 70px;
+    width: 70px;
+    overflow: hidden;
 }
 
-.headerDoelMeter{
-	color:white;
-	font-size: 15px;
-	font-weight: 700;
-	width:200px;
-	float:left;
-	text-align:center;
-	margin-top:10px;
+.headerDoelMeter {
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    width: 200px;
+    float: left;
+    text-align: center;
+    margin-top: 10px;
 }
 
 .headerDoelMeter > .text {
-	font-size: 11px;
-	font-weight:400;
+    font-size: 11px;
+    font-weight: 400;
 }
 
 #registerContainer {
-	width: 100%;
-	float: left;
+    width: 100%;
+    float: left;
 }
 
 #registerForm h1 {
-	font-size: 20px;
-	margin-bottom: 5px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 #registerForm {
-	margin-left: 100px;
-	margin-top: 25px;
-	float: left;
-	width: 300px;
+    margin-left: 100px;
+    margin-top: 25px;
+    float: left;
+    width: 300px;
 }
 
-#regForm form{
-	float: right;
+#regForm form {
+    float: right;
 }
 
 #regForm input {
-	margin-bottom: 10px;
-	width: 280px;
-	border-radius: 10px;
-	border: 1px solid #EEE;
-	height: 25px;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-left: 10px;
-	padding-right: 10px;
+    margin-bottom: 10px;
+    width: 280px;
+    border-radius: 10px;
+    border: 1px solid #EEE;
+    height: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #regForm input.regSubmit {
-	color: #fff;
-	font-size: 14px;
-	font-weight: 400;
-	background-color: #013345;
-	width: 100%;
-	height: 35px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #013345;
+    width: 100%;
+    height: 35px;
 }
 
 #regForm input.regSubmit:hover {
-	cursor: pointer;
-	color: #fff;
-	font-size: 14px;
-	font-weight: 400;
-	background-color: #48C0EB;
-	width: 100%;
-	height: 35px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #48C0EB;
+    width: 100%;
+    height: 35px;
 }
 
 #registerContainer img {
-	margin-left: 35px;
-	margin-top: 15px;
-	float: left;
-	width: 500px;
+    margin-left: 35px;
+    margin-top: 15px;
+    float: left;
+    width: 500px;
 }

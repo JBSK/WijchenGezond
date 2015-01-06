@@ -33,7 +33,6 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	var getActiviteiten = function () {
 		console.log("Proberen..");
 		dbService.activiteiten.get(function (res) {
-			console.log(res);
 			if (res.success) {
 				$scope.activiteiten = res.data;
 				allActs = res.data;
