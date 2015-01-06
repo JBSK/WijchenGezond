@@ -21,11 +21,11 @@ var meterController = function ($scope, dbService, actService) {
 	}
 	getMeter();
 
-	setInterval(function () {
+	/*setInterval(function () {
 		dbService.reken.get(function(res) {
 			console.log("Update");
 			getMeter();
 			actService.signal();
 		});
-	}, 5000);
+	}, 5000);*/
 }

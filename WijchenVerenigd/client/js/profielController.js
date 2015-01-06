@@ -1,5 +1,6 @@
-var profielController = function ($routeParams, $scope, $window, dbService, loginService, statService) {
-    statService.setShowGebruiker(true);
+var profielController = function ($routeParams, $scope, $window, dbService, loginService, $rootScope) {
+    $rootScope.$broadcast('locatieProfiel');
+
     var inlogId = "0";
     $scope.gebruiker = {};
     $scope.toonVriendenKnop = false;
