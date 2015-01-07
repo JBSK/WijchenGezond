@@ -1,5 +1,5 @@
-var activiteitController = function ($routeParams, $scope, $window, dbService, $location, statService) {
-    statService.setShowGebruiker(false);
+var activiteitController = function ($routeParams, $scope, $window, dbService, $location,$rootScope) {
+	$rootScope.$broadcast('locatieNietProfiel');
 	var creatorId;
 	dbService.login.get(function(res) {
 		if (res.success) {

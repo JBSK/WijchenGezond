@@ -1,5 +1,6 @@
-var profielController = function ($routeParams, $scope, $window, dbService, loginService, statService) {
-    statService.setShowGebruiker(true);
+var profielController = function ($routeParams, $scope, $window, dbService, loginService, $rootScope) {
+    $rootScope.$broadcast('locatieProfiel');
+
     var inlogId = "0";
     $scope.gebruiker = {};
     $scope.toonVriendenKnop = false;
@@ -14,7 +15,6 @@ var profielController = function ($routeParams, $scope, $window, dbService, logi
     var checkOfvrienden = function (vrienden) {
         var i;
         for (i = 0; i < vrienden.length; i += 1) {
-            console.log(vrienden);
             if ($routeParams._id === vrienden[i]._id) {
                 setVriendenKnopValue("Ontvolgen");
                 return;
@@ -24,7 +24,6 @@ var profielController = function ($routeParams, $scope, $window, dbService, logi
     }
     var getVolgend = function () {
         dbService.volgend.get({_id : $routeParams._id}, function (res) {
-            console.log(res);
             if (res.success) {
                 $scope.vrienden = res.data;
             }

@@ -1,5 +1,5 @@
-var feedsController = function ($routeParams, $scope, $window, dbService, loginService, statService) {
-    statService.setShowGebruiker(false);
+var feedsController = function ($routeParams, $scope, $window, dbService, loginService, $rootScope) {
+	$rootScope.$broadcast('locatieNietProfiel');
 	$scope.feeds = [];
 	$scope.predicate = 'datum';
 	$scope.gebruikerLogin = {};
@@ -14,7 +14,6 @@ var feedsController = function ($routeParams, $scope, $window, dbService, loginS
 	}
 
 	var getVolgend = function () {
-		console.log("getGeruiker");
 		dbService.volgend.get({_id : $scope.gebruikerLogin._id}, function (res) {
 			console.log(res);
 			if (res.success) {

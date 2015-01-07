@@ -1,5 +1,6 @@
-var statController = function ($routeParams, $scope, $window, dbService, statService) {
+var statController = function ($routeParams, $scope, $window, dbService) {
 	$scope.statistieken = {};
+
 
 	var getTotaalStats = function() {
 		$scope.statistieken = [
@@ -22,7 +23,7 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 		{
 			icon : "fa fa-trophy",
 			pointer : "Punten totaal",
-			data : "574/750"
+			data : "574 / 1250"
 		}];
 	}
 
@@ -50,14 +51,7 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 		}];
 	}
 
-	var BepaalStats = function () {
-		if (statService.showGebruiker) {
-			getGebruikerStats();
-		} else {
-			getTotaalStats();
-		}
-	}
-	BepaalStats();
+	getTotaalStats();
 
 	$scope.meterPunten;
 	$scope.meterDoel;
@@ -65,5 +59,12 @@ var statController = function ($routeParams, $scope, $window, dbService, statSer
 	dbService.meter.get(function (res) {
 		$scope.meterPunten = res.data.puntenTussenstand + " / " + res.data.puntenDoel;
 		$scope.meterDoel = res.data.doel;
+	});
+
+	$scope.$on('locatieProfiel', function(event, args) {
+		getGebruikerStats();
+	});
+	$scope.$on('locatieNietProfiel', function(event, args) {
+		getTotaalStats();
 	});
 }

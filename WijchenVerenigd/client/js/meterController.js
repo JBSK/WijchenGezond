@@ -15,7 +15,6 @@ var meterController = function ($scope, dbService, actService) {
 		dbService.meter.get(function (res) {
 			$scope.meterPunten = res.data.puntenTussenstand + " / " + res.data.puntenDoel;
 			$scope.meterDoel = res.data.doel;
-	        console.log(res.data);
 			setMeter(res.data);
 		});
 	}
@@ -23,7 +22,6 @@ var meterController = function ($scope, dbService, actService) {
 
 	setInterval(function () {
 		dbService.reken.get(function(res) {
-			console.log("Update");
 			getMeter();
 			actService.signal();
 		});

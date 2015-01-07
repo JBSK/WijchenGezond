@@ -1,5 +1,5 @@
-var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService, statService) {
-    statService.setShowGebruiker(false);
+var homeController = function ($routeParams, $scope, $window, dbService, $location, loginService, $rootScope, actService) {
+	$rootScope.$broadcast('locatieNietProfiel');
     var allActs = [];
 	$scope.activiteiten = [];
 	$scope.predicate = 'datum';
@@ -31,9 +31,7 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	}
 
 	var getActiviteiten = function () {
-		console.log("Proberen..");
 		dbService.activiteiten.get(function (res) {
-			console.log(res);
 			if (res.success) {
 				$scope.activiteiten = res.data;
 				allActs = res.data;
@@ -149,10 +147,8 @@ var homeController = function ($routeParams, $scope, $window, dbService, $locati
 	getCategorieen();
 	$scope.setClass = function (pointer) {
 		if (pointer.naam === $scope.selectedFilter) {
-			console.log(pointer.icoonHover);
 			return pointer.icoonHover;
 		} else {
-			console.log(pointer.icoon);
 			return pointer.icoon;
 		}
 	}

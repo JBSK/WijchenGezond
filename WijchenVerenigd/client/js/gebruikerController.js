@@ -1,4 +1,4 @@
-var gebruikerController = function ($routeParams, $scope, $window, $location, dbService, statService, loginService) {
+var gebruikerController = function ($routeParams, $scope, $window, $location, dbService, loginService, actService) {
     loginService.showLogin = false;
 	$scope.message = "DOE MEE!";
     $scope.registreer = function (reg) {
