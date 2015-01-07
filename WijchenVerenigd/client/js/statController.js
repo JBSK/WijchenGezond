@@ -23,7 +23,7 @@ var statController = function ($routeParams, $scope, $window, dbService) {
 		{
 			icon : "fa fa-trophy",
 			pointer : "Punten totaal",
-			data : "574/750"
+			data : "574 / 1250"
 		}];
 	}
 
