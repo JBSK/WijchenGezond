@@ -311,6 +311,7 @@ exports.getActiviteiten = function (callback) {
                             acts.push(data[i]);
                         }
                     }
+                    console.log(acts);
                     getGebruikers();
                 } else {
                     console.log("Callbacken..");
