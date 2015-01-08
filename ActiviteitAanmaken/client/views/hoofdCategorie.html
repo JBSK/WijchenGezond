@@ -1,0 +1,25 @@
+<h3>{{message}}</h3>
+<div>
+	<form ng-model="categorie">
+		<input type="hidden" ng-model="hoofdCategorie._id" />
+		<input type="text" ng-model="hoofdCategorie.naam" placeholder="naam" />
+		<input type="text" ng-model="hoofdCategorie.icoon" placeholder = "icoon (afbeelding)" />
+		<input type="submit" value="voeg toe / pas aan" ng-click="addHoofdCategorie(hoofdCategorie)" />
+	</form>
+</div>
+
+<div>
+	<ul>
+		<li ng-repeat="subCategorie in subCategorieen"><input type="button" value="verwijder" ng-click="verwijderSubCategorie(subCategorie._id)" /><a href="/#/subcategorieen/{{subCategorie._id}}">{{subCategorie.naam}}</a></li>
+	</ul>
+
+	<h3>{{message}}</h3>
+	<div>
+		<form ng-model="subCategorie">
+			<input type="text" ng-model="subCategorie.naam" placeholder="naam" />
+			<input type="text" ng-model="subCategorie.punten" placeholder="aantal punten" />
+			<input type="submit" value="voeg toe" ng-click="addSubCategorie(subCategorie)" />
+		</form>
+	</div>
+</div>
+<a href="/#/categorieen">Terug</a>

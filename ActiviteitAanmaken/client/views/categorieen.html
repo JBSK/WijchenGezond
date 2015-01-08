@@ -1,0 +1,7 @@
+<h3>{{message}}</h3>
+<div>
+	<ul>
+		<li ng-repeat="hoofdCategorie in hoofdCategorieen"><input type="button" value="verwijder" ng-click="verwijderHoofdCategorie(hoofdCategorie._id)" /><a href="/#/hoofdcategorieen/{{hoofdCategorie._id}}">{{hoofdCategorie.naam}}</a></li>
+	</ul>
+	<a href="/#/hoofdcategorieen/">Voeg categorie toe</a>
+</div>
