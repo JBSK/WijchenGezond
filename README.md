@@ -13,7 +13,7 @@ git clone https://github.com/serealkiller/WijchenGezond.git
 ```
 
 Na dit commando wordt u gepromped om een wachtwoord in te voeren. Hier kunt u uw eigen wachtwoord invoeren als u toegang heeft tot de repository.
-```~/workspaces/flexicon``` Kan veranderd worden naar eigen inzicht.
+```~/workspaces/WijchenGezond``` Kan veranderd worden naar eigen inzicht.
 
 Ga naar de gekloonde map
 
@@ -29,7 +29,7 @@ Standaard zal de applicatie draaien op ```poort: 3000```. Als u dit wilt aanpass
 config map en pas daar het ```app.js``` bestand aan, deze bevindt zich in:
 
 ```
-WijchenVerenigd/server/config/server.js
+Prototype3_WijchenVerenigd/server/config/server.js
 ```
 
 De applicatie zal standaard zoeken naar een Mongodatabase op ```localhost/WijchenGezond```.
@@ -60,7 +60,7 @@ Als u geen [MongoDB](http://www.mongodb.org/) heeft zult u deze eerst moeten ins
 Voordat u iets kunt doem met de applicatie zult u eerst de [MongoDB](http://www.mongodb.org/) database moeten vullen. Als u dit niet doet zal de website er erg leeg uit zien. Dit doet u d.m.v deze commando's:
 
 ```
-cd WijchenVerenigd/server/dump/WijchenGezond/
+cd Prototype3_WijchenVerenigd/server/dump/WijchenGezond/
 mongorestore --db WijchenGezond
 ```
 
@@ -95,7 +95,7 @@ git clone https://github.com/serealkiller/WijchenGezond.git
 ```
 
 Na dit commando wordt u gepromped om een wachtwoord in te voeren. Hier kunt u uw eigen wachtwoord invoeren als u toegang heeft tot de repository.
-```~/workspaces/flexicon``` Kan veranderd worden naar eigen inzicht.
+```~/workspaces/WijchenGezond``` Kan veranderd worden naar eigen inzicht.
 
 Ga naar de gekloonde map
 
@@ -112,9 +112,9 @@ De applicatie starten
 Deze applicatie is simpelweg een html/css/JavaScript applicatie. U kunt de applicatie starten door de indexpagina te openen met Chrome, Safari of Firefox:
 
 ```
-cd ~/workspaces/WijchenGezond/meterProto/client/
+cd ~/workspaces/WijchenGezond/Prototype2_meterProto/client/
 
 index.html //Open dit bestand met Chrome, Safari of Firefox.
 ```
 
-Zorg ervoor dat JavaScript niet door de browser geblokkeerd wordt. De meter begint na 5 seconden te lopen.
+Zorg ervoor dat JavaScript niet door de browser geblokkeerd wordt. De meter begint na 5 seconden te lopen.s
